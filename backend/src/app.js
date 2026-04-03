@@ -12,11 +12,23 @@ const {
 
 const app = express();
 
+function getAllowedOrigins() {
+  const configuredOrigins = [
+    env.CLIENT_BASE_URL,
+    "http://localhost:5500",
+    "http://127.0.0.1:5500",
+  ];
+
+  return Array.from(new Set(configuredOrigins.filter(Boolean)));
+}
+
 app.use(
   cors({
     origin(origin, callback) {
-      // Allow same-origin, curl, and the configured frontend origin.
-      if (!origin || origin === env.CLIENT_BASE_URL) {
+      const allowedOrigins = getAllowedOrigins();
+
+      // Allow same-origin non-browser tools and configured local frontend origins.
+      if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
         return;
       }
@@ -45,4 +57,3 @@ app.use(notFoundHandler);
 app.use(errorHandler);
 
 module.exports = app;
-
