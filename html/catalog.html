@@ -89,10 +89,10 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Women</a>
 </div>
 <div class="flex items-center gap-6">
-<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 border-b border-primary">
-<span class="material-symbols-outlined text-outline text-sm">search</span>
-<input class="bg-transparent border-none focus:ring-0 text-xs tracking-widest uppercase ml-2 w-48 font-body" placeholder="SEARCH ARCHIVES..." type="text">
-</div>
+<form class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 border-b border-primary" data-catalog-search-form>
+<button class="material-symbols-outlined text-outline text-sm bg-transparent border-none p-0 leading-none" type="submit">search</button>
+<input class="bg-transparent border-none focus:ring-0 text-xs tracking-widest uppercase ml-2 w-48 font-body" data-catalog-search-input placeholder="SEARCH ARCHIVES..." type="text">
+</form>
 <a href="catalog.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">shopping_bag</a>
 <a href="signup.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">person</a>
 </div>
@@ -114,7 +114,7 @@
 </div>
 </header>
 <!-- Main Content (Section 3) -->
-<main class="max-w-[1600px] mx-auto px-8 py-20 flex gap-12">
+<main class="max-w-[1600px] mx-auto px-8 py-20 flex gap-12" data-catalog-app>
 <!-- Sidebar Filter (Section 3A) -->
 <aside class="hidden lg:flex flex-col w-64 shrink-0 space-y-10">
 <div>
@@ -123,21 +123,9 @@
 <!-- Categories -->
 <div class="space-y-4 mb-10">
 <p class="font-label uppercase tracking-widest text-xs font-bold text-on-surface" style="">Categories</p>
-<div class="flex flex-col space-y-3">
-<button class="flex justify-between items-center text-primary font-bold text-sm transition-transform duration-300 hover:translate-x-1" style="">
-<span class="" style="">ALL FOOTWEAR</span>
-<span class="material-symbols-outlined text-sm" style="">chevron_right</span>
-</button>
-<button class="flex justify-between items-center text-slate-600 hover:text-primary transition-transform duration-300 hover:translate-x-1 uppercase text-sm" style="">
-<span class="" style="">LIMITED EDITIONS</span>
-<span class="material-symbols-outlined text-sm" style="">chevron_right</span>
-</button>
-<button class="flex justify-between items-center text-slate-600 hover:text-primary transition-transform duration-300 hover:translate-x-1 uppercase text-sm" style="">
-<span class="" style="">PERFORMANCE</span>
-<span class="material-symbols-outlined text-sm" style="">chevron_right</span>
-</button>
-<button class="flex justify-between items-center text-slate-600 hover:text-primary transition-transform duration-300 hover:translate-x-1 uppercase text-sm" style="">
-<span class="" style="">LIFESTYLE</span>
+<div class="flex flex-col space-y-3" data-catalog-categories>
+<button class="flex justify-between items-center text-primary font-bold text-sm transition-transform duration-300 hover:translate-x-1 uppercase" data-category-slug="" type="button">
+<span class="" style="">All Footwear</span>
 <span class="material-symbols-outlined text-sm" style="">chevron_right</span>
 </button>
 </div>
@@ -147,41 +135,42 @@
 <p class="font-label uppercase tracking-widest text-xs font-bold text-on-surface" style="">Price Range</p>
 <div class="relative pt-4 px-2">
 <div class="h-1 bg-slate-200 w-full relative">
-<div class="absolute h-full bg-primary left-1/4 right-1/4"></div>
-<div class="absolute w-4 h-4 bg-primary border-2 border-white -top-1.5 left-1/4"></div>
-<div class="absolute w-4 h-4 bg-primary border-2 border-white -top-1.5 right-1/4"></div>
+<div class="absolute h-full bg-primary left-0 right-0"></div>
 </div>
 <div class="flex justify-between mt-4 text-[10px] font-bold tracking-tighter">
-<span class="" style="">$200</span>
-<span class="" style="">$1,200</span>
+<span class="" data-catalog-price-hint style="">$0 - $0</span>
+<span class="text-slate-400" style="">USD</span>
 </div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<label class="flex flex-col gap-2">
+<span class="font-label uppercase tracking-[0.2em] text-[10px] text-slate-400">Min</span>
+<input class="bg-surface-container-low border border-black/5 focus:border-primary focus:ring-0 text-xs uppercase tracking-widest px-4 py-3" data-catalog-min-price inputmode="numeric" min="0" placeholder="0" type="number">
+</label>
+<label class="flex flex-col gap-2">
+<span class="font-label uppercase tracking-[0.2em] text-[10px] text-slate-400">Max</span>
+<input class="bg-surface-container-low border border-black/5 focus:border-primary focus:ring-0 text-xs uppercase tracking-widest px-4 py-3" data-catalog-max-price inputmode="numeric" min="0" placeholder="Any" type="number">
+</label>
 </div>
 </div>
 <!-- Brands -->
 <div class="space-y-4">
 <p class="font-label uppercase tracking-widest text-xs font-bold text-on-surface" style="">Brands</p>
-<div class="grid grid-cols-1 gap-3">
+<div class="grid grid-cols-1 gap-3" data-catalog-brands>
 <label class="flex items-center gap-3 cursor-pointer group" style="">
 <input class="w-4 h-4 border-2 border-slate-300 text-primary focus:ring-0 rounded-none" type="checkbox">
-<span class="text-xs uppercase tracking-wide group-hover:text-primary" style="">Jordan Brand</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group" style="">
-<input checked="" class="w-4 h-4 border-2 border-slate-300 text-primary focus:ring-0 rounded-none" type="checkbox">
-<span class="text-xs uppercase tracking-wide group-hover:text-primary font-bold" style="">Nike Archive</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group" style="">
-<input class="w-4 h-4 border-2 border-slate-300 text-primary focus:ring-0 rounded-none" type="checkbox">
-<span class="text-xs uppercase tracking-wide group-hover:text-primary" style="">Adidas Consortium</span>
-</label>
-<label class="flex items-center gap-3 cursor-pointer group" style="">
-<input class="w-4 h-4 border-2 border-slate-300 text-primary focus:ring-0 rounded-none" type="checkbox">
-<span class="text-xs uppercase tracking-wide group-hover:text-primary" style="">New Balance Made</span>
+<span class="text-xs uppercase tracking-wide group-hover:text-primary" style="">Loading Brands</span>
 </label>
 </div>
 </div>
-<button class="w-full mt-12 bg-primary-container text-white py-4 font-label uppercase tracking-[0.2em] text-xs hover:bg-secondary transition-colors" style="">
+<div class="grid grid-cols-1 gap-3 mt-12">
+<button class="w-full bg-primary-container text-white py-4 font-label uppercase tracking-[0.2em] text-xs hover:bg-secondary transition-colors" data-catalog-apply type="button" style="">
                     Apply Filters
                 </button>
+<button class="w-full border border-black/10 py-4 font-label uppercase tracking-[0.2em] text-xs hover:border-primary hover:text-primary transition-colors" data-catalog-reset type="button" style="">
+                    Reset Filters
+                </button>
+</div>
 </div>
 </aside>
 <!-- Product Grid (Section 3B) -->
@@ -190,131 +179,28 @@
 <div>
 <span class="font-label uppercase text-[10px] tracking-[0.3em] text-primary font-bold" style="">Archives</span>
 <h2 class="font-headline text-5xl uppercase leading-none" style="">Curated Selection</h2>
+<p class="font-label uppercase text-[10px] tracking-[0.2em] text-slate-400 mt-4" data-catalog-results>Loading archive count</p>
 </div>
 <div class="flex gap-4 items-center">
 <span class="text-xs font-label uppercase tracking-widest text-slate-400" style="">Sort By</span>
-<select class="bg-transparent border-none border-b border-slate-300 focus:ring-0 text-xs font-bold uppercase py-1 pr-8">
-<option>Newest Arrivals</option>
-<option>Price: High to Low</option>
-<option>Price: Low to High</option>
+<div class="flex flex-col items-end gap-3">
+<select class="bg-transparent border-none border-b border-slate-300 focus:ring-0 text-xs font-bold uppercase py-1 pr-8" data-catalog-sort>
+<option value="featured">Curated Sequence</option>
+<option value="newest">Newest Arrivals</option>
+<option value="price_desc">Price: High to Low</option>
+<option value="price_asc">Price: Low to High</option>
+<option value="rating_desc">Highest Rated</option>
 </select>
+<span class="font-label uppercase text-[10px] tracking-[0.2em] text-slate-400" data-catalog-range>Loading results</span>
+</div>
 </div>
 </div>
 <!-- Grid Items -->
-<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-<!-- Product Card 1 -->
-<article class="bg-surface-container-lowest group relative transition-all duration-500 cursor-pointer hover:-translate-y-1 hover:shadow-2xl" onclick="window.location.href='product.html'">
-<div class="p-6 flex justify-between items-start">
-<div>
-<p class="font-label uppercase text-[10px] tracking-widest text-slate-400" style="">Nike Archive</p>
-<h3 class="font-headline text-lg uppercase leading-tight" style="">Dunk High Retro</h3>
-</div>
-<span class="font-headline text-2xl text-primary" style="">$560</span>
-</div>
-<div class="flex gap-2 px-6 mb-6">
-<div class="w-3 h-3 rounded-full bg-primary ring-2 ring-offset-2 ring-primary"></div>
-<div class="w-3 h-3 rounded-full bg-slate-200"></div>
-<div class="w-3 h-3 rounded-full bg-slate-800"></div>
-<div class="w-3 h-3 rounded-full bg-[#3c4a6b]"></div>
-</div>
-<div class="relative aspect-square overflow-hidden cobalt-grade bg-white">
-<img alt="Nike Dunk High Retro" class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-700" data-alt="studio product shot of a nike dunk high sneaker isolated on a clean light grey background with soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUlsCuk960Jq3l9V7oV0mjTQEcLaFUGcAt6p2s5DR2NOVDWyjjl-EDCENdOnZY0L9rPc8Hz3L7PscBBrgSf9s9w0TLQrugKzyF62Ljjalg3D9uVChsI37W7V1nksX_OMvjKnYr_6tVcUnPOT44FJFDTcrMEEJGoqSMQO2QyQJ2lCfmxZYpqJtEaGg6VLeSV8ak2_4i-D6B2EW5Wlq80RXrqUG45O-BgisnsZgfB6S6AU37Z3k2Y7t0Zb_GmbUkdooRuKi8CVQ2N2k" style="">
-</div>
-<div class="p-6">
-<div class="flex gap-2 mb-6">
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">42</button>
-<button class="w-10 h-10 border border-primary flex items-center justify-center text-xs font-bold text-primary" style="">43</button>
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">44</button>
-</div>
-<div class="flex justify-between items-center">
-<button class="text-slate-400 hover:text-error transition-colors" style="">
-<span class="material-symbols-outlined" style="">favorite</span>
-</button>
-<button class="bg-on-surface text-white px-6 py-3 flex items-center gap-3 hover:bg-primary transition-all" style="">
-<span class="material-symbols-outlined text-sm" style="">shopping_bag</span>
-<span class="font-label uppercase text-[10px] tracking-widest font-bold" style="">Add</span>
-</button>
-</div>
-</div>
-</article>
-<!-- Product Card 2 -->
-<article class="bg-surface-container-lowest group relative transition-all duration-500 cursor-pointer hover:-translate-y-1 hover:shadow-2xl" onclick="window.location.href='product.html'">
-<div class="p-6 flex justify-between items-start">
-<div>
-<p class="font-label uppercase text-[10px] tracking-widest text-slate-400" style="">Jordan Brand</p>
-<h3 class="font-headline text-lg uppercase leading-tight" style="">Air Jordan 1 85</h3>
-</div>
-<span class="font-headline text-2xl text-primary" style="">$1,250</span>
-</div>
-<div class="flex gap-2 px-6 mb-6">
-<div class="w-3 h-3 rounded-full bg-slate-900 ring-2 ring-offset-2 ring-slate-900"></div>
-<div class="w-3 h-3 rounded-full bg-white border border-slate-200"></div>
-<div class="w-3 h-3 rounded-full bg-primary"></div>
-</div>
-<div class="relative aspect-square overflow-hidden cobalt-grade bg-white">
-<img alt="Air Jordan 1 85" class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-700" data-alt="meticulous side profile shot of an air jordan 1 retro sneaker with premium leather textures visible on a studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNoqt0FpUiF8qon7CSY6Y2dTxAKIsJUUPUcXWlq4ipYLahMO_AJ1f8VMwLlNtpnAO4Cmusi7rewn1Qfdp2j5YWIyUjZRWVLpRxQASwio9EtcmyrCYFBeVprhp2LhocEQoTDjcpxuhvPjP-HGI5uJ1RvPnJvnyhVMJKUQrkYO-vmI7LajAPeXxKsY9n_DUgqVTFU9MdGv2qUA0cJRpnz2Co26vwO3heSLKGD0LM0IMlS7xVv_o3lLqnRhikBE1PWNPI4akwgg7RT1Q" style="">
-</div>
-<div class="p-6">
-<div class="flex gap-2 mb-6">
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">41</button>
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">42</button>
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">43</button>
-</div>
-<div class="flex justify-between items-center">
-<button class="text-slate-400 hover:text-error transition-colors" style="">
-<span class="material-symbols-outlined" style="">favorite</span>
-</button>
-<button class="bg-on-surface text-white px-6 py-3 flex items-center gap-3 hover:bg-primary transition-all" style="">
-<span class="material-symbols-outlined text-sm" style="">shopping_bag</span>
-<span class="font-label uppercase text-[10px] tracking-widest font-bold" style="">Add</span>
-</button>
-</div>
-</div>
-</article>
-<!-- Product Card 3 -->
-<article class="bg-surface-container-lowest group relative transition-all duration-500 cursor-pointer hover:-translate-y-1 hover:shadow-2xl" onclick="window.location.href='product.html'">
-<div class="p-6 flex justify-between items-start">
-<div>
-<p class="font-label uppercase text-[10px] tracking-widest text-slate-400" style="">New Balance</p>
-<h3 class="font-headline text-lg uppercase leading-tight" style="">990v6 Grey Day</h3>
-</div>
-<span class="font-headline text-2xl text-primary" style="">$420</span>
-</div>
-<div class="flex gap-2 px-6 mb-6">
-<div class="w-3 h-3 rounded-full bg-slate-400 ring-2 ring-offset-2 ring-slate-400"></div>
-<div class="w-3 h-3 rounded-full bg-slate-100 border border-slate-200"></div>
-</div>
-<div class="relative aspect-square overflow-hidden cobalt-grade bg-white">
-<img alt="New Balance 990v6" class="w-full h-full object-contain p-8 group-hover:scale-110 transition-transform duration-700" data-alt="overhead top-down view of a classic grey performance sneaker emphasizing the mixed material textures and precision stitching" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-Iykp5dYblfvxamED2dnvSbAEts2-twL-OvEdDJnIhx6waGxISs6olZXdOBEKiCkA53QhY93WTpqphIvumzO23ZRtJAHoXMHCIHnaglKIDDbvR88-lWaLZ8Lln5nXPx2cfNY7dYRTUu1C6stVkc1UFnBHcaxX5gMJHKT0j49v73bPKnvWEj3ffqWGr6jUwUVcmUjxajn3SnTt6T3O8LPmE21VO0t2x4jrWKmsb63w6qLdBqbYQR7aaCvh_L_K0ZQ_Shuz7Q3s8pc" style="">
-</div>
-<div class="p-6">
-<div class="flex gap-2 mb-6">
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">44</button>
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">45</button>
-<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-xs font-bold hover:border-primary hover:text-primary transition-colors" style="">46</button>
-</div>
-<div class="flex justify-between items-center">
-<button class="text-slate-400 hover:text-error transition-colors" style="">
-<span class="material-symbols-outlined" style="">favorite</span>
-</button>
-<button class="bg-on-surface text-white px-6 py-3 flex items-center gap-3 hover:bg-primary transition-all" style="">
-<span class="material-symbols-outlined text-sm" style="">shopping_bag</span>
-<span class="font-label uppercase text-[10px] tracking-widest font-bold" style="">Add</span>
-</button>
-</div>
-</div>
-</article>
+<div class="hidden mb-8" data-catalog-grid-status></div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8" data-catalog-grid>
 </div>
 <!-- Pagination (Section 4) -->
-<div class="mt-20 flex justify-center items-center gap-2">
-<button class="w-12 h-12 flex items-center justify-center border border-slate-200 hover:border-primary hover:text-primary transition-all font-bold" style="">1</button>
-<button class="w-12 h-12 flex items-center justify-center border border-slate-200 hover:border-primary hover:text-primary transition-all font-bold" style="">2</button>
-<button class="w-12 h-12 flex items-center justify-center bg-primary text-white font-bold" style="">3</button>
-<button class="w-12 h-12 flex items-center justify-center border border-slate-200 hover:border-primary hover:text-primary transition-all font-bold" style="">4</button>
-<button class="w-12 h-12 flex items-center justify-center border border-slate-200 hover:border-primary hover:text-primary transition-all font-bold" style="">5</button>
-<button class="w-12 h-12 flex items-center justify-center border border-slate-200 hover:border-primary hover:text-primary transition-all" style="">
-<span class="material-symbols-outlined text-sm" style="">chevron_right</span>
-</button>
+<div class="mt-20 flex justify-center items-center gap-2" data-catalog-pagination>
 </div>
 </section>
 </main>
@@ -372,4 +258,6 @@
 </div>
 </div>
 </footer>
+<script src="../js/store-api.js"></script>
+<script src="../js/catalog.js"></script>
 </body></html>

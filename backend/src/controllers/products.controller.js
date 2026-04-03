@@ -27,6 +27,21 @@ function normalizeSort(sort) {
   }
 }
 
+function normalizeBrandFilter(brand) {
+  if (Array.isArray(brand)) {
+    return brand.map((value) => value.trim()).filter(Boolean);
+  }
+
+  if (typeof brand === "string") {
+    return brand
+      .split(",")
+      .map((value) => value.trim())
+      .filter(Boolean);
+  }
+
+  return [];
+}
+
 async function buildProductFilter(query) {
   const filter = {
     isArchived: false,
@@ -36,8 +51,14 @@ async function buildProductFilter(query) {
     filter.isFeatured = true;
   }
 
-  if (query.brand) {
-    filter.brand = query.brand;
+  const brands = normalizeBrandFilter(query.brand);
+
+  if (brands.length === 1) {
+    filter.brand = brands[0];
+  }
+
+  if (brands.length > 1) {
+    filter.brand = { $in: brands };
   }
 
   if (query.minPrice || query.maxPrice) {
@@ -107,6 +128,47 @@ async function listProducts(req, res) {
   });
 }
 
+async function getProductFacets(_req, res) {
+  const [brandBuckets, priceRange] = await Promise.all([
+    Product.aggregate([
+      { $match: { isArchived: false } },
+      {
+        $group: {
+          _id: "$brand",
+          count: { $sum: 1 },
+        },
+      },
+      { $sort: { _id: 1 } },
+    ]),
+    Product.aggregate([
+      { $match: { isArchived: false } },
+      {
+        $group: {
+          _id: null,
+          minPrice: { $min: "$price" },
+          maxPrice: { $max: "$price" },
+        },
+      },
+    ]),
+  ]);
+
+  const range = priceRange[0] || { minPrice: 0, maxPrice: 0 };
+
+  sendSuccess(res, {
+    message: "Product facets fetched successfully.",
+    data: {
+      brands: brandBuckets.map((bucket) => ({
+        name: bucket._id,
+        count: bucket.count,
+      })),
+      priceRange: {
+        min: range.minPrice,
+        max: range.maxPrice,
+      },
+    },
+  });
+}
+
 async function listFeaturedProducts(req, res) {
   const limit = Math.min(normalizePositiveInt(req.query.limit, 6), 24);
 
@@ -167,6 +229,7 @@ async function getProductBySlug(req, res) {
 }
 
 module.exports = {
+  getProductFacets,
   listProducts,
   listFeaturedProducts,
   getProductBySlug,
