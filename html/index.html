@@ -78,7 +78,7 @@
         }
     </script>
 </head>
-<body class="bg-surface font-body text-on-surface">
+<body class="bg-surface font-body text-on-surface" data-home-app>
 <!-- Section 1: Navigation -->
 <nav class="fixed top-0 w-full z-50 glass-nav border-b border-black/5 shadow-sm">
 <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto w-full">
@@ -120,13 +120,8 @@
 <!-- Section 3: Brand Partner Strip -->
 <section class="bg-surface-container-low py-12">
 <div class="container mx-auto px-8">
-<div class="flex flex-wrap justify-between items-center opacity-40 grayscale gap-8">
-<span class="font-bold text-2xl tracking-tighter" style="">NIKE</span>
-<span class="font-bold text-2xl tracking-tighter" style="">ADIDAS</span>
-<span class="font-bold text-2xl tracking-tighter" style="">NEW BALANCE</span>
-<span class="font-bold text-2xl tracking-tighter" style="">PUMA</span>
-<span class="font-bold text-2xl tracking-tighter" style="">REEBOK</span>
-<span class="font-bold text-2xl tracking-tighter" style="">CONVERSE</span>
+<div class="flex flex-wrap justify-between items-center opacity-40 grayscale gap-8" data-home-brands>
+<span class="font-bold text-2xl tracking-tighter" style="">LOADING</span>
 </div>
 </div>
 </section>
@@ -134,44 +129,12 @@
 <section class="py-24 bg-surface-container-lowest">
 <div class="container mx-auto px-8">
 <h2 class="font-body text-[40px] font-semibold text-center mb-20 tracking-tight" style="">OUR PRODUCT CATEGORY</h2>
-<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-<!-- Category Item -->
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8" data-home-categories>
 <div class="group cursor-pointer text-center">
-<div class="bg-surface-container-low  aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
-<img class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" data-alt="red performance running sneaker isolated on clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9tTJxEZZsngJ4feFg2ZFOpwa7xTJePe4nH63obLsnSUC5l3lfvzfy8vXDAq0grnerVR69SM5wVFas3x2vS-6zPEqzz7eRpGUSknN0jBKa3fOJ6QfxHCefA5lDcdiwVZ6-YDlDMJdELh1A_NvjSpU3XhWN6XliRGDlnqJUKhTdmuRur8KsC9Pr61Ccm1qixxUpJLMrQJmnXvOjfWi-8ijnOXcpItqjJ5X-LpeTlk4EMdT0vaOMY9S-e6LOHvDKpVRCNeiR_oXoIJY" style=""/>
+<div class="bg-surface-container-low aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
+<img alt="Loading category" class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9tTJxEZZsngJ4feFg2ZFOpwa7xTJePe4nH63obLsnSUC5l3lfvzfy8vXDAq0grnerVR69SM5wVFas3x2vS-6zPEqzz7eRpGUSknN0jBKa3fOJ6QfxHCefA5lDcdiwVZ6-YDlDMJdELh1A_NvjSpU3XhWN6XliRGDlnqJUKhTdmuRur8KsC9Pr61Ccm1qixxUpJLMrQJmnXvOjfWi-8ijnOXcpItqjJ5X-LpeTlk4EMdT0vaOMY9S-e6LOHvDKpVRCNeiR_oXoIJY"/>
 </div>
-<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Running</span>
-</div>
-<!-- Repeat for other categories -->
-<div class="group cursor-pointer text-center">
-<div class="bg-surface-container-low  aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
-<img class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" data-alt="high-top basketball sneaker in blue and white leather isolated" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD217JuUDGF3qVBGsJRNacLfMScKYsQdmTtd3DrRw8EKjJ3apf_jEbgA7aklIYGVGu1pn6Eo5Zup8HPhKwLrJPMG4-g3T1YTKzHGwB_CJYVcfiRCNvWoWIAwIkgHe_y5d8mqrVR7gm9CtHb2QZjIERmFZVITylRFOTcN45ZuaSJAlBekQ_0qukT4SBBYxHl9wJTUuSkl3zFR2GdGvV94WiNiJa1qegYVV1o8jFJO7u1xnOyUxmpIZLX4TDb9OONmhMXu4qExq0TdLY" style=""/>
-</div>
-<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Basketball</span>
-</div>
-<div class="group cursor-pointer text-center">
-<div class="bg-surface-container-low  aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
-<img class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" data-alt="classic leather lifestyle sneaker on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHpGJj0XWVfSsaAE1APLmOFTcPuDn_NzRItoL_2OHtHqm62OcLd-40mFmVcrh3UtOJfAkR9tz3HnNqLSkIsT0SqTCYUEZoHIyoKrN_wfXyna_9ASRvLjCmQCx-Wf14k6g5hfyNUgWOHxBBokZJTGu1KjYStznoFOmPfTNZ5dp_hJTBZYJytunWFl7dB3beYsLdv8g3HpAsLYKSZ8wEvT6cI4TIIsxnnhZE3aPfKp7Pm_eS3wpHAGcsuZ0qW_yQZd2IfqNl52EOOF8" style=""/>
-</div>
-<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Lifestyle</span>
-</div>
-<div class="group cursor-pointer text-center">
-<div class="bg-surface-container-low  aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
-<img class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" data-alt="rugged outdoor trail hiking sneaker with heavy grip" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1dw1QbvICT7X2_oo-DiqEKiuTI_JSrUJ_QDcXf_nZvggtlH9zBLCV4j0EgwwlH_ASDUW94fTQ7WzLC3d_NtrpmPl-G1Se4Ux_97w4W2ancyAHCEiLncB9TP0QN2melo2-SIJD1N1ch6agsopbagLKddL-m5hkjJ__kl-Vua9QR54sKhOTaVMrzcl0t6Eh4-H52vKLyaPXuCmNLX8WZ4_P1n-KSZr5jKafPmut89pXDMs60-iVjBUpvCSUhvvLrd2ZVNdAWX2fBjw" style=""/>
-</div>
-<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Outdoor</span>
-</div>
-<div class="group cursor-pointer text-center">
-<div class="bg-surface-container-low  aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
-<img class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" data-alt="chunky fashion sneaker with colorful details" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDSEhs6-2aMuXfcmSZSr5F4c4DKEDEQrESUtgZggD5PzobbrBeZ0VxyTX1yHzhXjHR-eU_KzCEpsC9Ek6Ltqv2ej3QtrS-BA9Vbb7J_zJg9CFT9QqENB6zo5Ki5IXj8n4aZ28hFQxkUhkLFObUI2gZflsKiK6WAjdvzILwKBQnpdA4xnOVXdNmbEl3Tfxji3iDp3dxB5AGbD_UfL7jBNoZTWeaMtNHkeCqbu2oFwKcKpKcXgvpqrdQ1NDkyZL639_Kcwu3k4V_Bvbo" style=""/>
-</div>
-<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Training</span>
-</div>
-<div class="group cursor-pointer text-center">
-<div class="bg-surface-container-low  aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2">
-<img class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12" data-alt="minimalist skate shoe in black canvas" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgwPV7Cs9e-io4lysSjfzv-R63kpZX4Pp3KSRKRDqFQitdfnOiaz6BV8Aw--qEHPBfM7YpstquRs4KY0JBRT--cmTduDzfoFqnbeZYnFFJrQwt3MyleF0mdG1Q6xNF4QEAqPu9CmbOVjI4D44TGjNuGX4fUNt6Xst3RFlOb8pDil1XOf6-hKspHXUFb69orRDyUR5jGRjh1rUbrxa5LlioJecg6kaRggj6VPedbQnBQxJ8UC_1lMeg_5rrwOKqYlTgqxEQPUGge9I" style=""/>
-</div>
-<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Skate</span>
+<span class="font-label uppercase tracking-widest text-sm font-semibold" style="">Loading</span>
 </div>
 </div>
 </div>
@@ -180,7 +143,8 @@
 <section class="py-24 bg-surface">
 <div class="container mx-auto px-8">
 <h2 class="font-headline text-5xl font-bold mb-16 text-center" style="">OUR BEST COLLECTION</h2>
-<div class="grid md:grid-cols-4 gap-8">
+<div class="hidden mb-8" data-home-collection-status></div>
+<div class="grid md:grid-cols-4 gap-8" data-home-collection>
 <!-- Product Card Loop -->
 <script>
                     const products = [
@@ -376,7 +340,7 @@
 </div>
 </div>
 <!-- Right: 2x2 mosaic (45%) -->
-<div class="w-full md:w-[45%] grid grid-cols-2 gap-8">
+<div class="w-full md:w-[45%] grid grid-cols-2 gap-8" data-home-mosaic>
 <div class=" overflow-hidden bg-surface-container-low flex items-center justify-center p-8 group transition-all duration-300 hover:shadow-xl">
 <img class="w-full transform group-hover:scale-110 transition-transform" data-alt="macro close-up of high quality sneaker leather stitching and branding" src="https://lh3.googleusercontent.com/aida-public/AB6AXuABr3ANh-zxsmoJZa0yIHZHDDLC53mB6xXg6qzvvKdrLw0wpsWMIR0e-RnrGhXvlA9CgCDgGVOGNU1O3XIZXX26P1GNFjqiRGTyyzsVsD58R67tYvUC47_rgw3TkDycmvZBXf6i5OWhhBqWyk_oaC4rpyok8SKgtn2dyWKAvBwCjcQzVTMjVLylv0OXyACNApDugyjpSOJnvsiErZafNxxS_SH6qRi5PPLohHuUZdL312ReacqumchhloUOvW576Hy69STqPSLIxrM" style=""/>
 </div>
@@ -520,4 +484,6 @@
 <span class="text-white/60 text-[10px] font-body uppercase tracking-[0.3em]">© 2025 Sneaker Index. All rights reserved. Urban Editorial Experience.</span>
 </div>
 </footer>
+<script src="../js/store-api.js"></script>
+<script src="../js/index.js"></script>
 </body></html>

@@ -1,0 +1,176 @@
+(function attachHomePage(global) {
+  const api = global.SneakerIndexStoreApi;
+
+  if (!api) {
+    return;
+  }
+
+  const elements = {
+    app: document.querySelector("[data-home-app]"),
+    brandStrip: document.querySelector("[data-home-brands]"),
+    categoryGrid: document.querySelector("[data-home-categories]"),
+    collectionGrid: document.querySelector("[data-home-collection]"),
+    collectionStatus: document.querySelector("[data-home-collection-status]"),
+    mosaicGrid: document.querySelector("[data-home-mosaic]"),
+  };
+
+  if (!elements.app) {
+    return;
+  }
+
+  function escapeHtml(value) {
+    return String(value)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function formatPrice(value) {
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
+      maximumFractionDigits: 0,
+    }).format(value || 0);
+  }
+
+  function productLink(product) {
+    return `product.html?slug=${encodeURIComponent(product.slug)}`;
+  }
+
+  function categoryLink(category) {
+    return `catalog.html?category=${encodeURIComponent(category.slug)}`;
+  }
+
+  function brandLink(brandName) {
+    return `catalog.html?brand=${encodeURIComponent(brandName)}`;
+  }
+
+  function renderBrands(brands) {
+    if (!elements.brandStrip) {
+      return;
+    }
+
+    elements.brandStrip.innerHTML = brands
+      .slice(0, 6)
+      .map(
+        (brand) => `
+          <a class="font-bold text-2xl tracking-tighter hover:text-primary transition-colors" href="${brandLink(brand.name)}">
+            ${escapeHtml(brand.name.toUpperCase())}
+          </a>
+        `
+      )
+      .join("");
+  }
+
+  function renderCategories(categories) {
+    if (!elements.categoryGrid) {
+      return;
+    }
+
+    elements.categoryGrid.innerHTML = categories
+      .slice(0, 6)
+      .map(
+        (category) => `
+          <a class="group cursor-pointer text-center block" href="${categoryLink(category)}">
+            <div class="bg-surface-container-low aspect-[2/3] p-4 relative mb-4 transition-transform group-hover:-translate-y-2 overflow-hidden">
+              <img alt="${escapeHtml(category.name)}" class="w-full absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-12 group-hover:scale-105 transition-transform duration-500" src="${escapeHtml(category.image)}">
+            </div>
+            <span class="font-label uppercase tracking-widest text-sm font-semibold">${escapeHtml(category.name)}</span>
+          </a>
+        `
+      )
+      .join("");
+  }
+
+  function renderCollection(products) {
+    if (!elements.collectionGrid || !elements.collectionStatus) {
+      return;
+    }
+
+    elements.collectionStatus.classList.add("hidden");
+
+    elements.collectionGrid.innerHTML = products
+      .map(
+        (product) => `
+          <article class="group bg-surface-container-lowest p-6 ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 border border-black/5 hover:border-primary">
+            <a class="block" href="${productLink(product)}">
+              <div class="cobalt-grade bg-surface-container-low h-64 flex items-center justify-center mb-6 overflow-hidden">
+                <img alt="${escapeHtml(product.name)}" class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" src="${escapeHtml(product.heroImage || product.images[0] || "")}">
+              </div>
+              <div class="flex justify-between items-start gap-4">
+                <div>
+                  <p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1">${escapeHtml(product.brand)}</p>
+                  <h3 class="font-body text-xl font-bold">${escapeHtml(product.name)}</h3>
+                </div>
+                <span class="font-bold text-primary">${formatPrice(product.price)}</span>
+              </div>
+            </a>
+            <button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-70 cursor-not-allowed" type="button" disabled>
+              Add to Cart
+            </button>
+          </article>
+        `
+      )
+      .join("");
+  }
+
+  function renderCollectionError(message) {
+    if (!elements.collectionStatus) {
+      return;
+    }
+
+    if (elements.collectionGrid) {
+      elements.collectionGrid.innerHTML = "";
+    }
+
+    elements.collectionStatus.classList.remove("hidden");
+    elements.collectionStatus.innerHTML = `
+      <div class="bg-surface-container-low p-12 text-center">
+        <p class="font-label uppercase tracking-[0.3em] text-[10px] text-error font-bold">Unavailable</p>
+        <h3 class="font-headline text-5xl mt-4">Collection Offline</h3>
+        <p class="font-body text-sm text-on-surface-variant max-w-md mx-auto mt-4">
+          ${escapeHtml(message || "Featured products could not be loaded.")}
+        </p>
+      </div>
+    `;
+  }
+
+  function renderMosaic(products) {
+    if (!elements.mosaicGrid) {
+      return;
+    }
+
+    elements.mosaicGrid.innerHTML = products
+      .slice(0, 4)
+      .map(
+        (product) => `
+          <a class="overflow-hidden bg-surface-container-low flex items-center justify-center p-8 group transition-all duration-300 hover:shadow-xl" href="${productLink(product)}">
+            <img alt="${escapeHtml(product.name)}" class="w-full transform group-hover:scale-110 transition-transform" src="${escapeHtml(product.heroImage || product.images[0] || "")}">
+          </a>
+        `
+      )
+      .join("");
+  }
+
+  async function init() {
+    try {
+      const [categoriesResponse, facetsResponse, featuredResponse, mosaicResponse] = await Promise.all([
+        api.getCategories(),
+        api.getProductFacets(),
+        api.getFeaturedProducts({ limit: 8 }),
+        api.getProducts({ limit: 4, sort: "rating_desc" }),
+      ]);
+
+      renderBrands(facetsResponse.data.brands || []);
+      renderCategories(categoriesResponse.data.categories || []);
+      renderCollection(featuredResponse.data.products || []);
+      renderMosaic(mosaicResponse.data.products || []);
+    } catch (error) {
+      renderCollectionError(error.message);
+    }
+  }
+
+  init();
+})(window);
