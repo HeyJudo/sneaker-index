@@ -1,330 +1,239 @@
 <!DOCTYPE html>
 
-<html class="scroll-smooth" lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Your Archive | SNEAKER INDEX</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@100..900&amp;family=Bebas+Neue&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script id="tailwind-config">
-      tailwind.config = {
-        darkMode: "class",
-        theme: {
-          extend: {
-            "colors": {
-                    "surface-container-high": "#e5e8ed",
-                    "on-secondary-fixed-variant": "#003ea8",
-                    "secondary-fixed": "#dbe1ff",
-                    "background": "#f7f9fe",
-                    "on-tertiary-fixed": "#001a40",
-                    "on-secondary-fixed": "#00174b",
-                    "on-primary-fixed": "#001257",
-                    "on-background": "#181c20",
-                    "surface-dim": "#d7dadf",
-                    "on-surface-variant": "#444654",
-                    "on-error": "#ffffff",
-                    "secondary": "#0051d5",
-                    "on-tertiary-fixed-variant": "#004492",
-                    "on-tertiary": "#ffffff",
-                    "on-primary-container": "#b1bdff",
-                    "primary-container": "#1a3fc4",
-                    "on-error-container": "#93000a",
-                    "surface-container-lowest": "#ffffff",
-                    "error-container": "#ffdad6",
-                    "tertiary": "#003676",
-                    "error": "#ba1a1a",
-                    "primary": "#1a3fc4",
-                    "inverse-on-surface": "#eef1f6",
-                    "secondary-container": "#316bf3",
-                    "outline": "#747686",
-                    "inverse-surface": "#2d3135",
-                    "surface-bright": "#f7f9fe",
-                    "secondary-fixed-dim": "#b4c5ff",
-                    "primary-fixed-dim": "#b9c3ff",
-                    "on-primary-fixed-variant": "#0835bc",
-                    "inverse-primary": "#b9c3ff",
-                    "surface": "#f7f9fe",
-                    "tertiary-container": "#004ca1",
-                    "surface-container": "#ebeef3",
-                    "tertiary-fixed": "#d7e2ff",
-                    "on-tertiary-container": "#a3c1ff",
-                    "on-secondary-container": "#fefcff",
-                    "on-secondary": "#ffffff",
-                    "on-primary": "#ffffff",
-                    "tertiary-fixed-dim": "#acc7ff",
-                    "surface-container-low": "#f1f4f9",
-                    "primary-fixed": "#dde1ff",
-                    "surface-variant": "#dfe3e8",
-                    "on-surface": "#181c20",
-                    "surface-tint": "#1a3fc4",
-                    "outline-variant": "#c4c5d7",
-                    "surface-container-highest": "#dfe3e8"
-            },
-            "borderRadius": {
-                    "DEFAULT": "0px",
-                    "lg": "0px",
-                    "xl": "0px",
-                    "2xl": "0px",
-                    "full": "0px"
-            },
-            "fontFamily": {
-                    "headline": ["Bebas Neue", "sans-serif"],
-                    "body": ["Lato", "sans-serif"],
-                    "serif": ["Newsreader", "serif"]
-            }
+<html class="scroll-smooth" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>Your Archive | SNEAKER INDEX</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@100..900&family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "surface-container-high": "#e5e8ed",
+            "on-secondary-fixed-variant": "#003ea8",
+            "secondary-fixed": "#dbe1ff",
+            "background": "#f7f9fe",
+            "on-tertiary-fixed": "#001a40",
+            "on-secondary-fixed": "#00174b",
+            "on-primary-fixed": "#001257",
+            "on-background": "#181c20",
+            "surface-dim": "#d7dadf",
+            "on-surface-variant": "#444654",
+            "on-error": "#ffffff",
+            "secondary": "#0051d5",
+            "on-tertiary-fixed-variant": "#004492",
+            "on-tertiary": "#ffffff",
+            "on-primary-container": "#b1bdff",
+            "primary-container": "#1a3fc4",
+            "on-error-container": "#93000a",
+            "surface-container-lowest": "#ffffff",
+            "error-container": "#ffdad6",
+            "tertiary": "#003676",
+            "error": "#ba1a1a",
+            "primary": "#1a3fc4",
+            "inverse-on-surface": "#eef1f6",
+            "secondary-container": "#316bf3",
+            "outline": "#747686",
+            "inverse-surface": "#2d3135",
+            "surface-bright": "#f7f9fe",
+            "secondary-fixed-dim": "#b4c5ff",
+            "primary-fixed-dim": "#b9c3ff",
+            "on-primary-fixed-variant": "#0835bc",
+            "inverse-primary": "#b9c3ff",
+            "surface": "#f7f9fe",
+            "tertiary-container": "#004ca1",
+            "surface-container": "#ebeef3",
+            "tertiary-fixed": "#d7e2ff",
+            "on-tertiary-container": "#a3c1ff",
+            "on-secondary-container": "#fefcff",
+            "on-secondary": "#ffffff",
+            "on-primary": "#ffffff",
+            "tertiary-fixed-dim": "#acc7ff",
+            "surface-container-low": "#f1f4f9",
+            "primary-fixed": "#dde1ff",
+            "surface-variant": "#dfe3e8",
+            "on-surface": "#181c20",
+            "surface-tint": "#1a3fc4",
+            "outline-variant": "#c4c5d7",
+            "surface-container-highest": "#dfe3e8"
           },
-        },
+          borderRadius: {
+            "DEFAULT": "0px",
+            "lg": "0px",
+            "xl": "0px",
+            "2xl": "0px",
+            "full": "0px"
+          },
+          fontFamily: {
+            "headline": ["Bebas Neue", "sans-serif"],
+            "body": ["Lato", "sans-serif"],
+            "serif": ["Newsreader", "serif"]
+          }
+        }
       }
-    </script>
-<style>
-        .cobalt-grade::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(26, 63, 196, 0.15);
-            pointer-events: none;
-            transition: background-color 0.3s ease;
-        }
-        .cobalt-grade:hover::after {
-            background-color: rgba(26, 63, 196, 0.05);
-        }
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
-        }
-        * { border-radius: 0 !important; }
-    </style>
+    };
+  </script>
+  <style>
+    .cobalt-grade::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(26, 63, 196, 0.15);
+      pointer-events: none;
+      transition: background-color 0.3s ease;
+    }
+    .cobalt-grade:hover::after {
+      background-color: rgba(26, 63, 196, 0.05);
+    }
+    .material-symbols-outlined {
+      font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+    }
+    * { border-radius: 0 !important; }
+  </style>
 </head>
 <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-white">
-<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/5 shadow-[0_12px_24px_rgba(26,63,196,0.06)] flex justify-between items-center px-8 h-20">
-<div class="flex items-center gap-12">
-<a class="font-serif italic font-bold text-2xl tracking-tighter text-slate-900" href="index.html">SNEAKER INDEX</a>
-<div class="hidden md:flex gap-8">
-<a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="index.html">Curations</a>
-<a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="catalog.html">LATEST</a>
-<a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="catalog.html">ARCHIVE</a>
-</div>
-</div>
-<div class="flex items-center gap-6">
-<div class="hidden lg:block relative">
-<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
-<input class="bg-surface-container-low border-none pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search archive..." type="text"/>
-</div>
-<button class="relative hover:scale-95 duration-200">
-<span class="material-symbols-outlined text-slate-900">shopping_bag</span>
-<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center font-bold">3</span>
-</button>
-<button class="hover:scale-95 duration-200">
-<span class="material-symbols-outlined text-slate-900">person</span>
-</button>
-</div>
-</nav>
-<main class="pt-32 pb-20 px-8 max-w-[1440px] mx-auto min-h-screen">
-<header class="mb-12">
-<div class="flex items-baseline gap-4 mb-2">
-<span class="font-body text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Status: Review</span>
-</div>
-<h1 class="font-headline text-7xl md:text-8xl tracking-tight text-on-surface">YOUR SELECTION</h1>
-</header><div class="hidden flex flex-col items-center justify-center py-32 text-center" id="empty-cart-state">
-<h2 class="font-headline text-5xl text-[#181c20] mb-4 tracking-tight uppercase">YOUR SELECTION IS EMPTY.</h2>
-<p class="font-body text-base text-[#444654] mb-12 max-w-md">Discover the latest additions to the archive.</p>
-<a class="bg-[#00289c] text-white px-12 py-5 font-body font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-black transition-colors duration-300" href="catalog.html">
-    EXPLORE ARCHIVES
-  </a>
-</div>
-<div class="flex flex-col lg:flex-row gap-12 items-start">
-<div class="w-full lg:w-2/3 space-y-8">
-<div class="bg-blue-50 border border-primary/20 p-4 flex items-center gap-3">
-<span class="material-symbols-outlined text-primary text-sm">info</span>
-<p class="text-xs font-bold uppercase tracking-widest text-primary">Low stock on Jordan AJ1 Retro — Final pairs remaining</p>
-</div>
-<div class="space-y-0">
-<div class="flex flex-col md:flex-row gap-8 items-start border-b border-outline-variant pb-8 pt-8 first:pt-0">
-<div class="relative w-full md:w-48 aspect-square overflow-hidden cobalt-grade bg-surface-container">
-<img alt="Nike Air Max Pulse" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOSCsAMdZC5_RDvhkChuonBh7qfGQ8pcBDifQ7d6VBbUswcGoaxQ6NfyGh3ZRByR_8XB344gg9MxSkbmwtC4CuOShTJK-QBV1a787qhPSGqjnvD6hxc2DqQc9gJ1XcChV6i81xV-SKUmwTxUbEOKb-HYPpF6eQpUnbjChaYyG5j67cg9COkeBOtzx-FXwe8TUEw32ZPELEm612JKhk5UrJ_GYFQ7ecAUQ5KMIoMNliuGVIm3DWQutVK_Ivym5b-MLph0Fe3H2sRfo"/>
-</div>
-<div class="flex-1 space-y-6">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline text-3xl tracking-wide uppercase">Nike Air Max Pulse</h3>
-<p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mt-1">Nike / White-Grey / US 10.5</p>
-</div>
-<div class="text-right">
-<span class="font-headline text-2xl text-primary">$160.00</span>
-</div>
-</div>
-<div class="flex items-center justify-between pt-4">
-<div class="flex items-center gap-8">
-<div class="flex items-center border border-outline-variant bg-white">
-<button class="px-3 py-1 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xs">remove</span></button>
-<span class="px-4 py-1 text-sm font-bold border-x border-outline-variant">01</span>
-<button class="px-3 py-1 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xs">add</span></button>
-</div>
-<button class="text-[10px] tracking-[0.2em] uppercase font-bold text-on-surface-variant hover:text-error transition-colors">REMOVE</button>
-</div>
-<div class="text-right">
-<span class="text-[10px] block uppercase tracking-widest text-on-surface-variant mb-1">Line Total</span>
-<span class="font-headline text-3xl">$160.00</span>
-</div>
-</div>
-</div>
-</div>
-<div class="flex flex-col md:flex-row gap-8 items-start border-b border-outline-variant pb-8 pt-8">
-<div class="relative w-full md:w-48 aspect-square overflow-hidden cobalt-grade bg-surface-container">
-<img alt="Jordan AJ1 Retro" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCt65mfGLBWrJ1jZiR2sW_fCvMA2WKToMB7nSQqN-FKfKc00NHslWC6_mIF7KTrWBi9ZAW0MEKFoLOg3Jg9hHF2oFV6i7p6TG2T0lhVNwPHP2wNDn08oyCuR9LVq0_a0tx74z6ssGp8opGR_lGNPYt7wAw5WbuLpltgwCKfZcXqrWLs6iHu6_7Vt5afRNk6d-98InywWV6D9Tyo5ylTOUkkhuv0HJDkjcFPjc32NUQpJn1hHCjDfVr3QrQ_1kAPqElw6zPv1ZASEe4"/>
-</div>
-<div class="flex-1 space-y-6">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline text-3xl tracking-wide uppercase">Jordan AJ1 Retro</h3>
-<p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mt-1">Jordan / Chicago / US 11.0</p>
-</div>
-<div class="text-right">
-<span class="font-headline text-2xl text-primary">$180.00</span>
-</div>
-</div>
-<div class="flex items-center justify-between pt-4">
-<div class="flex items-center gap-8">
-<div class="flex items-center border border-outline-variant bg-white">
-<button class="px-3 py-1 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xs">remove</span></button>
-<span class="px-4 py-1 text-sm font-bold border-x border-outline-variant">01</span>
-<button class="px-3 py-1 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xs">add</span></button>
-</div>
-<button class="text-[10px] tracking-[0.2em] uppercase font-bold text-on-surface-variant hover:text-error transition-colors">REMOVE</button>
-</div>
-<div class="text-right">
-<span class="text-[10px] block uppercase tracking-widest text-on-surface-variant mb-1">Line Total</span>
-<span class="font-headline text-3xl">$180.00</span>
-</div>
-</div>
-</div>
-</div>
-<div class="flex flex-col md:flex-row gap-8 items-start border-b border-outline-variant pb-8 pt-8">
-<div class="relative w-full md:w-48 aspect-square overflow-hidden cobalt-grade bg-surface-container">
-<img alt="New Balance 2002R" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV63AJDPPlXbKPUNfQH4pvYkcFLtaRXu5DE0R5XLef_LyJ2i6DgKK6gMLnv8X92Vxmi0uWy-aByb5YxLCaShxsJxDzg1pJpOzXZ3YClHhswxTPTkpbbylZJBHotwPxcth4gFq0paiNrbJFGaActyvZ0uapxaCOFkHZ3c-bb7cjIgikmw-3uRrhEzeyJFdLXuzWABEdaM1uL0U0VTQf61Un8O117NPbd6zzsFRf6SIcpJPiuv-u6UIJxX8FJCcQ04iUrZFOqu8xjMg"/>
-</div>
-<div class="flex-1 space-y-6">
-<div class="flex justify-between items-start">
-<div>
-<h3 class="font-headline text-3xl tracking-wide uppercase">New Balance 2002R</h3>
-<p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mt-1">New Balance / Premium Grey / US 10.0</p>
-</div>
-<div class="text-right">
-<span class="font-headline text-2xl text-primary">$145.00</span>
-</div>
-</div>
-<div class="flex items-center justify-between pt-4">
-<div class="flex items-center gap-8">
-<div class="flex items-center border border-outline-variant bg-white">
-<button class="px-3 py-1 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xs">remove</span></button>
-<span class="px-4 py-1 text-sm font-bold border-x border-outline-variant">01</span>
-<button class="px-3 py-1 hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-xs">add</span></button>
-</div>
-<button class="text-[10px] tracking-[0.2em] uppercase font-bold text-on-surface-variant hover:text-error transition-colors">REMOVE</button>
-</div>
-<div class="text-right">
-<span class="text-[10px] block uppercase tracking-widest text-on-surface-variant mb-1">Line Total</span>
-<span class="font-headline text-3xl">$145.00</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="pt-8">
-<a class="inline-block text-center border-2 border-primary py-4 px-10 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">
-                    CONTINUE SHOPPING
-                </a>
-</div>
-</div>
-<aside class="w-full lg:w-1/3 sticky top-32 bg-surface-container-low p-10 space-y-8 border border-outline-variant/30 shadow-sm">
-<h2 class="font-headline text-4xl tracking-tight uppercase">Summary</h2>
-<div class="space-y-4">
-<div class="flex justify-between text-xs uppercase tracking-widest">
-<span class="text-on-surface-variant">Subtotal</span>
-<span class="font-bold">$485.00</span>
-</div>
-<div class="flex justify-between text-xs uppercase tracking-widest">
-<span class="text-on-surface-variant">Curated Shipping</span>
-<span class="font-bold">$12.00</span>
-</div>
-<div class="flex justify-between text-xs uppercase tracking-widest">
-<span class="text-on-surface-variant">Handling</span>
-<span class="font-bold">$4.00</span>
-</div>
-<div class="pt-6 border-t border-outline-variant flex justify-between items-baseline">
-<span class="font-headline text-2xl uppercase tracking-wider">Total</span>
-<span class="font-headline text-5xl text-primary">$501.00</span>
-</div>
-</div>
-<div class="space-y-3 pt-4 opacity-50">
-<div class="flex justify-between items-center">
-<label class="text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface-variant">COUPON REDEMPTION — COMING LATER</label>
-</div>
-<div class="flex grayscale">
-<input class="flex-1 bg-surface-container-high border border-outline-variant px-4 py-3 text-xs tracking-widest cursor-not-allowed" disabled="" placeholder="ENTER CODE" type="text"/>
-<button class="bg-outline-variant text-white px-6 py-3 text-xs font-bold uppercase tracking-widest cursor-not-allowed" disabled="">Apply</button>
-</div>
-</div>
-<div class="space-y-4 pt-4">
-<button class="w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase hover:bg-on-primary-fixed-variant transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)]">
-                    Proceed to Checkout
-                </button>
-<a class="block w-full text-center border-2 border-primary py-4 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">
-                    CONTINUE SHOPPING
-                </a>
-</div>
-<div class="pt-8">
-<p class="text-[10px] text-center text-on-surface-variant uppercase tracking-widest leading-relaxed">
-                    Complimentary shipping on all curated archives.<br/>Duties calculated at checkout for international orders.
-                </p>
-</div>
-</aside>
-</div>
-<section class="mt-40">
-<div class="flex justify-between items-end mb-12">
-<h2 class="font-headline text-5xl uppercase">The Curated Addition</h2>
-<a class="text-xs font-bold uppercase tracking-widest border-b border-primary pb-1" href="catalog.html">Explore Full Archive</a>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-<div class="md:col-span-2 relative aspect-[16/9] overflow-hidden group">
-<img alt="Editorial Shoe" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbIS5PTMOmim531Ct8p7xEiH-UyxNsgYXRJb3lJA2zTYRA-uuA2q3aboJ7yNRiwwk977uy1rECZxEiFKkFc3cFNELpS9B2xVLKZN-Fr4i_CE9s5--5VNGyJ2adVPN2ei11U3Y6-Y0BKG92Z1ZyI70FVDOY8eo7s2aEsP2ZtjY4nLnAHXUv5kFTFLaKa4GstaZUN4X3q3b6y2ZbZDMt6p7j3KKak6M0sltDkyvEUAJepVRi9ZmeqvPdA9EWOW_sb4v8Xj9Msw99F3E"/>
-<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent p-8 flex flex-col justify-end">
-<span class="text-white text-[10px] font-bold tracking-[0.3em] uppercase mb-2">Editor's Pick</span>
-<h4 class="text-white font-headline text-4xl">The Suede Collection</h4>
-</div>
-</div>
-<div class="relative aspect-square bg-surface-container group overflow-hidden">
-<img alt="Red Sneaker" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAYmKYHCG04nQi4oKTqVp2O63U54RYeTBvl3UDd4gaPNISeSWpyo4jq1M4eNk6msOseq9XS__u1v1i0i5XbcNAxAu8GsP-a8THesNDrvAPEcPUjGIBuAzjozErXu57ZPVsrCWV4PY1qfe4rM6RcIKwJhkvJcQ_epcIO5cFMvOqE0dISkUM4Ijee70DxO0yXTT0X5qA947ydn_YAfaF1maQGkp8_zMfmkes9AWRghKQJ5VHKf-jMDQnJUmqx6UsxpFRbLS3c1t7e5K8"/>
-<div class="absolute bottom-4 left-4 bg-white px-3 py-1 shadow-sm">
-<span class="font-headline text-xl">$210</span>
-</div>
-</div>
-<div class="relative aspect-square bg-surface-container group overflow-hidden">
-<img alt="Nike Dunk" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN8XBctSTlwCX1ymYkbdluV_cNfHPeRlhAd68rRR1pZZUS5zCGduDSx6Tvrwl7BTB4k61xn97BH0ViccQqxZVY1z82r7YN92DCXGlRNkgyv1NDc8FoK0NXp64eIyBsvsiZ-We9-LDdZ-cjEo8PhIMVgu7WsFBaSscLhGmOzzMLTcpYU6pS05DyYpX3I8E6u_TMOL_PBwJq73VzlASvOzONW7QFryMZMoJv4fNF-50Ib3LkjtjKZDihr7dqK7osX8nS4aRO-Q_uEYQ"/>
-<div class="absolute bottom-4 left-4 bg-white px-3 py-1 shadow-sm">
-<span class="font-headline text-xl">$125</span>
-</div>
-</div>
-</div>
-</section>
-</main>
-<footer class="bg-[#1a3fc4] w-full flex flex-col md:flex-row justify-between items-center px-12 py-16 text-white">
-<div class="mb-8 md:mb-0 space-y-4">
-<span class="font-serif italic text-xl">SNEAKER INDEX</span>
-<p class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70">© 2024 SNEAKER INDEX. THE DIGITAL CURATOR.</p>
-</div>
-<div class="flex flex-wrap justify-center gap-10">
-<a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Privacy</a>
-<a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Terms</a>
-<a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Shipping</a>
-<a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Archives</a>
-</div>
-<div class="mt-8 md:mt-0 flex gap-6">
-<a class="opacity-70 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
-<a class="opacity-70 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
-</div>
-</footer>
-</body></html>
+  <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/5 shadow-[0_12px_24px_rgba(26,63,196,0.06)] flex justify-between items-center px-8 h-20">
+    <div class="flex items-center gap-12">
+      <a class="font-serif italic font-bold text-2xl tracking-tighter text-slate-900" href="index.html">SNEAKER INDEX</a>
+      <div class="hidden md:flex gap-8">
+        <a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="index.html">Curations</a>
+        <a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="catalog.html">LATEST</a>
+        <a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="catalog.html">ARCHIVE</a>
+      </div>
+    </div>
+    <div class="flex items-center gap-6">
+      <div class="hidden lg:block relative">
+        <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
+        <input class="bg-surface-container-low border-none pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search archive..." type="text"/>
+      </div>
+      <a class="relative hover:scale-95 duration-200" href="cart.html">
+        <span class="material-symbols-outlined text-slate-900">shopping_bag</span>
+        <span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center font-bold" data-cart-badge>0</span>
+      </a>
+      <a class="hover:scale-95 duration-200" href="signup.html">
+        <span class="material-symbols-outlined text-slate-900">person</span>
+      </a>
+    </div>
+  </nav>
+
+  <main class="pt-32 pb-20 px-8 max-w-[1440px] mx-auto min-h-screen" data-cart-app>
+    <header class="mb-12">
+      <div class="flex items-baseline gap-4 mb-2">
+        <span class="font-body text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Status: Review</span>
+      </div>
+      <h1 class="font-headline text-7xl md:text-8xl tracking-tight text-on-surface">YOUR SELECTION</h1>
+    </header>
+
+    <div class="hidden mb-8 border p-4 text-xs font-bold uppercase tracking-[0.2em]" data-cart-status></div>
+
+    <div class="hidden flex-col items-center justify-center py-32 text-center" data-cart-empty>
+      <h2 class="font-headline text-5xl text-[#181c20] mb-4 tracking-tight uppercase">YOUR SELECTION IS EMPTY.</h2>
+      <p class="font-body text-base text-[#444654] mb-12 max-w-md">Discover the latest additions to the archive.</p>
+      <a class="bg-[#00289c] text-white px-12 py-5 font-body font-bold text-[11px] tracking-[0.3em] uppercase hover:bg-black transition-colors duration-300" href="catalog.html">EXPLORE ARCHIVES</a>
+    </div>
+
+    <div class="flex flex-col lg:flex-row gap-12 items-start" data-cart-shell>
+      <div class="w-full lg:w-2/3 space-y-8">
+        <div class="bg-blue-50 border border-primary/20 p-4 items-center gap-3 hidden" data-cart-alert>
+          <span class="material-symbols-outlined text-primary text-sm">info</span>
+          <p class="text-xs font-bold uppercase tracking-widest text-primary" data-cart-alert-text>Review stock availability in your selection.</p>
+        </div>
+
+        <div class="space-y-0" data-cart-items>
+          <div class="bg-surface-container-low p-12 text-center">
+            <p class="font-headline text-4xl uppercase">Loading Selection</p>
+            <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant mt-3">Pulling the latest cart state from the archive.</p>
+          </div>
+        </div>
+
+        <div class="pt-8">
+          <a class="inline-block text-center border-2 border-primary py-4 px-10 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE SHOPPING</a>
+        </div>
+      </div>
+
+      <aside class="w-full lg:w-1/3 sticky top-32 bg-surface-container-low p-10 space-y-8 border border-outline-variant/30 shadow-sm">
+        <h2 class="font-headline text-4xl tracking-tight uppercase">Summary</h2>
+        <div class="space-y-4">
+          <div class="flex justify-between text-xs uppercase tracking-widest">
+            <span class="text-on-surface-variant">Subtotal</span>
+            <span class="font-bold" data-cart-subtotal>$0.00</span>
+          </div>
+          <div class="flex justify-between text-xs uppercase tracking-widest">
+            <span class="text-on-surface-variant">Curated Shipping</span>
+            <span class="font-bold" data-cart-shipping>$0.00</span>
+          </div>
+          <div class="flex justify-between text-xs uppercase tracking-widest">
+            <span class="text-on-surface-variant">Handling</span>
+            <span class="font-bold" data-cart-handling>$0.00</span>
+          </div>
+          <div class="pt-6 border-t border-outline-variant flex justify-between items-baseline">
+            <span class="font-headline text-2xl uppercase tracking-wider">Total</span>
+            <span class="font-headline text-5xl text-primary" data-cart-total>$0.00</span>
+          </div>
+        </div>
+
+        <div class="space-y-3 pt-4 opacity-50">
+          <div class="flex justify-between items-center">
+            <label class="text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface-variant">COUPON REDEMPTION - COMING LATER</label>
+          </div>
+          <div class="flex grayscale">
+            <input class="flex-1 bg-surface-container-high border border-outline-variant px-4 py-3 text-xs tracking-widest cursor-not-allowed" disabled placeholder="ENTER CODE" type="text"/>
+            <button class="bg-outline-variant text-white px-6 py-3 text-xs font-bold uppercase tracking-widest cursor-not-allowed" disabled>Apply</button>
+          </div>
+        </div>
+
+        <div class="space-y-4 pt-4">
+          <button class="w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] opacity-60 cursor-not-allowed" disabled>Checkout Soon</button>
+          <p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant text-center">Checkout wiring starts in Phase 5C. `checkout.html` is still missing.</p>
+          <a class="block w-full text-center border-2 border-primary py-4 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE SHOPPING</a>
+        </div>
+
+        <div class="pt-8">
+          <p class="text-[10px] text-center text-on-surface-variant uppercase tracking-widest leading-relaxed">Estimated shipping and handling shown here.<br/>Final totals are confirmed during checkout.</p>
+        </div>
+      </aside>
+    </div>
+
+    <section class="mt-40">
+      <div class="flex justify-between items-end mb-12">
+        <h2 class="font-headline text-5xl uppercase">The Curated Addition</h2>
+        <a class="text-xs font-bold uppercase tracking-widest border-b border-primary pb-1" href="catalog.html">Explore Full Archive</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6" data-cart-recommendations>
+        <div class="md:col-span-2 bg-surface-container-low p-12 text-center">
+          <p class="font-headline text-4xl uppercase">Loading Additions</p>
+          <p class="text-xs uppercase tracking-[0.2em] text-on-surface-variant mt-3">Curated recommendations are being assembled.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#1a3fc4] w-full flex flex-col md:flex-row justify-between items-center px-12 py-16 text-white">
+    <div class="mb-8 md:mb-0 space-y-4">
+      <span class="font-serif italic text-xl">SNEAKER INDEX</span>
+      <p class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70">&copy; 2024 SNEAKER INDEX. THE DIGITAL CURATOR.</p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-10">
+      <a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Privacy</a>
+      <a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Terms</a>
+      <a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Shipping</a>
+      <a class="font-sans text-[10px] uppercase tracking-[0.05em] text-white/70 hover:text-white transition-opacity" href="#">Archives</a>
+    </div>
+    <div class="mt-8 md:mt-0 flex gap-6">
+      <a class="opacity-70 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined">social_leaderboard</span></a>
+      <a class="opacity-70 hover:opacity-100 transition-opacity" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+    </div>
+  </footer>
+
+  <script src="../js/store-api.js"></script>
+  <script src="../js/cart.js"></script>
+</body>
+</html>
