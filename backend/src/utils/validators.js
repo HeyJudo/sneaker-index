@@ -12,6 +12,10 @@ function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
 }
 
+function isString(value) {
+  return typeof value === "string";
+}
+
 function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
@@ -95,6 +99,129 @@ function validateDevelopmentTokenRequest(body) {
     errors.push({
       field: "email",
       message: "Email must be a valid email address.",
+    });
+  }
+
+  return errors;
+}
+
+function validateShippingAddressPayload(value, fieldPrefix = "defaultShippingAddress") {
+  const errors = [];
+
+  if (value === undefined) {
+    return errors;
+  }
+
+  if (value === null) {
+    return errors;
+  }
+
+  if (typeof value !== "object" || Array.isArray(value)) {
+    errors.push({
+      field: fieldPrefix,
+      message: `${fieldPrefix} must be an object.`,
+    });
+    return errors;
+  }
+
+  [
+    "firstName",
+    "lastName",
+    "addressLine1",
+    "city",
+    "state",
+    "postalCode",
+    "country",
+  ].forEach((field) => {
+    if (!isNonEmptyString(value[field])) {
+      errors.push({
+        field: `${fieldPrefix}.${field}`,
+        message: `${field} is required.`,
+      });
+    }
+  });
+
+  if (
+    value.addressLine2 !== undefined &&
+    value.addressLine2 !== null &&
+    !isString(value.addressLine2)
+  ) {
+    errors.push({
+      field: `${fieldPrefix}.addressLine2`,
+      message: "addressLine2 must be a string.",
+    });
+  }
+
+  return errors;
+}
+
+function validateUpdateProfileRequest(body) {
+  const errors = [];
+  const hasProfileFields =
+    body.fullName !== undefined ||
+    body.email !== undefined ||
+    body.phone !== undefined ||
+    body.defaultShippingAddress !== undefined;
+
+  if (!hasProfileFields) {
+    errors.push({
+      field: "fullName",
+      message: "Provide at least one profile field to update.",
+    });
+    return errors;
+  }
+
+  if (body.fullName !== undefined && !isNonEmptyString(body.fullName)) {
+    errors.push({
+      field: "fullName",
+      message: "fullName must be a non-empty string.",
+    });
+  }
+
+  if (body.email !== undefined && !isValidEmail(body.email)) {
+    errors.push({
+      field: "email",
+      message: "Email must be a valid email address.",
+    });
+  }
+
+  if (
+    body.phone !== undefined &&
+    body.phone !== null &&
+    !isString(body.phone)
+  ) {
+    errors.push({
+      field: "phone",
+      message: "phone must be a string.",
+    });
+  }
+
+  errors.push(...validateShippingAddressPayload(body.defaultShippingAddress));
+
+  return errors;
+}
+
+function validateUpdatePasswordRequest(body) {
+  const errors = [];
+
+  if (!isNonEmptyString(body.currentPassword)) {
+    errors.push({
+      field: "currentPassword",
+      message: "Current password is required.",
+    });
+  }
+
+  if (typeof body.newPassword !== "string" || body.newPassword.length < 8) {
+    errors.push({
+      field: "newPassword",
+      message: "New password must be at least 8 characters long.",
+    });
+  }
+
+  if (body.confirmNewPassword !== body.newPassword) {
+    errors.push({
+      field: "confirmNewPassword",
+      message: "Password confirmation does not match.",
     });
   }
 
@@ -220,4 +347,6 @@ module.exports = {
   validateLoginRequest,
   validateSignupRequest,
   validateDevelopmentTokenRequest,
+  validateUpdateProfileRequest,
+  validateUpdatePasswordRequest,
 };

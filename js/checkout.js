@@ -419,6 +419,32 @@
         if (elements.lastName && !elements.lastName.value) {
           elements.lastName.value = user.lastName || "";
         }
+
+        const savedAddress = user.defaultShippingAddress || {};
+
+        if (elements.addressLine1 && !elements.addressLine1.value) {
+          elements.addressLine1.value = savedAddress.addressLine1 || "";
+        }
+
+        if (elements.addressLine2 && !elements.addressLine2.value) {
+          elements.addressLine2.value = savedAddress.addressLine2 || "";
+        }
+
+        if (elements.city && !elements.city.value) {
+          elements.city.value = savedAddress.city || "";
+        }
+
+        if (elements.state && !elements.state.value) {
+          elements.state.value = savedAddress.state || "";
+        }
+
+        if (elements.postalCode && !elements.postalCode.value) {
+          elements.postalCode.value = savedAddress.postalCode || "";
+        }
+
+        if (elements.country && !elements.country.value) {
+          elements.country.value = savedAddress.country || "";
+        }
       } catch (_error) {
         // Guests are allowed through checkout, so ignore auth preload failures.
       }

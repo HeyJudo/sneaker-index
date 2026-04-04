@@ -58,5 +58,17 @@
         method: "GET",
       });
     },
+    updateProfile(data) {
+      return request("/auth/me", {
+        method: "PATCH",
+        body: JSON.stringify(data),
+      });
+    },
+    updatePassword(data) {
+      return request("/auth/me/password", {
+        method: "PATCH",
+        body: JSON.stringify(data),
+      });
+    },
   };
 })(window);

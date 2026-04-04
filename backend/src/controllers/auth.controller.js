@@ -42,8 +42,11 @@ function buildAuthUser(user) {
     id: user._id.toString(),
     firstName: user.firstName,
     lastName: user.lastName,
+    fullName: `${user.firstName} ${user.lastName}`.trim(),
     email: user.email,
+    phone: user.phone || "",
     role: user.role,
+    defaultShippingAddress: user.defaultShippingAddress || null,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
   };
@@ -59,6 +62,24 @@ function issueAuthSession(res, user) {
   });
 
   setAuthCookie(res, token);
+}
+
+async function loadCurrentUserDocument(userId, options = {}) {
+  const query = User.findById(userId);
+
+  if (options.includePasswordHash) {
+    query.select("+passwordHash");
+  }
+
+  const user = await query;
+
+  if (!user) {
+    throw new AppError("Authenticated user could not be found.", 404, {
+      code: "USER_NOT_FOUND",
+    });
+  }
+
+  return user;
 }
 
 async function signup(req, res) {
@@ -133,11 +154,110 @@ function logout(_req, res) {
   });
 }
 
-function getCurrentUser(req, res) {
+async function getCurrentUser(req, res) {
+  const user = await loadCurrentUserDocument(req.user.id);
+
   sendSuccess(res, {
     message: "Authenticated user loaded.",
     data: {
-      user: req.user,
+      user: buildAuthUser(user),
+    },
+  });
+}
+
+async function updateCurrentUser(req, res) {
+  const user = await loadCurrentUserDocument(req.user.id);
+
+  if (req.body.email !== undefined) {
+    const normalizedEmail = req.body.email.trim().toLowerCase();
+
+    if (normalizedEmail !== user.email) {
+      const existingUser = await User.findOne({
+        email: normalizedEmail,
+        _id: { $ne: user._id },
+      }).lean();
+
+      if (existingUser) {
+        throw new AppError("An account with that email already exists.", 409, {
+          code: "EMAIL_ALREADY_IN_USE",
+        });
+      }
+    }
+
+    user.email = normalizedEmail;
+  }
+
+  if (req.body.fullName !== undefined) {
+    const { firstName, lastName } = splitFullName(req.body.fullName);
+    user.firstName = firstName;
+    user.lastName = lastName;
+  }
+
+  if (req.body.phone !== undefined) {
+    user.phone = String(req.body.phone || "").trim();
+  }
+
+  if (req.body.defaultShippingAddress !== undefined) {
+    if (req.body.defaultShippingAddress === null) {
+      user.defaultShippingAddress = {
+        firstName: "",
+        lastName: "",
+        addressLine1: "",
+        addressLine2: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        country: "",
+      };
+    } else {
+      user.defaultShippingAddress = {
+        firstName: req.body.defaultShippingAddress.firstName.trim(),
+        lastName: req.body.defaultShippingAddress.lastName.trim(),
+        addressLine1: req.body.defaultShippingAddress.addressLine1.trim(),
+        addressLine2: String(req.body.defaultShippingAddress.addressLine2 || "").trim(),
+        city: req.body.defaultShippingAddress.city.trim(),
+        state: req.body.defaultShippingAddress.state.trim(),
+        postalCode: req.body.defaultShippingAddress.postalCode.trim(),
+        country: req.body.defaultShippingAddress.country.trim(),
+      };
+    }
+  }
+
+  await user.save();
+  issueAuthSession(res, user);
+
+  sendSuccess(res, {
+    message: "Profile updated successfully.",
+    data: {
+      user: buildAuthUser(user),
+    },
+  });
+}
+
+async function updateCurrentUserPassword(req, res) {
+  const user = await loadCurrentUserDocument(req.user.id, {
+    includePasswordHash: true,
+  });
+
+  const passwordMatches = await verifyPassword(
+    req.body.currentPassword,
+    user.passwordHash
+  );
+
+  if (!passwordMatches) {
+    throw new AppError("Current password is incorrect.", 401, {
+      code: "INVALID_CURRENT_PASSWORD",
+    });
+  }
+
+  user.passwordHash = await hashPassword(req.body.newPassword);
+  await user.save();
+  issueAuthSession(res, user);
+
+  sendSuccess(res, {
+    message: "Password updated successfully.",
+    data: {
+      user: buildAuthUser(user),
     },
   });
 }
@@ -182,5 +302,7 @@ module.exports = {
   logout,
   signup,
   getCurrentUser,
+  updateCurrentUser,
+  updateCurrentUserPassword,
   issueDevelopmentToken,
 };
