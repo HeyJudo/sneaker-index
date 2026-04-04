@@ -6,6 +6,10 @@
       return `${protocol}//${hostname}:${port}/api/v1`;
     }
 
+    if (protocol === "http:" || protocol === "https:") {
+      return `${protocol}//${hostname}:4000/api/v1`;
+    }
+
     return "http://localhost:4000/api/v1";
   }
 
@@ -57,6 +61,29 @@
   global.SneakerIndexStoreApi = {
     getCategories() {
       return request("/categories", { method: "GET" });
+    },
+    getCart() {
+      return request("/cart", { method: "GET" });
+    },
+    addCartItem(payload) {
+      return request("/cart/items", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+    },
+    updateCartItem(itemId, payload) {
+      return request(`/cart/items/${encodeURIComponent(itemId)}`, {
+        method: "PATCH",
+        body: JSON.stringify(payload),
+      });
+    },
+    removeCartItem(itemId) {
+      return request(`/cart/items/${encodeURIComponent(itemId)}`, {
+        method: "DELETE",
+      });
+    },
+    clearCart() {
+      return request("/cart", { method: "DELETE" });
     },
     getProducts(params) {
       return request(`/products${buildQuery(params)}`, { method: "GET" });

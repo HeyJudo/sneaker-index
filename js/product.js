@@ -23,6 +23,7 @@
     sizeGuide: document.querySelector("[data-product-size-guide]"),
     addButton: document.querySelector("[data-product-add]"),
     wishlistButton: document.querySelector("[data-product-wishlist]"),
+    feedback: document.querySelector("[data-product-feedback]"),
     breadcrumbCategory: document.querySelector("[data-product-breadcrumb-category]"),
     breadcrumbName: document.querySelector("[data-product-breadcrumb-name]"),
     thumbnails: document.querySelector("[data-product-thumbnails]"),
@@ -121,7 +122,7 @@
           message: `Only ${totalStock} items left in stock.`,
           tone: "text-error",
           buttonLabel: "Add To Bag",
-          disabled: true,
+          disabled: false,
         };
       default:
         return {
@@ -129,9 +130,33 @@
           message: `${totalStock} items currently available.`,
           tone: "text-primary",
           buttonLabel: "Add To Bag",
-          disabled: true,
+          disabled: false,
         };
     }
+  }
+
+  function setFeedback(message, tone) {
+    if (!elements.feedback) {
+      return;
+    }
+
+    const className =
+      tone === "error"
+        ? "bg-error-container text-on-error-container"
+        : "bg-secondary-fixed text-on-secondary-fixed";
+
+    elements.feedback.className = `mt-4 px-4 py-3 text-[0.7rem] font-bold uppercase tracking-[0.2em] ${className}`;
+    elements.feedback.textContent = message;
+    elements.feedback.classList.remove("hidden");
+  }
+
+  function clearFeedback() {
+    if (!elements.feedback) {
+      return;
+    }
+
+    elements.feedback.classList.add("hidden");
+    elements.feedback.textContent = "";
   }
 
   function buildHighlights(product) {
@@ -603,6 +628,7 @@
 
         state.selectedSizeLabel = trigger.dataset.sizeLabel || state.selectedSizeLabel;
         renderSizes(state.product);
+        clearFeedback();
       });
     }
 
@@ -613,8 +639,53 @@
     }
 
     if (elements.addButton) {
-      elements.addButton.addEventListener("click", (event) => {
+      elements.addButton.addEventListener("click", async (event) => {
         event.preventDefault();
+
+        if (!state.product) {
+          return;
+        }
+
+        const selectedSize = getSelectedSize();
+        const selectedColor = state.product.colors[state.selectedColorIndex];
+
+        if (!selectedSize || selectedSize.stock <= 0) {
+          setFeedback("Select an available size before adding to bag.", "error");
+          return;
+        }
+
+        if (!selectedColor) {
+          setFeedback("Selected color is unavailable.", "error");
+          return;
+        }
+
+        const originalLabel = elements.addButton.textContent;
+        elements.addButton.disabled = true;
+        elements.addButton.textContent = "Adding";
+        clearFeedback();
+
+        try {
+          await api.addCartItem({
+            productId: state.product._id,
+            sizeLabel: selectedSize.label,
+            colorName: selectedColor.name,
+            quantity: 1,
+          });
+
+          setFeedback("Added to cart. Review your selection in the cart.", "success");
+          elements.addButton.textContent = "Added";
+
+          global.setTimeout(() => {
+            renderStock(state.product);
+          }, 1200);
+        } catch (error) {
+          renderStock(state.product);
+          setFeedback(error.message || "Unable to add this product to cart.", "error");
+        } finally {
+          if (!elements.addButton.disabled) {
+            elements.addButton.textContent = originalLabel;
+          }
+        }
       });
     }
 

@@ -21,6 +21,7 @@
     rangeLabel: document.querySelector("[data-catalog-range]"),
     grid: document.querySelector("[data-catalog-grid]"),
     gridStatus: document.querySelector("[data-catalog-grid-status]"),
+    actionStatus: document.querySelector("[data-catalog-action-status]"),
     pagination: document.querySelector("[data-catalog-pagination]"),
   };
 
@@ -103,6 +104,13 @@
 
   function getProductLink(product) {
     return `product.html?slug=${encodeURIComponent(product.slug)}`;
+  }
+
+  function getDefaultCartSelection(product) {
+    return {
+      color: product.colors[0] || null,
+      size: product.sizes.find((size) => size.stock > 0) || null,
+    };
   }
 
   function buildProductQuery() {
@@ -270,9 +278,17 @@
         const visibleSizes = product.sizes.slice(0, 3);
         const visibleColors = product.colors.slice(0, 4);
         const stockTone = getStockTone(product.stockStatus);
+        const defaultSelection = getDefaultCartSelection(product);
+        const canAddToCart =
+          Boolean(defaultSelection.size && defaultSelection.color) &&
+          product.stockStatus !== "out-of-stock" &&
+          product.stockStatus !== "preorder";
         const compareMarkup = product.compareAtPrice
           ? `<span class="text-sm font-label uppercase tracking-widest text-slate-400 line-through">${formatPrice(product.compareAtPrice)}</span>`
           : "";
+        const addButtonClass = canAddToCart
+          ? "bg-on-surface text-white px-6 py-3 flex items-center gap-3 hover:bg-primary transition-colors"
+          : "bg-on-surface text-white px-6 py-3 flex items-center gap-3 opacity-70 cursor-not-allowed";
 
         return `
           <article class="bg-surface-container-lowest group relative transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl border border-black/5 hover:border-primary">
@@ -318,9 +334,17 @@
                 <button class="text-slate-400 transition-colors opacity-60 cursor-not-allowed" type="button" aria-label="Wishlist coming soon" disabled>
                   <span class="material-symbols-outlined">favorite</span>
                 </button>
-                <button class="bg-on-surface text-white px-6 py-3 flex items-center gap-3 opacity-70 cursor-not-allowed" type="button" aria-label="Cart coming soon" disabled>
+                <button
+                  class="${addButtonClass}"
+                  type="button"
+                  data-cart-add
+                  data-product-id="${escapeHtml(product._id)}"
+                  data-size-label="${escapeHtml(defaultSelection.size?.label || "")}"
+                  data-color-name="${escapeHtml(defaultSelection.color?.name || "")}"
+                  ${canAddToCart ? "" : "disabled"}
+                >
                   <span class="material-symbols-outlined text-sm">shopping_bag</span>
-                  <span class="font-label uppercase text-[10px] tracking-widest font-bold">Add</span>
+                  <span class="font-label uppercase text-[10px] tracking-widest font-bold">${canAddToCart ? "Add" : "Unavailable"}</span>
                 </button>
               </div>
             </div>
@@ -460,8 +484,33 @@
     }
   }
 
+  function setActionStatus(message, tone) {
+    if (!elements.actionStatus) {
+      return;
+    }
+
+    const className =
+      tone === "error"
+        ? "bg-error-container text-on-error-container"
+        : "bg-secondary-fixed text-on-secondary-fixed";
+
+    elements.actionStatus.className = `mb-8 border border-black/5 p-4 text-xs uppercase tracking-[0.2em] font-bold ${className}`;
+    elements.actionStatus.textContent = message;
+    elements.actionStatus.classList.remove("hidden");
+  }
+
+  function clearActionStatus() {
+    if (!elements.actionStatus) {
+      return;
+    }
+
+    elements.actionStatus.classList.add("hidden");
+    elements.actionStatus.textContent = "";
+  }
+
   async function refreshCatalog() {
     try {
+      clearActionStatus();
       await loadProducts();
     } catch (error) {
       setErrorState(error.message);
@@ -559,6 +608,54 @@
 
         state.page = nextPage;
         await refreshCatalog();
+      });
+    }
+
+    if (elements.grid) {
+      elements.grid.addEventListener("click", async (event) => {
+        const trigger = event.target.closest("[data-cart-add]");
+
+        if (!trigger || trigger.disabled) {
+          return;
+        }
+
+        const label = trigger.querySelector(".font-label");
+        const originalLabel = label ? label.textContent : "";
+
+        trigger.disabled = true;
+
+        if (label) {
+          label.textContent = "Adding";
+        }
+
+        try {
+          await api.addCartItem({
+            productId: trigger.dataset.productId,
+            sizeLabel: trigger.dataset.sizeLabel,
+            colorName: trigger.dataset.colorName,
+            quantity: 1,
+          });
+
+          if (label) {
+            label.textContent = "Added";
+          }
+
+          setActionStatus("Added to cart. Your selection is ready in the cart.", "success");
+
+          global.setTimeout(() => {
+            trigger.disabled = false;
+            if (label) {
+              label.textContent = originalLabel;
+            }
+          }, 1200);
+        } catch (error) {
+          if (label) {
+            label.textContent = originalLabel || "Add";
+          }
+
+          trigger.disabled = false;
+          setActionStatus(error.message || "Unable to add this product to cart.", "error");
+        }
       });
     }
   }

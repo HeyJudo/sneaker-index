@@ -6,6 +6,10 @@
       return `${protocol}//${hostname}:${port}/api/v1`;
     }
 
+    if (protocol === "http:" || protocol === "https:") {
+      return `${protocol}//${hostname}:4000/api/v1`;
+    }
+
     return "http://localhost:4000/api/v1";
   }
 

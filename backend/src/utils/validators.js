@@ -1,3 +1,5 @@
+const mongoose = require("mongoose");
+
 function isValidRole(value) {
   return ["customer", "admin"].includes(value);
 }
@@ -8,6 +10,10 @@ function isValidEmail(value) {
 
 function isNonEmptyString(value) {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function isPositiveInteger(value) {
+  return Number.isInteger(value) && value > 0;
 }
 
 function validateSignupRequest(body) {
@@ -91,7 +97,59 @@ function validateDevelopmentTokenRequest(body) {
   return errors;
 }
 
+function validateAddCartItemRequest(body) {
+  const errors = [];
+
+  if (!mongoose.isValidObjectId(body.productId)) {
+    errors.push({
+      field: "productId",
+      message: "productId must be a valid product identifier.",
+    });
+  }
+
+  if (
+    body.quantity !== undefined &&
+    !isPositiveInteger(Number(body.quantity))
+  ) {
+    errors.push({
+      field: "quantity",
+      message: "Quantity must be a positive whole number.",
+    });
+  }
+
+  if (body.sizeLabel !== undefined && !isNonEmptyString(body.sizeLabel)) {
+    errors.push({
+      field: "sizeLabel",
+      message: "sizeLabel must be a non-empty string.",
+    });
+  }
+
+  if (body.colorName !== undefined && !isNonEmptyString(body.colorName)) {
+    errors.push({
+      field: "colorName",
+      message: "colorName must be a non-empty string.",
+    });
+  }
+
+  return errors;
+}
+
+function validateUpdateCartItemRequest(body) {
+  const errors = [];
+
+  if (!isPositiveInteger(Number(body.quantity))) {
+    errors.push({
+      field: "quantity",
+      message: "Quantity must be a positive whole number.",
+    });
+  }
+
+  return errors;
+}
+
 module.exports = {
+  validateAddCartItemRequest,
+  validateUpdateCartItemRequest,
   validateLoginRequest,
   validateSignupRequest,
   validateDevelopmentTokenRequest,
