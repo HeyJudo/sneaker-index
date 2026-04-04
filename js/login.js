@@ -9,6 +9,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const defaultButtonLabel = submitButton.textContent.trim();
 
+  function getRedirectTarget() {
+    const fallbackTarget = "catalog.html";
+    const params = new URLSearchParams(window.location.search);
+    const requestedTarget = String(params.get("redirect") || "").trim();
+
+    if (!/^[a-z0-9_-]+\.html(?:\?.*)?$/i.test(requestedTarget)) {
+      return fallbackTarget;
+    }
+
+    return requestedTarget;
+  }
+
   function setMessage(type, text) {
     message.textContent = text;
     message.classList.remove("hidden", "text-error", "text-primary-container");
@@ -45,11 +57,11 @@ document.addEventListener("DOMContentLoaded", () => {
         password,
       });
 
-      setMessage("success", "Authenticated. Redirecting to the catalog...");
+      setMessage("success", "Authenticated. Redirecting...");
       form.reset();
 
       window.setTimeout(() => {
-        window.location.href = "catalog.html";
+        window.location.href = getRedirectTarget();
       }, 1000);
     } catch (error) {
       setMessage("error", error.message || "Unable to sign in.");

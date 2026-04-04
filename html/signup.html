@@ -76,7 +76,7 @@
     </script>
 
 </head>
-<body class="bg-surface font-body text-on-surface">
+<body class="bg-surface font-body text-on-surface" data-auth-guard="guest">
 <!-- Top Navigation -->
 <nav class="fixed top-0 w-full z-50 glass-nav border-b border-black/5 shadow-sm">
 <div class="flex justify-between items-center px-8 h-20 max-w-[1440px] mx-auto w-full">
@@ -89,7 +89,7 @@
 </div>
 <div class="flex items-center gap-6">
 <a href="cart.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">shopping_bag</a>
-<a href="signup.html" class="material-symbols-outlined text-primary">person</a>
+<a href="login.html" class="material-symbols-outlined text-primary" data-auth-account-link>person</a>
 </div>
 </div>
 </nav>
@@ -198,5 +198,6 @@
 </div>
 </footer>
 <script defer="" src="../js/auth-api.js"></script>
+<script defer="" src="../js/session-ui.js"></script>
 <script defer="" src="../js/signup.js"></script>
 </body></html>

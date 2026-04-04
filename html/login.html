@@ -91,7 +91,7 @@
         }
     </style>
 </head>
-<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-white">
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-white" data-auth-guard="guest">
 <!-- TopNavBar -->
 <nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-[0_12px_24px_rgba(26,63,196,0.06)]">
 <div class="flex justify-between items-center px-8 py-6 w-full max-w-[1920px] mx-auto">
@@ -105,12 +105,12 @@
 <a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-[10px] tracking-[0.15em] font-medium transition-opacity duration-300" href="#">AUTHENTICATE</a>
 </div>
 <div class="flex items-center space-x-6">
-<button class="text-slate-600 hover:text-primary-container transition-colors duration-300">
+<a class="text-slate-600 hover:text-primary-container transition-colors duration-300" href="cart.html">
 <span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
-</button>
-<button class="text-primary-container">
+</a>
+<a class="text-primary-container" data-auth-account-link href="login.html">
 <span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
-</button>
+</a>
 </div>
 </div>
 </nav>
@@ -214,5 +214,6 @@
 </div>
 </footer>
 <script defer="" src="../js/auth-api.js"></script>
+<script defer="" src="../js/session-ui.js"></script>
 <script defer="" src="../js/login.js"></script>
 </body></html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>PURCHASE ARCHIVE | SNEAKER INDEX</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400;1,6..72,700&amp;family=Inter:wght@300;400;500;600;700&amp;family=Bebas+Neue&amp;family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
+<!-- Icons -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#1a3fc4", // Sovereign Cobalt
+              "on-primary": "#ffffff",
+              "surface": "#f7f9fe",
+              "surface-container": "#ebeef3",
+              "surface-container-low": "#f1f4f9",
+              "surface-container-high": "#e5e8ed",
+              "surface-container-highest": "#dfe3e8",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#747686",
+              "outline-variant": "#c4c5d7",
+              "on-surface": "#181c20",
+              "on-surface-variant": "#444654",
+            },
+            fontFamily: {
+              headline: ["Newsreader", "serif"],
+              body: ["Lato", "sans-serif"],
+              label: ["Lato", "sans-serif"],
+              bebas: ["Bebas Neue", "sans-serif"],
+              lato: ["Lato", "sans-serif"]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .zero-radius {
+        border-radius: 0 !important;
+      }
+      .cobalt-shadow {
+        box-shadow: 0px 12px 24px rgba(26, 63, 196, 0.06);
+      }
+      .cobalt-grade {
+        filter: grayscale(100%) contrast(110%);
+        mix-blend-mode: multiply;
+      }
+      .skeleton {
+        background: linear-gradient(90deg, #ebeef3 25%, #f1f4f9 50%, #ebeef3 75%);
+        background-size: 200% 100%;
+        animation: loading 1.5s infinite;
+      }
+      @keyframes loading {
+        0% { background-position: 200% 0; }
+        100% { background-position: -200% 0; }
+      }
+    </style>
+</head>
+<body class="bg-surface font-lato text-on-surface antialiased" data-auth-guard="protected">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-primary/10 flex justify-between items-center px-8 py-4">
+<div class="text-2xl font-bebas tracking-[0.1em] text-on-surface uppercase">SNEAKER INDEX</div>
+<div class="hidden md:flex gap-10 items-center">
+<a class="text-xs font-black tracking-[0.2em] text-primary border-b-2 border-primary pb-1 uppercase" href="#">Archive</a>
+<a class="text-xs font-bold tracking-[0.2em] text-outline hover:text-primary transition-all uppercase" href="#">Collections</a>
+<a class="text-xs font-bold tracking-[0.2em] text-outline hover:text-primary transition-all uppercase" href="#">Releases</a>
+<a class="text-xs font-bold tracking-[0.2em] text-outline hover:text-primary transition-all uppercase" href="#">Market</a>
+</div>
+<div class="flex gap-6 items-center">
+<a class="material-symbols-outlined text-on-surface cursor-pointer text-xl" href="cart.html">shopping_bag</a>
+<a class="material-symbols-outlined text-on-surface cursor-pointer text-xl" data-auth-account-link href="account.html">account_circle</a>
+</div>
+</nav>
+<!-- Layout Container -->
+<main class="pt-28 pb-20 px-8 max-w-[1440px] mx-auto flex flex-col md:flex-row gap-12">
+<!-- Sidebar -->
+<aside class="w-full md:w-1/4 flex flex-col gap-8">
+<!-- Profile Card -->
+<div class="bg-surface-container-lowest p-8 zero-radius border border-outline-variant/20 cobalt-shadow">
+<div class="relative w-24 h-24 mb-6 zero-radius overflow-hidden bg-surface-container">
+<img alt="ALEXANDER WANG" class="w-full h-full object-cover grayscale" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNDjmGezpGCe3H61--6X7q-Y6kmH7ZhoyVIe38B9lCpnkPn16y8xk9uFEP6SPDZ8GZeSCcihGPQW_LMJT1N-pL5A1cSzzda8DW2TfHeOYv8dRlTr1Dhilf3v4jk4npRQBp9ZSaVDAaV91f6XPpA_XKDXgnRtIejBTHLBtaV9_NVdi6Qkb1ogYMvkTJLpjrkoANVXODzwLDsxsJ8uBQ_iX0FuPYexOUk9W2z1gd9_Z4YSqhIL7iGvdv0z-H7ADFukV7yeq0TpvFvn4"/>
+</div>
+<h2 class="font-bebas text-2xl tracking-wide text-on-surface uppercase" data-auth-full-name>ALEXANDER WANG</h2>
+<div class="mt-2 inline-block bg-primary text-white text-[10px] tracking-[0.2em] px-3 py-1 zero-radius uppercase">CURATED CLIENT</div>
+</div>
+<!-- Sidebar Nav -->
+<nav class="flex flex-col bg-surface-container-lowest zero-radius border border-outline-variant/20">
+<a class="flex items-center gap-4 py-4 px-6 border-l-4 border-primary bg-primary/5 text-primary transition-all" href="#">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+<span class="font-bold tracking-widest text-[10px] uppercase">Archive</span>
+</a>
+<a class="flex items-center gap-4 py-4 px-6 border-l-4 border-transparent hover:border-outline-variant text-outline hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-bold tracking-widest text-[10px] uppercase">Overview</span>
+</a>
+<a class="flex items-center gap-4 py-4 px-6 border-l-4 border-transparent hover:border-outline-variant text-outline hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-xl">payments</span>
+<span class="font-bold tracking-widest text-[10px] uppercase">Payments</span>
+</a>
+<a class="flex items-center gap-4 py-4 px-6 border-l-4 border-transparent hover:border-outline-variant text-outline hover:text-on-surface transition-all" href="#">
+<span class="material-symbols-outlined text-xl">local_shipping</span>
+<span class="font-bold tracking-widest text-[10px] uppercase">Shipping</span>
+</a>
+</nav>
+<!-- Dynamic Latest Acquisition -->
+<div class="bg-primary p-1 zero-radius">
+<div class="bg-surface-container-lowest p-6 zero-radius">
+<span class="text-[9px] tracking-[0.3em] font-black text-outline uppercase block mb-4">LATEST ACQUISITION</span>
+<div class="relative aspect-square bg-surface-container overflow-hidden mb-4 group">
+<div class="absolute inset-0 bg-primary/10 cobalt-grade z-10 transition-opacity group-hover:opacity-0"></div>
+<img alt="Latest" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT0uSlIwgJ9oMZberBEtA3VGMybWw_Fvk4dmCrsm8vrE_N5QiGoCXi22k-xV4h3Q-fSdMbHKRMlT6uuaQVXZnm-ZXqEa61rn2NwtodTtGTTBX60icR-uE2AKrl83m3BD6oUFV50xVbEu24AjCMjlIgQVB1B21Ae51zGsW4LEMdvw7oa8c1EotMFZy6-g0yArYr7NypuIKVkHk4bPJoKwxLAtkX8zZ_b5QTZill5uBIc5OfjRvWj3jYBrPq-p_byW7q6b7XeW2xipQ"/>
+</div>
+<p class="font-bebas text-lg leading-tight mb-1 uppercase">AIR JORDAN 1 RETRO HIGH 'ROYAL'</p>
+<p class="text-[10px] text-outline font-bold tracking-widest uppercase mb-4">DELIVERED OCT 12, 2024</p>
+<button class="w-full border-2 border-primary text-primary py-2.5 text-[10px] tracking-widest font-black uppercase zero-radius hover:bg-primary hover:text-white transition-all">VIEW ITEM</button>
+</div>
+</div>
+</aside>
+<!-- Main Panel -->
+<section class="w-full md:w-3/4">
+<!-- Page Header -->
+<div class="mb-12">
+<div class="w-16 h-1 bg-primary mb-6"></div>
+<h1 class="font-bebas text-7xl tracking-tight text-on-surface leading-none uppercase">Purchase History</h1>
+<p class="mt-4 font-serif italic text-xl text-outline">Refining the collection, one acquisition at a time.</p>
+</div>
+<!-- Filter Tabs -->
+<div class="flex gap-8 border-b border-outline-variant/30 mb-8 overflow-x-auto scrollbar-hide">
+<button class="pb-4 text-[10px] tracking-[0.3em] font-black uppercase text-primary border-b-2 border-primary whitespace-nowrap">ALL ORDERS</button>
+<button class="pb-4 text-[10px] tracking-[0.3em] font-bold uppercase text-outline hover:text-on-surface transition-colors whitespace-nowrap"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">sync</span><span>PROCESSING</span></div></button>
+<button class="pb-4 text-[10px] tracking-[0.3em] font-bold uppercase text-outline hover:text-on-surface transition-colors whitespace-nowrap"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">local_shipping</span><span>SHIPPED</span></div></button>
+<button class="pb-4 text-[10px] tracking-[0.3em] font-bold uppercase text-outline hover:text-on-surface transition-colors whitespace-nowrap"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">check_circle</span><span>DELIVERED</span></div></button>
+<button class="pb-4 text-[10px] tracking-[0.3em] font-bold uppercase text-outline hover:text-on-surface transition-colors whitespace-nowrap"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">cancel</span><span>CANCELLED</span></div></button>
+</div>
+<!-- Loading Skeleton (Hidden) -->
+<div class="hidden space-y-6">
+<div class="h-32 w-full skeleton zero-radius"></div>
+<div class="h-32 w-full skeleton zero-radius"></div>
+<div class="h-32 w-full skeleton zero-radius"></div>
+</div>
+<!-- Empty State (Hidden) -->
+<div class="hidden py-24 text-center bg-surface-container-lowest border border-outline-variant/20 zero-radius">
+<span class="material-symbols-outlined text-5xl text-outline-variant mb-4">archive</span>
+<h3 class="font-bebas text-3xl text-on-surface mb-2">NO ACQUISITIONS YET</h3>
+<p class="text-sm text-outline uppercase tracking-widest">Start your collection by exploring the marketplace.</p>
+<button class="mt-8 px-10 py-3 bg-primary text-white text-[10px] tracking-widest font-black uppercase zero-radius">BROWSE RELEASES</button>
+</div>
+<!-- Order Cards Archive -->
+<div class="space-y-6">
+<!-- Order 1: Expanded (Delivered) -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 zero-radius cobalt-shadow overflow-hidden">
+<!-- Card Header -->
+<div class="flex flex-col lg:flex-row justify-between lg:items-center p-8 bg-surface-container/30 border-b border-outline-variant/10">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 flex-grow">
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Order No.</span>
+<h3 class="font-bebas text-2xl tracking-wide text-on-surface">SI-0098422-X</h3>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Placed</span>
+<p class="text-sm font-bold uppercase">Oct 12, 2024</p>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Archive Total</span>
+<p class="text-sm font-bold uppercase">$1,240.00</p>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Items</span>
+<p class="text-sm font-bold uppercase">02 Pieces</p>
+</div>
+</div>
+<div class="mt-6 lg:mt-0 flex items-center gap-4">
+<span class="px-5 py-1.5 bg-primary text-white text-[9px] tracking-[0.2em] font-black uppercase zero-radius"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">check_circle</span><span>DELIVERED</span></div></span>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-highest/50 zero-radius">
+<span class="material-symbols-outlined text-lg">expand_less</span>
+</button>
+</div>
+</div>
+<!-- Expanded Content -->
+<div class="p-8">
+<!-- Thumbnails with cobalt-grade -->
+<div class="flex gap-4 mb-10 overflow-x-auto pb-2">
+<div class="w-20 h-20 bg-surface-container relative zero-radius overflow-hidden border border-outline-variant/10 group">
+<div class="absolute inset-0 bg-primary/5 cobalt-grade z-10 opacity-60"></div>
+<img alt="Item" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT0uSlIwgJ9oMZberBEtA3VGMybWw_Fvk4dmCrsm8vrE_N5QiGoCXi22k-xV4h3Q-fSdMbHKRMlT6uuaQVXZnm-ZXqEa61rn2NwtodTtGTTBX60icR-uE2AKrl83m3BD6oUFV50xVbEu24AjCMjlIgQVB1B21Ae51zGsW4LEMdvw7oa8c1EotMFZy6-g0yArYr7NypuIKVkHk4bPJoKwxLAtkX8zZ_b5QTZill5uBIc5OfjRvWj3jYBrPq-p_byW7q6b7XeW2xipQ"/>
+</div>
+<div class="w-20 h-20 bg-surface-container relative zero-radius overflow-hidden border border-outline-variant/10 group">
+<div class="absolute inset-0 bg-primary/5 cobalt-grade z-10 opacity-60"></div>
+<img alt="Item" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwDBndl9A_JHwvFPCA76hqwKYxllbM6CyYSMg8Lr1zH7MsXv7x9BAYvi7eYX_qbRKUHtbmKyP_TWLuK2o-kYJpH8Jzw4DAMb2uHLNcjvDJO1KAqHILw2g0ECBhODin09DpLWDPA8y_Ezj8WjKl0BP2ZsSTSLFamtdFr48LJAFKs7isAK9PQhkQDtMMYq2stK9DLihIpPfgW6Ch9pUlN05x0bhnv9zl557sGb7TmuPTCl1sKl5jwwSfyVmZ2nq8oC304t_XdMR6Fqs"/>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<!-- Left: Itemized Acquisitions -->
+<div class="md:col-span-7">
+<h4 class="text-[10px] tracking-[0.3em] font-black text-on-surface uppercase mb-8 pb-2 border-b border-outline-variant/20">ITEMIZED ACQUISITIONS</h4>
+<div class="space-y-6">
+<div class="flex gap-6">
+<div class="w-14 h-14 bg-surface-container zero-radius flex-shrink-0 border border-outline-variant/10"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<p class="text-xs font-black uppercase tracking-tight">AIR JORDAN 1 RETRO HIGH 'ROYAL'</p>
+<p class="text-xs font-black">$740.00</p>
+</div>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-1">SIZE 11 / AUTHENTICATED</p>
+</div>
+</div>
+<div class="flex gap-6">
+<div class="w-14 h-14 bg-surface-container zero-radius flex-shrink-0 border border-outline-variant/10"></div>
+<div class="flex-grow">
+<div class="flex justify-between items-start">
+<p class="text-xs font-black uppercase tracking-tight">SI SIGNATURE PREMIUM CREP PROTECT</p>
+<p class="text-xs font-black">$50.00</p>
+</div>
+<p class="text-[10px] text-outline uppercase tracking-widest mt-1">KIT / ACCESSORY</p>
+</div>
+</div>
+</div>
+<div class="mt-8 pt-8 border-t border-outline-variant/10 space-y-3">
+<div class="flex justify-between text-[10px] font-bold text-outline uppercase tracking-widest">
+<span>SUBTOTAL</span>
+<span>$790.00</span>
+</div>
+<div class="flex justify-between text-[10px] font-bold text-outline uppercase tracking-widest">
+<span>SHIPPING &amp; HANDLING</span>
+<span>$25.00</span>
+</div>
+<div class="flex justify-between text-sm font-black text-on-surface pt-4 border-t border-outline-variant/20">
+<span class="tracking-widest uppercase">ARCHIVE TOTAL</span>
+<span>$815.00</span>
+</div>
+</div>
+</div>
+<!-- Right: Logistics & Address -->
+<div class="md:col-span-5 flex flex-col gap-12">
+<div>
+<h4 class="text-[10px] tracking-[0.3em] font-black text-on-surface uppercase mb-8 pb-2 border-b border-outline-variant/20">LOGISTICS PATH</h4>
+<div class="space-y-8 relative pl-6">
+<div class="absolute left-[7px] top-1 bottom-1 w-[1.5px] bg-outline-variant/30"></div>
+<div class="flex items-start gap-6 relative">
+<div class="absolute left-[-23px] w-4 h-4 bg-primary zero-radius mt-0.5 z-10 border-2 border-white shadow-[0_0_0_4px_rgba(26,63,196,0.1)]"></div>
+<div>
+<p class="text-[10px] font-black uppercase tracking-widest">DELIVERED</p>
+<p class="text-[10px] text-outline mt-1 uppercase font-bold">OCT 12, 2024 — 14:32</p>
+</div>
+</div>
+<div class="flex items-start gap-6 relative">
+<div class="absolute left-[-23px] w-4 h-4 bg-outline-variant/50 zero-radius mt-0.5 z-10 border-2 border-white"></div>
+<div>
+<p class="text-[10px] font-black uppercase tracking-widest text-outline">IN TRANSIT</p>
+<p class="text-[10px] text-outline/50 mt-1 uppercase font-bold">OCT 10, 2024 — 09:15</p>
+</div>
+</div>
+<div class="flex items-start gap-6 relative">
+<div class="absolute left-[-23px] w-4 h-4 bg-outline-variant/50 zero-radius mt-0.5 z-10 border-2 border-white"></div>
+<div>
+<p class="text-[10px] font-black uppercase tracking-widest text-outline">DISPATCHED</p>
+<p class="text-[10px] text-outline/50 mt-1 uppercase font-bold">OCT 09, 2024 — 11:45</p>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-[10px] tracking-[0.3em] font-black text-on-surface uppercase mb-6 pb-2 border-b border-outline-variant/20">SHIPPING DESTINATION</h4>
+<p class="text-xs leading-[1.8] font-bold uppercase tracking-widest">
+                                    ALEXANDER WANG<br/>
+                                    152 CURATED LANE, APT 4C<br/>
+                                    TRIBECA, NY 10013<br/>
+                                    UNITED STATES
+                                </p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Order 2: Collapsed (In Transit) -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 zero-radius cobalt-shadow overflow-hidden">
+<div class="flex flex-col lg:flex-row justify-between lg:items-center p-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 flex-grow">
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Order No.</span>
+<h3 class="font-bebas text-2xl tracking-wide text-on-surface">SI-0098311-A</h3>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Placed</span>
+<p class="text-sm font-bold uppercase">Sep 28, 2024</p>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Archive Total</span>
+<p class="text-sm font-bold uppercase">$2,850.00</p>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Items</span>
+<p class="text-sm font-bold uppercase">01 Piece</p>
+</div>
+</div>
+<div class="mt-6 lg:mt-0 flex items-center gap-4">
+<span class="px-5 py-1.5 bg-surface-container-highest text-primary text-[9px] tracking-[0.2em] font-black uppercase zero-radius"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">airport_shuttle</span><span>IN TRANSIT</span></div></span>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-highest/50 zero-radius">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Order 3: Collapsed (Processing) -->
+<div class="bg-surface-container-lowest border border-outline-variant/20 zero-radius cobalt-shadow overflow-hidden">
+<div class="flex flex-col lg:flex-row justify-between lg:items-center p-8">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 flex-grow">
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Order No.</span>
+<h3 class="font-bebas text-2xl tracking-wide text-on-surface">SI-0098254-P</h3>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Placed</span>
+<p class="text-sm font-bold uppercase">Sep 15, 2024</p>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Archive Total</span>
+<p class="text-sm font-bold uppercase">$420.00</p>
+</div>
+<div>
+<span class="text-[9px] tracking-[0.2em] text-outline font-bold uppercase">Items</span>
+<p class="text-sm font-bold uppercase">03 Pieces</p>
+</div>
+</div>
+<div class="mt-6 lg:mt-0 flex items-center gap-4">
+<span class="px-5 py-1.5 bg-surface-container-high text-outline text-[9px] tracking-[0.2em] font-black uppercase zero-radius"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[12px]">sync</span><span>PROCESSING</span></div></span>
+<button class="w-10 h-10 flex items-center justify-center bg-surface-container-highest/50 zero-radius">
+<span class="material-symbols-outlined text-lg">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-16 flex items-center justify-between border-t border-outline-variant/30 pt-10">
+<span class="text-[9px] tracking-[0.3em] font-black text-outline uppercase">ARCHIVE VIEW: 1-10 OF 84</span>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center bg-primary text-white zero-radius text-xs font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center bg-white border border-outline-variant/30 text-on-surface hover:border-primary transition-colors zero-radius text-xs font-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center bg-white border border-outline-variant/30 text-on-surface hover:border-primary transition-colors zero-radius text-xs font-bold">3</button>
+<button class="w-10 h-10 flex items-center justify-center bg-white border border-outline-variant/30 text-on-surface hover:border-primary transition-colors zero-radius">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-primary w-full py-20 px-12 text-white flex flex-col md:flex-row justify-between items-start gap-12 border-t border-white/10">
+<div class="max-w-md">
+<div class="text-3xl font-bebas tracking-[0.15em] text-white mb-6 uppercase">SNEAKER INDEX</div>
+<p class="text-[10px] tracking-[0.25em] font-bold uppercase leading-relaxed text-white/70">
+            A GLOBALLY CURATED REPOSITORY OF ARCHITECTURAL FOOTWEAR AND HERITAGE ARTIFACTS.
+        </p>
+</div>
+<div class="grid grid-cols-2 gap-16">
+<div class="flex flex-col gap-5">
+<span class="text-[10px] tracking-[0.3em] font-black text-white/40 uppercase mb-2">DIRECTORY</span>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">PRIVACY POLICY</a>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">TERMS OF SERVICE</a>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">SHIPPING INFO</a>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">SUSTAINABILITY</a>
+</div>
+<div class="flex flex-col gap-5">
+<span class="text-[10px] tracking-[0.3em] font-black text-white/40 uppercase mb-2">SOCIAL</span>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">INSTAGRAM</a>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">X / TWITTER</a>
+<a class="text-[10px] tracking-[0.2em] font-bold uppercase text-white hover:text-white/70 transition-all" href="#">ARE.NA</a>
+</div>
+</div>
+<div class="mt-8 md:mt-0 text-right md:self-end">
+<p class="text-[9px] tracking-[0.3em] font-bold text-white/40 uppercase">© 2024 SNEAKER INDEX. ALL RIGHTS RESERVED.</p>
+</div>
+</footer>
+<script defer="" src="../js/auth-api.js"></script>
+<script defer="" src="../js/session-ui.js"></script>
+</body></html>
