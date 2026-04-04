@@ -39,6 +39,26 @@
     return `product.html?slug=${encodeURIComponent(product.slug)}`;
   }
 
+  function getDefaultCartSelection(product) {
+    return {
+      color: product.colors?.[0] || null,
+      size: (product.sizes || []).find((size) => size.stock > 0) || null,
+    };
+  }
+
+  function showCollectionMessage(message, tone = "success") {
+    if (!elements.collectionStatus) {
+      return;
+    }
+
+    elements.collectionStatus.className =
+      tone === "error"
+        ? "mb-8 border border-error bg-error-container/20 px-6 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-error"
+        : "mb-8 border border-primary/20 bg-secondary-fixed px-6 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-primary";
+    elements.collectionStatus.textContent = message;
+    elements.collectionStatus.classList.remove("hidden");
+  }
+
   function categoryLink(category) {
     return `catalog.html?category=${encodeURIComponent(category.slug)}`;
   }
@@ -94,7 +114,7 @@
     elements.collectionGrid.innerHTML = products
       .map(
         (product) => `
-          <article class="group bg-surface-container-lowest p-6 ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 border border-black/5 hover:border-primary">
+          <article class="group si-fade-up bg-surface-container-lowest p-6 ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 border border-black/5 hover:border-primary">
             <a class="block" href="${productLink(product)}">
               <div class="cobalt-grade bg-surface-container-low h-64 flex items-center justify-center mb-6 overflow-hidden">
                 <img alt="${escapeHtml(product.name)}" class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" src="${escapeHtml(product.heroImage || product.images[0] || "")}">
@@ -107,8 +127,16 @@
                 <span class="font-bold text-primary">${formatPrice(product.price)}</span>
               </div>
             </a>
-            <button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300 opacity-70 cursor-not-allowed" type="button" disabled>
-              Add to Cart
+            <button
+              class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300 hover:bg-secondary"
+              type="button"
+              data-home-add
+              data-product-id="${escapeHtml(product._id)}"
+              data-size-label="${escapeHtml(getDefaultCartSelection(product).size?.label || "")}"
+              data-color-name="${escapeHtml(getDefaultCartSelection(product).color?.name || "")}"
+              ${getDefaultCartSelection(product).size && getDefaultCartSelection(product).color ? "" : "disabled"}
+            >
+              ${getDefaultCartSelection(product).size && getDefaultCartSelection(product).color ? "Add To Bag" : "Unavailable"}
             </button>
           </article>
         `
@@ -171,6 +199,44 @@
       renderCollectionError(error.message);
     }
   }
+
+  elements.collectionGrid?.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-home-add]");
+
+    if (!button) {
+      return;
+    }
+
+    const { productId, sizeLabel, colorName } = button.dataset;
+
+    if (!productId || !sizeLabel || !colorName || button.disabled) {
+      return;
+    }
+
+    const originalLabel = button.textContent;
+    button.disabled = true;
+    button.textContent = "Adding...";
+
+    try {
+      await api.addCartItem({
+        productId,
+        sizeLabel,
+        colorName,
+        quantity: 1,
+      });
+
+      showCollectionMessage("Added to bag.", "success");
+      button.textContent = "Added";
+    } catch (error) {
+      showCollectionMessage(error.message || "Unable to add the item to bag.", "error");
+      button.textContent = originalLabel;
+    } finally {
+      global.setTimeout(() => {
+        button.disabled = false;
+        button.textContent = originalLabel;
+      }, 1200);
+    }
+  });
 
   init();
 })(window);

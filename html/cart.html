@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html class="scroll-smooth" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Your Archive | SNEAKER INDEX</title>
+<link href="../css/global.css" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Inter:wght@100..900&family=Bebas+Neue&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
@@ -102,18 +103,14 @@
 <body class="bg-background text-on-surface font-body selection:bg-primary-container selection:text-white">
   <nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl border-b border-black/5 shadow-[0_12px_24px_rgba(26,63,196,0.06)] flex justify-between items-center px-8 h-20">
     <div class="flex items-center gap-12">
-      <a class="font-serif italic font-bold text-2xl tracking-tighter text-slate-900" href="index.html">SNEAKER INDEX</a>
-      <div class="hidden md:flex gap-8">
-        <a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="index.html">Curations</a>
-        <a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="catalog.html">LATEST</a>
-        <a class="font-serif text-lg tracking-tight text-slate-600 hover:text-primary transition-colors duration-300" href="catalog.html">ARCHIVE</a>
+      <a href="index.html" class="font-headline text-3xl tracking-tight"><span style="color: #1a3fc4;">S</span><span style="color: #181c20;">NEAKER INDEX</span></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Vault</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="orders.html">Orders</a>
       </div>
     </div>
     <div class="flex items-center gap-6">
-      <div class="hidden lg:block relative">
-        <span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline">search</span>
-        <input class="bg-surface-container-low border-none pl-10 pr-4 py-2 text-sm focus:ring-1 focus:ring-primary w-64" placeholder="Search archive..." type="text"/>
-      </div>
       <a class="relative hover:scale-95 duration-200" href="cart.html">
         <span class="material-symbols-outlined text-slate-900">shopping_bag</span>
         <span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center font-bold" data-cart-badge>0</span>
@@ -155,7 +152,7 @@
         </div>
 
         <div class="pt-8">
-          <a class="inline-block text-center border-2 border-primary py-4 px-10 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE SHOPPING</a>
+          <a class="inline-block text-center border-2 border-primary py-4 px-10 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE TO VAULT</a>
         </div>
       </div>
 
@@ -193,7 +190,7 @@
         <div class="space-y-4 pt-4">
           <button class="w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] opacity-60 cursor-not-allowed" data-cart-checkout-button disabled>Checkout Soon</button>
           <p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant text-center" data-cart-checkout-hint>Select at least one cart item to continue.</p>
-          <a class="block w-full text-center border-2 border-primary py-4 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE SHOPPING</a>
+          <a class="block w-full text-center border-2 border-primary py-4 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE TO VAULT</a>
         </div>
 
         <div class="pt-8">
@@ -239,4 +236,8 @@
   <script src="../js/cart.js"></script>
 </body>
 </html>
+
+
+
+
 

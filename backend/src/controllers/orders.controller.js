@@ -20,6 +20,7 @@ const SHIPPING_METHODS = {
 };
 
 const TAX_RATE = 0.08;
+const ORDER_STATUSES = ["processing", "shipped", "delivered", "cancelled", "confirmed"];
 
 function createOrderNumber() {
   const timestamp = Date.now().toString(36).toUpperCase();
@@ -53,6 +54,68 @@ function serializeOrder(order) {
     pricing: order.pricing,
     items: order.items,
     createdAt: order.createdAt,
+  };
+}
+
+function normalizeOrderStatus(status) {
+  if (status === "confirmed") {
+    return "processing";
+  }
+
+  return status;
+}
+
+function getStatusTimeline(order) {
+  const placedAt = new Date(order.createdAt);
+  const shippedAt = new Date(placedAt.getTime() + 2 * 24 * 60 * 60 * 1000);
+  const deliveredAt = new Date(placedAt.getTime() + 5 * 24 * 60 * 60 * 1000);
+  const normalizedStatus = normalizeOrderStatus(order.status);
+
+  return [
+    {
+      key: "processing",
+      label: "Processing",
+      timestamp: placedAt,
+      completed: true,
+      active: normalizedStatus === "processing",
+    },
+    {
+      key: "shipped",
+      label: "Shipped",
+      timestamp: shippedAt,
+      completed: normalizedStatus === "shipped" || normalizedStatus === "delivered",
+      active: normalizedStatus === "shipped",
+    },
+    {
+      key: "delivered",
+      label: "Delivered",
+      timestamp: deliveredAt,
+      completed: normalizedStatus === "delivered",
+      active: normalizedStatus === "delivered",
+    },
+  ];
+}
+
+function serializeOrderListItem(order) {
+  const normalizedStatus = normalizeOrderStatus(order.status);
+
+  return {
+    id: order._id.toString(),
+    orderNumber: order.orderNumber,
+    status: normalizedStatus,
+    paymentStatus: order.paymentStatus,
+    shippingMethod: order.shippingMethod,
+    paymentMethod: order.paymentMethod,
+    pricing: order.pricing,
+    itemCount: order.items.reduce((sum, item) => sum + item.quantity, 0),
+    items: order.items,
+    shippingAddress: order.shippingAddress,
+    createdAt: order.createdAt,
+    updatedAt: order.updatedAt,
+    timeline: getStatusTimeline(order).map((entry) => ({
+      ...entry,
+      timestamp: entry.timestamp.toISOString(),
+    })),
   };
 }
 
@@ -144,6 +207,7 @@ async function createOrder(req, res) {
             orderNumber: createOrderNumber(),
             userId: owner?.isGuest ? null : owner?.userId || null,
             email: req.body.email.trim().toLowerCase(),
+            status: "processing",
             shippingMethod: req.body.shippingMethod,
             paymentMethod: req.body.paymentMethod,
             shippingAddress: req.body.shippingAddress,
@@ -198,19 +262,35 @@ async function listOrders(req, res) {
     });
   }
 
-  const orders = await Order.find({ userId: req.user.id }).sort({ createdAt: -1 }).lean();
+  const requestedStatus = String(req.query.status || "").trim().toLowerCase();
+  const normalizedStatus =
+    requestedStatus === "all" || requestedStatus === ""
+      ? ""
+      : requestedStatus === "confirmed"
+        ? "processing"
+        : requestedStatus;
+
+  if (normalizedStatus && !ORDER_STATUSES.includes(normalizedStatus)) {
+    throw new AppError("Order status filter is invalid.", 400, {
+      code: "INVALID_ORDER_STATUS",
+    });
+  }
+
+  const filter = { userId: req.user.id };
+
+  if (normalizedStatus) {
+    filter.status =
+      normalizedStatus === "processing"
+        ? { $in: ["processing", "confirmed"] }
+        : normalizedStatus;
+  }
+
+  const orders = await Order.find(filter).sort({ createdAt: -1 }).lean();
 
   sendSuccess(res, {
     message: "Orders fetched successfully.",
     data: {
-      orders: orders.map((order) => ({
-        id: order._id.toString(),
-        orderNumber: order.orderNumber,
-        status: order.status,
-        pricing: order.pricing,
-        itemCount: order.items.reduce((sum, item) => sum + item.quantity, 0),
-        createdAt: order.createdAt,
-      })),
+      orders: orders.map(serializeOrderListItem),
     },
   });
 }

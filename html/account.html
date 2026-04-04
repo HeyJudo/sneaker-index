@@ -1,291 +1,267 @@
-<!DOCTYPE html>
+ï»¿<!DOCTYPE html>
 <html class="light" lang="en">
 <head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Account Archive | SNEAKER INDEX</title>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&family=Bebas+Neue&family=Lato:wght@400;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="../css/global.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@400;700;900&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "on-background": "#181c20",
-                        "error": "#ba1a1a",
-                        "surface-container-lowest": "#ffffff",
-                        "primary": "#00289c",
-                        "surface-container": "#ebeef3",
-                        "on-tertiary": "#ffffff",
-                        "surface-variant": "#dfe3e8",
-                        "outline": "#747686",
-                        "tertiary-container": "#004ca1",
-                        "background": "#f7f9fe",
-                        "on-primary": "#ffffff",
-                        "surface": "#f7f9fe",
-                        "on-surface": "#181c20",
-                        "secondary": "#0051d5",
-                        "outline-variant": "#c4c5d7",
-                        "tertiary": "#003676",
-                        "surface-container-highest": "#dfe3e8",
-                        "primary-container": "#1a3fc4",
-                        "surface-container-high": "#e5e8ed",
-                        "surface-container-low": "#f1f4f9",
-                        "inverse-surface": "#2d3135"
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0px",
-                        "lg": "0px",
-                        "xl": "0px",
-                        "full": "9999px"
-                    },
-                    fontFamily: {
-                        "headline": ["Bebas Neue", "sans-serif"],
-                        "body": ["Lato", "sans-serif"],
-                        "serif": ["Newsreader", "serif"]
-                    }
-                },
-            },
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          primary: "#00289c",
+          secondary: "#0051d5",
+          background: "#f7f9fe",
+          surface: "#f7f9fe",
+          "surface-container-low": "#f1f4f9",
+          "surface-container-high": "#e5e8ed",
+          "surface-container-highest": "#dfe3e8",
+          "surface-container-lowest": "#ffffff",
+          outline: "#747686",
+          "outline-variant": "#c4c5d7",
+          "on-surface": "#181c20",
+          "on-surface-variant": "#444654",
+          error: "#ba1a1a"
+        },
+        fontFamily: {
+          headline: ["Bebas Neue", "sans-serif"],
+          body: ["Lato", "sans-serif"]
+        },
+        borderRadius: {
+          DEFAULT: "0px",
+          lg: "0px",
+          xl: "0px",
+          full: "0px"
         }
-    </script>
+      }
+    }
+  };
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .cobalt-grade-tint {
-            background: linear-gradient(135deg, rgba(26,63,196,0.2) 0%, rgba(26,63,196,0.05) 100%);
-        }
-        input:focus,
-        select:focus {
-            outline: none !important;
-            border-bottom: 2px solid #00289c !important;
-            box-shadow: none !important;
-        }
-        .zero-radius { border-radius: 0px !important; }
-    </style>
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+  .cobalt-grade-tint { background: linear-gradient(135deg, rgba(26,63,196,0.2) 0%, rgba(26,63,196,0.05) 100%); }
+  .zero-radius { border-radius: 0 !important; }
+</style>
 </head>
 <body class="bg-surface font-body text-on-surface" data-auth-guard="protected">
-<nav class="bg-white/70 backdrop-blur-xl sticky top-0 z-50 border-b border-white/10 shadow-[0px_12px_24px_rgba(26,63,196,0.06)]">
-<div class="flex justify-between items-center w-full px-8 py-4 max-w-[1440px] mx-auto">
-<div class="flex items-center gap-2">
-<a class="font-serif text-3xl font-bold italic text-blue-700" href="index.html">S</a>
-<a class="font-headline text-2xl tracking-tighter text-on-surface" href="index.html">NEAKER INDEX</a>
-</div>
-<div class="hidden md:flex items-center gap-8">
-<a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="catalog.html">Archive</a>
-<a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="orders.html">Orders</a>
-<a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="#identity">Identity</a>
-<a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="#shipping">Shipping</a>
-</div>
-<div class="flex items-center gap-6">
-<a class="material-symbols-outlined text-blue-700 transition-transform active:opacity-80 scale-95" data-auth-account-link href="account.html">person</a>
-<a class="material-symbols-outlined text-slate-500 hover:text-blue-700 transition-transform active:opacity-80 scale-95" href="cart.html">shopping_bag</a>
-</div>
-</div>
+<nav class="glass-nav sticky top-0 z-50 border-b border-white/10 shadow-[0px_12px_24px_rgba(26,63,196,0.06)]">
+  <div class="flex justify-between items-center w-full px-8 py-4 max-w-[1440px] mx-auto">
+    <a href="index.html" class="font-headline text-3xl tracking-tight"><span style="color:#1a3fc4;">S</span><span style="color:#181c20;">NEAKER INDEX</span></a>
+    <div class="hidden md:flex items-center gap-8">
+      <a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="index.html">Home</a>
+      <a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="catalog.html">Vault</a>
+      <a class="text-slate-500 hover:text-blue-700 transition-colors tracking-widest uppercase text-xs" href="orders.html">Orders</a>
+      <a class="text-primary border-b-2 border-primary pb-1 tracking-widest uppercase text-xs" href="account.html">Account</a>
+    </div>
+    <div class="flex items-center gap-6">
+      <a class="material-symbols-outlined text-slate-500 hover:text-blue-700 transition-transform active:opacity-80 scale-95" href="cart.html">shopping_bag</a>
+      <a class="material-symbols-outlined text-blue-700 transition-transform active:opacity-80 scale-95" data-auth-account-link href="account.html">person</a>
+    </div>
+  </div>
 </nav>
 <main class="max-w-[1440px] mx-auto px-8 py-12" data-account-app>
-<header class="mb-16">
-<span class="font-body text-xs tracking-[0.3em] text-primary uppercase mb-2 block">The Digital Curator</span>
-<h1 class="font-headline text-7xl md:text-8xl text-on-surface tracking-tight leading-none">YOUR ARCHIVE</h1>
-</header>
-<div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
-<aside class="lg:col-span-1 space-y-12">
-<div class="space-y-6">
-<div class="relative w-32 h-32 cobalt-grade-tint overflow-hidden border border-primary/10 zero-radius">
-<img alt="Curator portrait" class="w-full h-full object-cover mix-blend-multiply opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzU9EANlwsMYot_w5DxWXrtMVsvffr_RPMcYJ5JZovWG75tyV1ecEHmTb6yQsWO8xGwwAYbHi7nlea6bsdclRLu9Xkr_eAYFm2YSfDwmB0g4YM68EPp6q2y3WxDic-grP2130DkyR6lYnHw2Nk3U2BulTIvSmu2d61O_e6Bu7F9-Kz3x67d5JTrqgQpm-uaDdyTzqHynxKmgh6opLo8mtOGzI23Bi6myH_iq-BoQlLTNBGwTbaZtFtwNfkPaOgQ8GBoL9e2hcZ2SA"/>
-</div>
-<div>
-<h2 class="font-headline text-4xl leading-none mb-1" data-auth-full-name>ALEXANDER WANG</h2>
-<p class="text-sm text-on-surface-variant mb-1" data-auth-email>curator@sneakerindex.com</p>
-<p class="text-[10px] text-outline tracking-widest uppercase mb-3">MEMBER ARCHIVE ACTIVE</p>
-<span class="inline-block bg-primary text-white text-[10px] tracking-[0.2em] font-bold px-3 py-1">CURATED CLIENT</span>
-</div>
-</div>
-<nav class="flex flex-col border-l border-surface-container-high">
-<a class="flex items-center gap-4 px-6 py-4 border-l-4 border-primary bg-surface-container-low text-primary font-bold group" href="#identity">
-<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">fingerprint</span>
-<span class="text-sm tracking-widest uppercase">Identity</span>
-</a>
-<a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group" href="orders.html">
-<span class="material-symbols-outlined text-xl">inventory_2</span>
-<span class="text-sm tracking-widest uppercase">Archive</span>
-</a>
-<a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group" href="#shipping">
-<span class="material-symbols-outlined text-xl">local_shipping</span>
-<span class="text-sm tracking-widest uppercase">Shipping</span>
-</a>
-<a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group" href="#security">
-<span class="material-symbols-outlined text-xl">lock</span>
-<span class="text-sm tracking-widest uppercase">Security</span>
-</a>
-<a class="hidden flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group mt-8" data-auth-logout href="#">
-<span class="material-symbols-outlined text-xl">logout</span>
-<span class="text-sm tracking-widest uppercase">Sign Out</span>
-</a>
-</nav>
-<div class="bg-surface-container-low p-6 space-y-4">
-<p class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase">Latest Acquisition</p>
-<div class="flex gap-4">
-<div class="w-16 h-16 bg-white overflow-hidden p-1">
-<img alt="Sneaker" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1JLFIhqcw4fE3EHUP4toPjdk-YYpK5e8t9va6vJKIuyEf_1Di_CdTmUXoU81bfxgz0lcFt3V6j2-xSwBZKLM1CRY2bQwkzf7eNTq1nWmHHbPSqtf7XzJY2ANz2kkTnlAPKy9w3vn3RQohRyvNCAcL4IIFfcBM4o_5IakTFXNEQpX5bxYx5wm-Brx_tl76ijgL3suBGTbfXlYOjwThsWvOFyTUeQUuTjaNeSZNNWh4UUU0DrLpMw5Jc0MrX_FVHfo3m77Ksi2NSk8"/>
-</div>
-<div class="flex flex-col justify-center">
-<p class="text-xs font-bold leading-tight uppercase" data-account-latest-order-name>ORDER HISTORY</p>
-<p class="text-[10px] text-primary uppercase" data-account-latest-order-meta>Review your recent acquisitions.</p>
-</div>
-</div>
-<a class="inline-block text-[10px] tracking-[0.2em] font-bold border-b border-primary text-primary uppercase py-1" href="orders.html">VIEW ORDERS</a>
-</div>
-</aside>
-<section class="lg:col-span-3 space-y-20">
-<form class="space-y-10" data-account-profile-form id="identity">
-<div class="flex items-center gap-6">
-<div class="w-1 h-12 bg-primary"></div>
-<h3 class="font-headline text-5xl">PROFILE INFORMATION</h3>
-</div>
-<div class="hidden" data-account-profile-status>
-<p class="text-xs font-bold tracking-widest uppercase" data-account-profile-status-text></p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div class="space-y-2 group">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="account-full-name">Full Name *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius" data-account-profile-name id="account-full-name" required type="text"/>
-</div>
-<div class="space-y-2 group">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="account-email">Email Address *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius" data-account-profile-email id="account-email" required type="email"/>
-</div>
-<div class="space-y-2 group md:col-span-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="account-phone">Phone Number</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius" data-account-profile-phone id="account-phone" type="tel"/>
-</div>
-</div>
-<div class="pt-2">
-<button class="bg-primary text-white text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-secondary transition-all active:scale-95 zero-radius" data-account-profile-submit type="submit">SAVE PROFILE CHANGES</button>
-</div>
-</form>
-<div class="space-y-10" id="shipping">
-<h3 class="font-headline text-5xl">SHIPPING DESTINATION</h3>
-<div class="hidden" data-account-address-status>
-<p class="text-xs font-bold tracking-widest uppercase" data-account-address-status-text></p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="border border-surface-container-highest p-8 space-y-6 relative group hidden" data-account-address-summary>
-<div class="flex justify-between items-start">
-<div class="space-y-1">
-<p class="text-[10px] tracking-[0.2em] font-bold text-primary uppercase">Default Address</p>
-<h4 class="font-headline text-2xl uppercase" data-account-address-name>Home Base</h4>
-</div>
-<span class="material-symbols-outlined text-primary">verified</span>
-</div>
-<div class="text-sm space-y-1 text-on-surface-variant">
-<p data-account-address-line1></p>
-<p class="hidden" data-account-address-line2></p>
-<p data-account-address-line3></p>
-<p data-account-address-summary-country></p>
-</div>
-<div class="flex gap-4 pt-4">
-<button class="text-[10px] tracking-[0.2em] font-bold border-b border-primary text-primary uppercase py-1" data-account-address-edit type="button">Edit</button>
-<a class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase py-1" href="checkout.html">Use At Checkout</a>
-</div>
-</div>
-<div class="border-2 border-dashed border-surface-container-highest p-8 flex flex-col items-center justify-center space-y-6 bg-surface-container-lowest" data-account-address-empty>
-<div class="w-12 h-12 rounded-full bg-surface-container-low flex items-center justify-center">
-<span class="material-symbols-outlined text-2xl text-outline">add_location</span>
-</div>
-<p class="text-[10px] text-on-surface-variant tracking-widest uppercase text-center">No verified address found in archive.</p>
-<button class="bg-surface-container-highest text-on-surface text-xs tracking-[0.2em] font-bold px-8 py-4 hover:bg-outline-variant transition-all zero-radius" data-account-address-add type="button">ADD ADDRESS</button>
-</div>
-</div>
-<form class="hidden border border-surface-container-highest p-8 space-y-8" data-account-address-form>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-<div class="space-y-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-first-name">First Name *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-first-name id="address-first-name" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-last-name">Last Name *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-last-name id="address-last-name" type="text"/>
-</div>
-<div class="space-y-2 md:col-span-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-line-1">Street Address *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-street-1 id="address-line-1" type="text"/>
-</div>
-<div class="space-y-2 md:col-span-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-line-2">Apartment / Suite</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-street-2 id="address-line-2" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-city">City *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-city id="address-city" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-state">State *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-state id="address-state" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-postal-code">Zip Code *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-postal-code id="address-postal-code" type="text"/>
-</div>
-<div class="space-y-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-country">Country *</label>
-<select class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-country id="address-country">
-<option value="United States">United States</option>
-<option value="Philippines">Philippines</option>
-<option value="Japan">Japan</option>
-<option value="United Kingdom">United Kingdom</option>
-</select>
-</div>
-</div>
-<div class="flex flex-wrap gap-4 pt-4">
-<button class="bg-primary text-white text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-secondary transition-all active:scale-95 zero-radius" data-account-address-submit type="submit">SAVE DEFAULT ADDRESS</button>
-<button class="border border-primary text-primary text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-primary hover:text-white transition-all zero-radius" data-account-address-cancel type="button">CANCEL</button>
-</div>
-</form>
-</div>
-<form class="space-y-10" data-account-security-form id="security">
-<h3 class="font-headline text-5xl">SECURITY &amp; ACCESS</h3>
-<div class="hidden" data-account-security-status>
-<p class="text-xs font-bold tracking-widest uppercase" data-account-security-status-text></p>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-<div class="space-y-2 group md:col-span-2">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="current-password">Current Password *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius placeholder:text-surface-container-highest uppercase text-xs tracking-widest" data-account-current-password id="current-password" placeholder="ENTER CURRENT PASSWORD" required type="password"/>
-</div>
-<div class="space-y-2 group">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="new-password">New Password *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius placeholder:text-surface-container-highest uppercase text-xs tracking-widest" data-account-new-password id="new-password" placeholder="ENTER NEW PASSWORD" required type="password"/>
-</div>
-<div class="space-y-2 group">
-<label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="confirm-password">Confirm New Password *</label>
-<input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius placeholder:text-surface-container-highest uppercase text-xs tracking-widest" data-account-confirm-password id="confirm-password" placeholder="RE-TYPE NEW PASSWORD" required type="password"/>
-</div>
-</div>
-<div class="pt-6">
-<button class="bg-primary text-white text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-secondary transition-all active:scale-95 zero-radius" data-account-security-submit type="submit">UPDATE SECURITY PROTOCOLS</button>
-</div>
-</form>
-</section>
-</div>
+  <header class="mb-16">
+    <span class="font-body text-xs tracking-[0.3em] text-primary uppercase mb-2 block">The Digital Curator</span>
+    <h1 class="font-headline text-7xl md:text-8xl text-on-surface tracking-tight leading-none">YOUR ARCHIVE</h1>
+  </header>
+  <div class="hidden mb-10 border border-primary/20 bg-primary/5 px-6 py-5 zero-radius si-fade-up" data-account-unsaved-notice>
+    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div>
+        <p class="text-[10px] tracking-[0.25em] font-black text-primary uppercase">Unsaved Archive Changes</p>
+        <p class="mt-2 text-sm text-on-surface-variant" data-account-unsaved-text>Save your updates before leaving this page so the archive reflects them everywhere.</p>
+      </div>
+      <button class="border border-primary px-5 py-3 text-[10px] tracking-[0.2em] font-black uppercase text-primary hover:bg-primary hover:text-white zero-radius" data-account-unsaved-dismiss type="button">Keep Editing</button>
+    </div>
+  </div>
+  <div class="grid grid-cols-1 lg:grid-cols-4 gap-12">
+    <aside class="lg:col-span-1 space-y-12">
+      <div class="space-y-6">
+        <div class="relative w-40 h-40 cobalt-grade-tint overflow-hidden border border-primary/10 zero-radius">
+          <img alt="Curator portrait" class="w-full h-full object-cover mix-blend-multiply opacity-90" data-account-avatar-preview src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzU9EANlwsMYot_w5DxWXrtMVsvffr_RPMcYJ5JZovWG75tyV1ecEHmTb6yQsWO8xGwwAYbHi7nlea6bsdclRLu9Xkr_eAYFm2YSfDwmB0g4YM68EPp6q2y3WxDic-grP2130DkyR6lYnHw2Nk3U2BulTIvSmu2d61O_e6Bu7F9-Kz3x67d5JTrqgQpm-uaDdyTzqHynxKmgh6opLo8mtOGzI23Bi6myH_iq-BoQlLTNBGwTbaZtFtwNfkPaOgQ8GBoL9e2hcZ2SA"/>
+        </div>
+        <div class="flex flex-wrap gap-3">
+          <input accept="image/*" class="hidden" data-account-avatar-file type="file"/>
+          <button class="bg-primary text-white text-[10px] tracking-[0.2em] font-bold px-4 py-3 uppercase" data-account-avatar-trigger type="button">Change Portrait</button>
+          <button class="border border-primary text-primary text-[10px] tracking-[0.2em] font-bold px-4 py-3 uppercase" data-account-avatar-reset type="button">Reset</button>
+        </div>
+        <div>
+          <h2 class="font-headline text-4xl leading-none mb-1" data-auth-full-name>ALEXANDER WANG</h2>
+          <p class="text-sm text-on-surface-variant mb-1" data-auth-email>curator@sneakerindex.com</p>
+          <p class="text-[10px] text-outline tracking-widest uppercase mb-3">MEMBER ARCHIVE ACTIVE</p>
+          <span class="inline-block bg-primary text-white text-[10px] tracking-[0.2em] font-bold px-3 py-1">CURATED CLIENT</span>
+        </div>
+      </div>
+      <nav class="flex flex-col border-l border-surface-container-high">
+        <a class="flex items-center gap-4 px-6 py-4 border-l-4 border-primary bg-surface-container-low text-primary font-bold group" href="#identity">
+          <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1;">fingerprint</span>
+          <span class="text-sm tracking-widest uppercase">Identity</span>
+        </a>
+        <a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group" href="orders.html">
+          <span class="material-symbols-outlined text-xl">receipt_long</span>
+          <span class="text-sm tracking-widest uppercase">Orders</span>
+        </a>
+        <a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group" href="#destinations">
+          <span class="material-symbols-outlined text-xl">local_shipping</span>
+          <span class="text-sm tracking-widest uppercase">Destinations</span>
+        </a>
+        <a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group" href="#security">
+          <span class="material-symbols-outlined text-xl">lock</span>
+          <span class="text-sm tracking-widest uppercase">Security</span>
+        </a>
+        <a class="flex items-center gap-4 px-6 py-4 border-l-4 border-transparent text-on-surface-variant hover:text-primary transition-all group mt-8" data-auth-logout href="#">
+          <span class="material-symbols-outlined text-xl">logout</span>
+          <span class="text-sm tracking-widest uppercase">Sign Out</span>
+        </a>
+      </nav>
+      <div class="bg-surface-container-low p-6 space-y-4 si-fade-up">
+        <p class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase">Latest Acquisition</p>
+        <div class="flex gap-4">
+          <div class="w-16 h-16 bg-white overflow-hidden p-1">
+            <img alt="Sneaker" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1JLFIhqcw4fE3EHUP4toPjdk-YYpK5e8t9va6vJKIuyEf_1Di_CdTmUXoU81bfxgz0lcFt3V6j2-xSwBZKLM1CRY2bQwkzf7eNTq1nWmHHbPSqtf7XzJY2ANz2kkTnlAPKy9w3vn3RQohRyvNCAcL4IIFfcBM4o_5IakTFXNEQpX5bxYx5wm-Brx_tl76ijgL3suBGTbfXlYOjwThsWvOFyTUeQUuTjaNeSZNNWh4UUU0DrLpMw5Jc0MrX_FVHfo3m77Ksi2NSk8"/>
+          </div>
+          <div class="flex flex-col justify-center">
+            <p class="text-xs font-bold leading-tight uppercase" data-account-latest-order-name>ORDER HISTORY</p>
+            <p class="text-[10px] text-primary uppercase" data-account-latest-order-meta>Review your recent acquisitions.</p>
+          </div>
+        </div>
+        <a class="inline-block text-[10px] tracking-[0.2em] font-bold border-b border-primary text-primary uppercase py-1" href="orders.html">VIEW ORDERS</a>
+      </div>
+    </aside>
+    <section class="lg:col-span-3 space-y-20">
+      <form class="space-y-10" data-account-profile-form id="identity">
+        <div class="flex items-center gap-6">
+          <div class="w-1 h-12 bg-primary"></div>
+          <h3 class="font-headline text-5xl">PROFILE INFORMATION</h3>
+        </div>
+        <div class="hidden" data-account-profile-status>
+          <p class="text-xs font-bold tracking-widest uppercase" data-account-profile-status-text></p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="space-y-2 group">
+            <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="account-full-name">Full Name *</label>
+            <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius" data-account-profile-name id="account-full-name" required type="text"/>
+          </div>
+          <div class="space-y-2 group">
+            <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="account-email">Email Address *</label>
+            <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius" data-account-profile-email id="account-email" required type="email"/>
+          </div>
+          <div class="space-y-2 group md:col-span-2">
+            <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="account-phone">Phone Number</label>
+            <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius" data-account-profile-phone id="account-phone" type="tel"/>
+          </div>
+        </div>
+        <div class="pt-2">
+          <button class="bg-primary text-white text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-secondary transition-all active:scale-95 zero-radius" data-account-profile-submit type="submit">SAVE PROFILE CHANGES</button>
+        </div>
+      </form>
+
+      <div class="space-y-10" id="destinations">
+        <div class="flex items-center gap-6">
+          <div class="w-1 h-12 bg-primary"></div>
+          <div>
+            <h3 class="font-headline text-5xl">SHIPPING DESTINATIONS</h3>
+            <p class="text-[10px] tracking-[0.2em] uppercase text-on-surface-variant mt-2">Keep multiple destinations on file and choose one default checkout route.</p>
+          </div>
+        </div>
+        <div class="hidden" data-account-address-status>
+          <p class="text-xs font-bold tracking-widest uppercase" data-account-address-status-text></p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 hidden" data-account-address-list></div>
+        <div class="border-2 border-dashed border-surface-container-highest p-8 flex flex-col items-center justify-center space-y-6 bg-surface-container-lowest" data-account-address-empty>
+          <div class="w-12 h-12 bg-surface-container-low flex items-center justify-center zero-radius">
+            <span class="material-symbols-outlined text-2xl text-outline">add_location</span>
+          </div>
+          <p class="text-[10px] text-on-surface-variant tracking-widest uppercase text-center">No verified destinations found in archive.</p>
+        </div>
+        <button class="bg-surface-container-highest text-on-surface text-xs tracking-[0.2em] font-bold px-8 py-4 hover:bg-outline-variant transition-all zero-radius" data-account-address-add type="button">ADD DESTINATION</button>
+        <form class="hidden border border-surface-container-highest p-8 space-y-8 si-fade-up" data-account-address-form>
+          <input data-account-address-id type="hidden"/>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="space-y-2 md:col-span-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-label">Destination Label *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-label id="address-label" placeholder="HOME / STUDIO / OFFICE" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-first-name">First Name *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-first-name id="address-first-name" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-last-name">Last Name *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-last-name id="address-last-name" type="text"/>
+            </div>
+            <div class="space-y-2 md:col-span-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-line-1">Street Address *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-street-1 id="address-line-1" type="text"/>
+            </div>
+            <div class="space-y-2 md:col-span-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-line-2">Apartment / Suite</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-street-2 id="address-line-2" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-city">City *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-city id="address-city" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-state">State *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-state id="address-state" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-postal-code">Zip Code *</label>
+              <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-postal-code id="address-postal-code" type="text"/>
+            </div>
+            <div class="space-y-2">
+              <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="address-country">Country *</label>
+              <select class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 zero-radius" data-account-address-country id="address-country">
+                <option value="United States">United States</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Japan">Japan</option>
+                <option value="United Kingdom">United Kingdom</option>
+              </select>
+            </div>
+          </div>
+          <label class="inline-flex items-center gap-3 text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase cursor-pointer">
+            <input class="w-4 h-4 border border-outline-variant text-primary focus:ring-primary rounded-none" data-account-address-default type="checkbox"/>
+            <span>Use as default checkout destination</span>
+          </label>
+          <div class="flex flex-wrap gap-4 pt-4">
+            <button class="bg-primary text-white text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-secondary transition-all active:scale-95 zero-radius" data-account-address-submit type="submit">SAVE DESTINATION</button>
+            <button class="border border-primary text-primary text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-primary hover:text-white transition-all zero-radius" data-account-address-cancel type="button">CANCEL</button>
+          </div>
+        </form>
+      </div>
+
+      <form class="space-y-10" data-account-security-form id="security">
+        <h3 class="font-headline text-5xl">SECURITY &amp; ACCESS</h3>
+        <div class="hidden" data-account-security-status>
+          <p class="text-xs font-bold tracking-widest uppercase" data-account-security-status-text></p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+          <div class="space-y-2 group md:col-span-2">
+            <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="current-password">Current Password *</label>
+            <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius placeholder:text-surface-container-highest uppercase text-xs tracking-widest" data-account-current-password id="current-password" placeholder="ENTER CURRENT PASSWORD" required type="password"/>
+          </div>
+          <div class="space-y-2 group">
+            <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="new-password">New Password *</label>
+            <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius placeholder:text-surface-container-highest uppercase text-xs tracking-widest" data-account-new-password id="new-password" placeholder="ENTER NEW PASSWORD" required type="password"/>
+          </div>
+          <div class="space-y-2 group">
+            <label class="text-[10px] tracking-[0.2em] font-bold text-on-surface-variant uppercase" for="confirm-password">Confirm New Password *</label>
+            <input class="w-full bg-transparent border-t-0 border-l-0 border-r-0 border-b border-surface-container-high py-4 font-body text-lg focus:border-primary transition-colors zero-radius placeholder:text-surface-container-highest uppercase text-xs tracking-widest" data-account-confirm-password id="confirm-password" placeholder="CONFIRM NEW PASSWORD" required type="password"/>
+          </div>
+        </div>
+        <div class="pt-2">
+          <button class="bg-primary text-white text-xs tracking-[0.2em] font-bold px-10 py-5 hover:bg-secondary transition-all active:scale-95 zero-radius" data-account-security-submit type="submit">UPDATE SECURITY PROTOCOLS</button>
+        </div>
+      </form>
+    </section>
+  </div>
 </main>
-<footer class="bg-primary dark:bg-blue-900 mt-32">
-<div class="w-full py-12 px-8 flex flex-col md:flex-row justify-between items-center gap-8 max-w-[1440px] mx-auto">
-<div class="text-white font-serif text-2xl italic font-bold">S</div>
-<div class="flex flex-wrap justify-center gap-8">
-<a class="text-white/70 hover:text-white font-sans text-xs uppercase tracking-[0.2em] font-medium transition-opacity" href="catalog.html">Archive</a>
-<a class="text-white/70 hover:text-white font-sans text-xs uppercase tracking-[0.2em] font-medium transition-opacity" href="orders.html">Orders</a>
-<a class="text-white/70 hover:text-white font-sans text-xs uppercase tracking-[0.2em] font-medium transition-opacity" href="checkout.html">Checkout</a>
-<a class="text-white/70 hover:text-white font-sans text-xs uppercase tracking-[0.2em] font-medium transition-opacity" href="index.html">Home</a>
-</div>
-<p class="text-white font-sans text-[10px] uppercase tracking-[0.2em] font-medium">© 2026 SNEAKER INDEX ARCHIVE. ALL RIGHTS RESERVED.</p>
-</div>
-</footer>
 <script defer src="../js/auth-api.js"></script>
 <script defer src="../js/session-ui.js"></script>
 <script defer src="../js/account.js"></script>
 </body>
 </html>
-
-

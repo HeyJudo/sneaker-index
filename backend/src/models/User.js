@@ -2,6 +2,12 @@ const mongoose = require("mongoose");
 
 const shippingAddressSchema = new mongoose.Schema(
   {
+    label: {
+      type: String,
+      trim: true,
+      maxlength: 50,
+      default: "",
+    },
     firstName: {
       type: String,
       trim: true,
@@ -50,9 +56,13 @@ const shippingAddressSchema = new mongoose.Schema(
       maxlength: 80,
       default: "",
     },
+    isDefault: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
-    _id: false,
+    _id: true,
     id: false,
   }
 );
@@ -96,9 +106,18 @@ const userSchema = new mongoose.Schema(
       maxlength: 30,
       default: "",
     },
+    avatarUrl: {
+      type: String,
+      trim: true,
+      default: "",
+    },
     defaultShippingAddress: {
       type: shippingAddressSchema,
       default: () => ({}),
+    },
+    shippingAddresses: {
+      type: [shippingAddressSchema],
+      default: [],
     },
   },
   {

@@ -91,6 +91,11 @@
         body: JSON.stringify(payload),
       });
     },
+    getOrders(params) {
+      return request(`/orders${buildQuery(params)}`, {
+        method: "GET",
+      });
+    },
     getProducts(params) {
       return request(`/products${buildQuery(params)}`, { method: "GET" });
     },

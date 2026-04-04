@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html class="scroll-smooth" lang="en"><head>
 <meta charset="utf-8"/>
@@ -85,13 +85,12 @@
 <a href="index.html" class="font-headline text-3xl tracking-tight"><span style="color: #1a3fc4;">S</span><span style="color: #181c20;">NEAKER INDEX</span></a>
 <div class="hidden md:flex items-center gap-8">
 <a class="text-primary font-bold border-b-2 border-primary pb-1 uppercase tracking-widest text-xs font-body" href="index.html">Home</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Shop</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Men</a>
-<a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Women</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Vault</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="orders.html">Orders</a>
 </div>
 <div class="flex items-center gap-6">
 <a href="catalog.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">search</a>
-<a href="cart.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">shopping_cart</a>
+<a href="cart.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">shopping_bag</a>
 <a href="login.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors" data-auth-account-link>person</a>
 </div>
 </div>
@@ -144,145 +143,7 @@
 <div class="container mx-auto px-8">
 <h2 class="font-headline text-5xl font-bold mb-16 text-center" style="">OUR BEST COLLECTION</h2>
 <div class="hidden mb-8" data-home-collection-status></div>
-<div class="grid md:grid-cols-4 gap-8" data-home-collection>
-<!-- Product Card Loop -->
-<script>
-                    const products = [
-                        { name: "Air Max Pulse", brand: "Nike", price: "160" },
-                        { name: "Samba OG", brand: "Adidas", price: "100" },
-                        { name: "2002R Protection", brand: "New Balance", price: "150" },
-                        { name: "Clyde All-Pro", brand: "Puma", price: "130" },
-                        { name: "Question Mid", brand: "Reebok", price: "170" },
-                        { name: "Chuck 70", brand: "Converse", price: "85" },
-                        { name: "Zoom Vomero 5", brand: "Nike", price: "160" },
-                        { name: "Forum Low", brand: "Adidas", price: "110" }
-                    ];
-                </script>
-<!-- Card Component (Simulated 8x) -->
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="professional product shot of a sleek athletic sneaker on a neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXrqAUNKItQswVa23_XrGuevEmumuua7DpT8o0p8o9OVuq64uRw64i5Td5ssB98lReqrhVeM9oJVsOYvUIl0YpN6kH3H1tf1VmvoR-dMt8rDFifXYcwL4QWK67iTXu7xUa26wHuLbzEtPLnUJZ0D4AdqgJWod2w9drSuxBwjRvEaF3xYFaMQWEMCKQRKyOKdEVBG42KYp4krNSvbjbOpBqzqWn4JwEh3ksy2rM-wpjHVRQSPoOLuwg4shXMBiDFkdLIL-qGdCkMR8" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Nike</p>
-<h3 class="font-body text-xl font-bold" style="">Air Max Pulse</h3>
-</div>
-<span class="font-bold text-primary" style="">$160</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<!-- Repeat Pattern for Layout -->
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="modern sneaker product photography showing intricate details of the sole and laces" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAPZ2UE3l0DtI9bJckcfptNx21Zl1zAaRP-6Il4J1PatXDE7sFxGjc0NOnHFcHBLM29J5--DPCkFZjYk3RXiBW_lgq27pdrZTBM4SqssJS50yGTdNwX4JB8oYDtACJQDlPbkfma60dnR4h4gCLCl-ob6cYpWbTEXpz1Ps2MJomxztLLhmD9jDUnm6-gkXUxL8SocMqvvEq0ZXvkB5dsCbxlUrpRrltH443frz7HCmkpXxvWMuRlr2lV2-do3hxVQc4ZntZ29TyjBf8" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Adidas</p>
-<h3 class="font-body text-xl font-bold" style="">Samba OG</h3>
-</div>
-<span class="font-bold text-primary" style="">$100</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<!-- (Note: In a full implementation, all 8 cards would be rendered here) -->
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="luxury sneaker shot against a soft grey background highlighting premium leather textures" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHn8VY8URw3QzKLTeumInj3OBU9BxmqnMlC4xqy97MeCGTWMzVHbNVbGabDVwpwLIH4DxtwNhpMxXIEujAVAt4LkunRudgGqRAfBiLlLFWY8NNjsFjM9sJZQT04JLJeLwTdp7RBDtLIF7BEKhf2O--r42JcbXB07nmxD7woW9aW4R8QFr4M6PGCnuxASQTddT7H7pMrMT3RlLuLf-IpYSgC9cO2r_63z-izgfM1-9p51BkaDREYHrskK_VV6HPrvDtWav9HNIv6B0" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">New Balance</p>
-<h3 class="font-body text-xl font-bold" style="">2002R</h3>
-</div>
-<span class="font-bold text-primary" style="">$150</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="dynamic sport sneaker in white and cobalt blue tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARXT_pBKFkSLeNM49YIX35tMU7Gl0mFayG8xrSgQAW8aSewwMu8SorzOPkFOAPIl_0R2ZtkwV9k3OZZKc5OToTOefQJxUOGQ0Vs6X7gLCByErpOtFvw6nc8lTtUsI4xoMoBUojhZmWAm9n1BWHNUb4JSP6bRaQGJEwYcnJjZodJK7CS6t2xV8jtQRYwWzFp_31Yf6S59DUXqFGdHuVb2DOKCd3xeqdutyUuso1Pusb0yBVXWK6CK0lQ2D7bMj1DpGCvgYKjOL7OlY" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Puma</p>
-<h3 class="font-body text-xl font-bold" style="">Clyde Pro</h3>
-</div>
-<span class="font-bold text-primary" style="">$130</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<!-- Row 2 Mock -->
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="high fashion sneaker with sculptural silhouette and mesh panels" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9Ltvx6Qw4Tk2EIq86ey-wRUcA0CxQ9nl4_daUBBHyspQN6WAis8oZ-OzL6OKKjJXmIpAGpqvHhJhPnKivyNj-sCkZueg2Wjvu6WngOIBgjtFHhizdfvfDJ9_zkIM6aDU0-3f7Ex0Blnd89Mh31f71UIBhllvwB3qPhOsjD4yY_f0ch0eTeIPyKOVJxq8oB4EaFsJmi6561NHbYfBpV6QUhPAW7_rGtu84Vah1OU-NP70RZQ0voInSRhAZI_BF5r2EnVXGu6hJxaQ" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Balenciaga</p>
-<h3 class="font-body text-xl font-bold" style="">Track Sneaker</h3>
-</div>
-<span class="font-bold text-primary" style="">$895</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="urban streetwear sneaker with vibrant accent colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZR6Eq0zzxMK2ioVwBgiZEq6KIeplhFYnAG9vFVaixUPsIt8q6E_IoEBGHFQUZ1du-O2ceCA-f30uSsc4L7ksMAvdw4_zn5U2-YQ7OPOAORlqBSqfirSFD8MgtXe8xKnWI0O0ue2mloABpdXlo6o9OPbid7kLtIUxsAsSGSAZ4MQgYTL1OzigsHihQBMgsrEjcAPgiyARZ5QsctXEYE_hQ33NPnHpUuzWplVXXLpoMNnUAhvu53rI6c8h0I7hRNRxHGO1L1B-H9UE" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Asics</p>
-<h3 class="font-body text-xl font-bold" style="">Gel-Kayano</h3>
-</div>
-<span class="font-bold text-primary" style="">$180</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="clean leather high top sneaker in monochromatic grey" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhSOgXDHiVeoQe8suu00YH-8omQsKayRq6LtcYB8tjlDNZRkOAXgubZzGvTemE-0FzmVjSin8MOKOZiUQgNBTWS13ei8FyIHNB-8kDjhr7VX9tMa-lHtrw3d5GZKLclHKntJoerGFnSdouBvepdPpjpp-PdbhN7Ok_5irQWSJCA7s1Pqb_3eYATza5MmPs4_z2G_JSxOY8_IOnR4yyGV6tTreF98-utBWzHou9hddhsD7TJsa6E2zcouCDvcb3h4a-1Uh2DZ74Zw0" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Jordan</p>
-<h3 class="font-body text-xl font-bold" style="">AJ1 Retro</h3>
-</div>
-<span class="font-bold text-primary" style="">$180</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-<div class="group bg-surface-container-lowest p-6  ambient-shadow relative overflow-hidden transition-all duration-300 hover:-translate-y-2 cursor-pointer" onclick="window.location.href='product.html'">
-<div class="cobalt-grade bg-surface-container-low  h-64 flex items-center justify-center mb-6">
-<img class="w-4/5 transform group-hover:scale-110 transition-transform duration-500" data-alt="sustainable eco-friendly sneaker made with recycled materials" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcYAjv36WHGQY5qhkfPnfBMDM2IOyIsBWg-Sz8jI6oG8qoAAXoS_HsfFSRZX9rSMi4vbXJbrb0K2-ImIEhahAknKscpvOa3upQWA7-L4pg5pZQJFBTWbYzTd5NOaZKWs45YvEdr0tXTfPcHqkSRNhiDEut6x-Y6dKWEuPMeGpK2AWCx-IebbCXxcz_0ifnJq9VcONDpEEtqedZWzthMJxfB7cEs-I0ZKrXC8E2mV2ADlQkWdgB5VBBJLwSQ8Ee8_z8pDs9isISaI8" style=""/>
-</div>
-<div class="flex justify-between items-start">
-<div>
-<p class="text-xs font-label uppercase text-slate-400 tracking-wider mb-1" style="">Nike</p>
-<h3 class="font-body text-xl font-bold" style="">Dunk Low</h3>
-</div>
-<span class="font-bold text-primary" style="">$110</span>
-</div>
-<button class="absolute bottom-0 left-0 right-0 py-4 bg-primary text-white font-semibold translate-y-full group-hover:translate-y-0 transition-transform duration-300" style="">
-                        Add to Cart
-                    </button>
-</div>
-</div>
+<div class="grid md:grid-cols-4 gap-8" data-home-collection></div>
 </div>
 </section>
 <!-- Section 6: 2x2 Promotional Banner Grid -->
@@ -454,7 +315,7 @@
 </div>
 </div>
 <div class="flex flex-col gap-6">
-<h4 class="font-headline text-2xl">SHOP</h4>
+<h4 class="font-headline text-2xl">VAULT</h4>
 <div class="flex flex-col gap-3 font-body text-sm">
 <a class="text-white/80 hover:text-white transition-colors" href="catalog.html">New Arrivals</a>
 <a class="text-white/80 hover:text-white transition-colors" href="catalog.html">Best Sellers</a>
@@ -481,7 +342,7 @@
 </div>
 </div>
 <div class="border-t border-white/10 px-12 py-8 text-center">
-<span class="text-white/60 text-[10px] font-body uppercase tracking-[0.3em]">© 2025 Sneaker Index. All rights reserved. Urban Editorial Experience.</span>
+<span class="text-white/60 text-[10px] font-body uppercase tracking-[0.3em]">Â© 2025 Sneaker Index. All rights reserved. Urban Editorial Experience.</span>
 </div>
 </footer>
 <script src="../js/auth-api.js"></script>
@@ -489,3 +350,5 @@
 <script src="../js/store-api.js"></script>
 <script src="../js/index.js"></script>
 </body></html>
+
+

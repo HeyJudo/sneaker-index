@@ -1,10 +1,11 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html class="light" lang="en">
 <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
   <title>Checkout | Sneaker Index</title>
+<link href="../css/global.css" rel="stylesheet"/>
   <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Lato:wght@300;400;700&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
   <style type="text/tailwindcss">
@@ -58,11 +59,11 @@
 <body class="bg-surface text-on-surface antialiased">
   <nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 bg-white/70 backdrop-blur-xl z-50 shadow-[0_12px_24px_rgba(26,63,196,0.06)]">
     <div class="flex items-center gap-12">
-      <a class="text-2xl font-black text-blue-700 italic uppercase" href="index.html">Sneaker Index</a>
-      <div class="hidden md:flex gap-8">
-        <a class="text-slate-600 hover:text-blue-600 transition-colors duration-300 font-serif text-lg tracking-tight" href="index.html">Curated</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors duration-300 font-serif text-lg tracking-tight" href="catalog.html">Release</a>
-        <a class="text-slate-600 hover:text-blue-600 transition-colors duration-300 font-serif text-lg tracking-tight" href="catalog.html">Archive</a>
+      <a href="index.html" class="font-headline text-3xl tracking-tight"><span style="color: #1a3fc4;">S</span><span style="color: #181c20;">NEAKER INDEX</span></a>
+      <div class="hidden md:flex items-center gap-8">
+        <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="index.html">Home</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="catalog.html">Vault</a>
+        <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="orders.html">Orders</a><a class="text-primary border-b-2 border-primary pb-1 uppercase tracking-widest text-xs font-body" href="checkout.html">Checkout</a>
       </div>
     </div>
     <div class="flex items-center gap-6">
@@ -325,3 +326,6 @@
   <script src="../js/checkout.js"></script>
 </body>
 </html>
+
+
+

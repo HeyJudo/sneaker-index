@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 
 <html class="light" lang="en"><head>
 <meta charset="utf-8"/>
@@ -7,10 +7,10 @@
 <!-- Fonts -->
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Lato:wght@300;400;700;900&amp;display=swap" rel="stylesheet"/>
 <!-- Icons -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="../css/global.css" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
       tailwind.config = {
@@ -67,15 +67,15 @@
                     "surface-container-low": "#f1f4f9"
             },
             "borderRadius": {
-                    "DEFAULT": "0.125rem",
-                    "lg": "0.25rem",
-                    "xl": "0.5rem",
-                    "full": "0.75rem"
+                    "DEFAULT": "0px",
+                    "lg": "0px",
+                    "xl": "0px",
+                    "full": "0px"
             },
             "fontFamily": {
-                    "headline": ["Newsreader", "serif"],
-                    "body": ["Inter", "sans-serif"],
-                    "label": ["Inter", "sans-serif"]
+                    "headline": ["Bebas Neue", "sans-serif"],
+                    "body": ["Lato", "sans-serif"],
+                    "label": ["Lato", "sans-serif"]
             }
           },
         },
@@ -93,16 +93,14 @@
 </head>
 <body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-white" data-auth-guard="guest">
 <!-- TopNavBar -->
-<nav class="fixed top-0 w-full z-50 bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl shadow-[0_12px_24px_rgba(26,63,196,0.06)]">
-<div class="flex justify-between items-center px-8 py-6 w-full max-w-[1920px] mx-auto">
-<div class="text-2xl font-bold tracking-tighter text-slate-900 dark:text-white">
-<span class="text-primary-container">S</span>NEAKER INDEX
-            </div>
-<div class="hidden md:flex items-center space-x-12">
-<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-[10px] tracking-[0.15em] font-medium transition-opacity duration-300" href="#">ARCHIVE</a>
-<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-[10px] tracking-[0.15em] font-medium transition-opacity duration-300" href="#">CURATIONS</a>
-<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-[10px] tracking-[0.15em] font-medium transition-opacity duration-300" href="#">DROPS</a>
-<a class="text-slate-600 dark:text-slate-400 hover:text-slate-900 text-[10px] tracking-[0.15em] font-medium transition-opacity duration-300" href="#">AUTHENTICATE</a>
+<nav class="fixed top-0 w-full z-50 glass-nav border-b border-black/5 shadow-sm">
+<div class="flex justify-between items-center px-8 h-20 w-full max-w-[1440px] mx-auto">
+<a href="index.html" class="font-headline text-3xl tracking-tight"><span style="color: #1a3fc4;">S</span><span style="color: #181c20;">NEAKER INDEX</span></a>
+<div class="hidden md:flex items-center space-x-10">
+<a class="text-on-surface-variant hover:text-primary text-[10px] tracking-[0.18em] font-bold transition-colors uppercase" href="index.html">Home</a>
+<a class="text-on-surface-variant hover:text-primary text-[10px] tracking-[0.18em] font-bold transition-colors uppercase" href="catalog.html">Vault</a>
+<a class="text-on-surface-variant hover:text-primary text-[10px] tracking-[0.18em] font-bold transition-colors uppercase" href="orders.html">Orders</a>
+<a class="text-primary border-b-2 border-primary pb-1 text-[10px] tracking-[0.18em] font-bold uppercase" href="login.html">Account</a>
 </div>
 <div class="flex items-center space-x-6">
 <a class="text-slate-600 hover:text-primary-container transition-colors duration-300" href="cart.html">
@@ -131,7 +129,7 @@
 <div class="w-full max-w-md">
 <header class="mb-12">
 <span class="text-[10px] tracking-[0.2em] font-bold text-primary-container uppercase mb-2 block">Access Portal</span>
-<h2 class="font-headline text-4xl text-on-surface mb-2 tracking-tight">WELCOME BACK</h2>
+<h2 class="font-headline text-5xl text-on-surface mb-2 tracking-tight uppercase">WELCOME BACK</h2>
 <p class="text-on-surface-variant text-sm font-body">Manage your collection and track your authentications.</p>
 </header>
 <form class="space-y-8" data-auth-form="login" novalidate>
@@ -142,9 +140,9 @@
 <div class="space-y-2 group">
 <div class="flex justify-between items-center">
 <label class="text-[10px] tracking-[0.1em] font-semibold text-on-surface-variant uppercase" for="password">Password</label>
-<a class="text-[10px] tracking-[0.1em] font-semibold text-primary-container hover:text-secondary transition-colors uppercase" href="#">Forgot Password?</a>
+<span class="text-[10px] tracking-[0.1em] font-semibold text-outline uppercase">Reset Soon</span>
 </div>
-<input class="w-full bg-surface-container-low border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors py-4 px-0 placeholder:text-outline-variant text-on-surface rounded-none" id="password" name="password" placeholder="••••••••" type="password"/>
+<input class="w-full bg-surface-container-low border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors py-4 px-0 placeholder:text-outline-variant text-on-surface rounded-none" id="password" name="password" placeholder="Password" type="password"/>
 </div>
 <p class="hidden text-xs tracking-wide font-body" data-auth-message="login"></p>
 <button class="w-full bg-primary-container text-white font-bold py-5 text-[12px] tracking-[0.2em] transition-all hover:bg-secondary hover:-translate-y-0.5 rounded-none uppercase" data-auth-submit="login" type="submit">
@@ -185,9 +183,9 @@
 <div class="grid grid-cols-2 md:grid-cols-4 gap-12">
 <div class="flex flex-col space-y-4">
 <span class="text-[10px] tracking-[0.1em] font-bold opacity-40 uppercase">NAVIGATE</span>
-<a class="text-white/70 hover:text-white text-[10px] tracking-[0.1em] transition-colors duration-200 uppercase" href="#">ARCHIVE</a>
-<a class="text-white/70 hover:text-white text-[10px] tracking-[0.1em] transition-colors duration-200 uppercase" href="#">DROPS</a>
-<a class="text-white/70 hover:text-white text-[10px] tracking-[0.1em] transition-colors duration-200 uppercase" href="#">AUTHENTICATE</a>
+<a class="text-white/70 hover:text-white text-[10px] tracking-[0.1em] transition-colors duration-200 uppercase" href="catalog.html">ARCHIVE</a>
+<a class="text-white/70 hover:text-white text-[10px] tracking-[0.1em] transition-colors duration-200 uppercase" href="index.html">HOME</a>
+<a class="text-white/70 hover:text-white text-[10px] tracking-[0.1em] transition-colors duration-200 uppercase" href="signup.html">SIGN UP</a>
 </div>
 <div class="flex flex-col space-y-4">
 <span class="text-[10px] tracking-[0.1em] font-bold opacity-40 uppercase">SUPPORT</span>
@@ -210,10 +208,15 @@
 </div>
 </div>
 <div class="px-12 py-8 border-t border-white/10 flex justify-center w-full">
-<p class="text-white/50 text-[10px] tracking-[0.1em] font-medium Inter uppercase">© 2024 SNEAKER INDEX. THE DIGITAL CURATOR.</p>
+<p class="text-white/50 text-[10px] tracking-[0.1em] font-medium uppercase">© 2026 SNEAKER INDEX. THE DIGITAL CURATOR.</p>
 </div>
 </footer>
 <script defer="" src="../js/auth-api.js"></script>
 <script defer="" src="../js/session-ui.js"></script>
 <script defer="" src="../js/login.js"></script>
 </body></html>
+
+
+
+
+

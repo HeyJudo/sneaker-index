@@ -38,6 +38,53 @@ function buildUserPayload(body) {
 }
 
 function buildAuthUser(user) {
+  const shippingAddresses = Array.isArray(user.shippingAddresses)
+    ? user.shippingAddresses.map((address) => ({
+        id: address._id?.toString?.() || address.id || "",
+        label: address.label || "",
+        firstName: address.firstName || "",
+        lastName: address.lastName || "",
+        addressLine1: address.addressLine1 || "",
+        addressLine2: address.addressLine2 || "",
+        city: address.city || "",
+        state: address.state || "",
+        postalCode: address.postalCode || "",
+        country: address.country || "",
+        isDefault: Boolean(address.isDefault),
+      }))
+    : [];
+  const defaultShippingAddress =
+    shippingAddresses.find((address) => address.isDefault) ||
+    (user.defaultShippingAddress
+      ? {
+          id: user.defaultShippingAddress._id?.toString?.() || "",
+          label: user.defaultShippingAddress.label || "",
+          firstName: user.defaultShippingAddress.firstName || "",
+          lastName: user.defaultShippingAddress.lastName || "",
+          addressLine1: user.defaultShippingAddress.addressLine1 || "",
+          addressLine2: user.defaultShippingAddress.addressLine2 || "",
+          city: user.defaultShippingAddress.city || "",
+          state: user.defaultShippingAddress.state || "",
+          postalCode: user.defaultShippingAddress.postalCode || "",
+          country: user.defaultShippingAddress.country || "",
+          isDefault: true,
+        }
+      : null);
+
+  if (
+    shippingAddresses.length === 0 &&
+    defaultShippingAddress &&
+    defaultShippingAddress.firstName &&
+    defaultShippingAddress.addressLine1
+  ) {
+    shippingAddresses.push({
+      ...defaultShippingAddress,
+      id: defaultShippingAddress.id || "legacy-default-address",
+      label: defaultShippingAddress.label || "Primary Address",
+      isDefault: true,
+    });
+  }
+
   return {
     id: user._id.toString(),
     firstName: user.firstName,
@@ -45,8 +92,10 @@ function buildAuthUser(user) {
     fullName: `${user.firstName} ${user.lastName}`.trim(),
     email: user.email,
     phone: user.phone || "",
+    avatarUrl: user.avatarUrl || "",
     role: user.role,
-    defaultShippingAddress: user.defaultShippingAddress || null,
+    defaultShippingAddress,
+    shippingAddresses,
     createdAt: user.createdAt,
     updatedAt: user.updatedAt,
   };
@@ -197,9 +246,14 @@ async function updateCurrentUser(req, res) {
     user.phone = String(req.body.phone || "").trim();
   }
 
+  if (req.body.avatarUrl !== undefined) {
+    user.avatarUrl = String(req.body.avatarUrl || "").trim();
+  }
+
   if (req.body.defaultShippingAddress !== undefined) {
     if (req.body.defaultShippingAddress === null) {
       user.defaultShippingAddress = {
+        label: "",
         firstName: "",
         lastName: "",
         addressLine1: "",
@@ -208,9 +262,11 @@ async function updateCurrentUser(req, res) {
         state: "",
         postalCode: "",
         country: "",
+        isDefault: false,
       };
     } else {
       user.defaultShippingAddress = {
+        label: String(req.body.defaultShippingAddress.label || "").trim(),
         firstName: req.body.defaultShippingAddress.firstName.trim(),
         lastName: req.body.defaultShippingAddress.lastName.trim(),
         addressLine1: req.body.defaultShippingAddress.addressLine1.trim(),
@@ -219,8 +275,66 @@ async function updateCurrentUser(req, res) {
         state: req.body.defaultShippingAddress.state.trim(),
         postalCode: req.body.defaultShippingAddress.postalCode.trim(),
         country: req.body.defaultShippingAddress.country.trim(),
+        isDefault: true,
       };
     }
+  }
+
+  if (req.body.shippingAddresses !== undefined) {
+    const incomingAddresses = Array.isArray(req.body.shippingAddresses)
+      ? req.body.shippingAddresses
+      : [];
+
+    const normalizedAddresses = incomingAddresses.map((address, index) => ({
+      _id: address.id || undefined,
+      label: String(address.label || `Address ${index + 1}`).trim(),
+      firstName: address.firstName.trim(),
+      lastName: address.lastName.trim(),
+      addressLine1: address.addressLine1.trim(),
+      addressLine2: String(address.addressLine2 || "").trim(),
+      city: address.city.trim(),
+      state: address.state.trim(),
+      postalCode: address.postalCode.trim(),
+      country: address.country.trim(),
+      isDefault: Boolean(address.isDefault),
+    }));
+
+    if (normalizedAddresses.length) {
+      const defaultIndex = normalizedAddresses.findIndex((address) => address.isDefault);
+      const resolvedDefaultIndex = defaultIndex >= 0 ? defaultIndex : 0;
+
+      normalizedAddresses.forEach((address, index) => {
+        address.isDefault = index === resolvedDefaultIndex;
+      });
+
+      user.defaultShippingAddress = {
+        label: normalizedAddresses[resolvedDefaultIndex].label,
+        firstName: normalizedAddresses[resolvedDefaultIndex].firstName,
+        lastName: normalizedAddresses[resolvedDefaultIndex].lastName,
+        addressLine1: normalizedAddresses[resolvedDefaultIndex].addressLine1,
+        addressLine2: normalizedAddresses[resolvedDefaultIndex].addressLine2,
+        city: normalizedAddresses[resolvedDefaultIndex].city,
+        state: normalizedAddresses[resolvedDefaultIndex].state,
+        postalCode: normalizedAddresses[resolvedDefaultIndex].postalCode,
+        country: normalizedAddresses[resolvedDefaultIndex].country,
+        isDefault: true,
+      };
+    } else {
+      user.defaultShippingAddress = {
+        label: "",
+        firstName: "",
+        lastName: "",
+        addressLine1: "",
+        addressLine2: "",
+        city: "",
+        state: "",
+        postalCode: "",
+        country: "",
+        isDefault: false,
+      };
+    }
+
+    user.shippingAddresses = normalizedAddresses;
   }
 
   await user.save();

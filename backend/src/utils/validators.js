@@ -16,6 +16,23 @@ function isString(value) {
   return typeof value === "string";
 }
 
+function isValidAvatarValue(value) {
+  if (!isString(value)) {
+    return false;
+  }
+
+  const trimmed = value.trim();
+
+  if (!trimmed) {
+    return true;
+  }
+
+  return (
+    /^https?:\/\/.+/i.test(trimmed) ||
+    /^data:image\/[a-z0-9.+-]+;base64,/i.test(trimmed)
+  );
+}
+
 function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
@@ -155,13 +172,52 @@ function validateShippingAddressPayload(value, fieldPrefix = "defaultShippingAdd
   return errors;
 }
 
+function validateShippingAddressesPayload(value, fieldPrefix = "shippingAddresses") {
+  const errors = [];
+
+  if (value === undefined) {
+    return errors;
+  }
+
+  if (!Array.isArray(value)) {
+    errors.push({
+      field: fieldPrefix,
+      message: `${fieldPrefix} must be an array.`,
+    });
+    return errors;
+  }
+
+  value.forEach((address, index) => {
+    if (typeof address !== "object" || address === null || Array.isArray(address)) {
+      errors.push({
+        field: `${fieldPrefix}.${index}`,
+        message: "Each shipping address must be an object.",
+      });
+      return;
+    }
+
+    if (address.label !== undefined && !isNonEmptyString(address.label)) {
+      errors.push({
+        field: `${fieldPrefix}.${index}.label`,
+        message: "label must be a non-empty string when provided.",
+      });
+    }
+
+    errors.push(...validateShippingAddressPayload(address, `${fieldPrefix}.${index}`));
+  });
+
+  return errors;
+}
+
 function validateUpdateProfileRequest(body) {
   const errors = [];
   const hasProfileFields =
     body.fullName !== undefined ||
     body.email !== undefined ||
     body.phone !== undefined ||
-    body.defaultShippingAddress !== undefined;
+    body.avatarUrl !== undefined ||
+    body.defaultShippingAddress !== undefined ||
+    body.shippingAddresses !== undefined;
 
   if (!hasProfileFields) {
     errors.push({
@@ -196,7 +252,15 @@ function validateUpdateProfileRequest(body) {
     });
   }
 
+  if (body.avatarUrl !== undefined && !isValidAvatarValue(body.avatarUrl)) {
+    errors.push({
+      field: "avatarUrl",
+      message: "avatarUrl must be a valid image URL or base64 image string.",
+    });
+  }
+
   errors.push(...validateShippingAddressPayload(body.defaultShippingAddress));
+  errors.push(...validateShippingAddressesPayload(body.shippingAddresses));
 
   return errors;
 }
