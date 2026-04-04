@@ -85,6 +85,12 @@
     clearCart() {
       return request("/cart", { method: "DELETE" });
     },
+    createOrder(payload) {
+      return request("/orders", {
+        method: "POST",
+        body: JSON.stringify(payload),
+      });
+    },
     getProducts(params) {
       return request(`/products${buildQuery(params)}`, { method: "GET" });
     },

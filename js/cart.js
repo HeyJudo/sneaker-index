@@ -21,6 +21,8 @@
     shipping: document.querySelector("[data-cart-shipping]"),
     handling: document.querySelector("[data-cart-handling]"),
     total: document.querySelector("[data-cart-total]"),
+    checkoutButton: document.querySelector("[data-cart-checkout-button]"),
+    checkoutHint: document.querySelector("[data-cart-checkout-hint]"),
     recommendations: document.querySelector("[data-cart-recommendations]"),
   };
 
@@ -31,6 +33,10 @@
   const state = {
     cart: null,
   };
+
+  function getSelectedItems(cart) {
+    return (cart?.items || []).filter((item) => item.selectedForCheckout);
+  }
 
   function escapeHtml(value) {
     return String(value)
@@ -50,13 +56,15 @@
   }
 
   function calculateSummary(cart) {
-    const subtotal = cart?.summary?.subtotal || 0;
-    const itemCount = cart?.summary?.itemCount || 0;
+    const selectedItems = getSelectedItems(cart);
+    const subtotal = selectedItems.reduce((sum, item) => sum + item.lineTotal, 0);
+    const itemCount = selectedItems.reduce((sum, item) => sum + item.quantity, 0);
     const shipping = itemCount > 0 ? SHIPPING_FEE : 0;
     const handling = itemCount > 0 ? HANDLING_FEE : 0;
 
     return {
       subtotal,
+      itemCount,
       shipping,
       handling,
       total: subtotal + shipping + handling,
@@ -111,6 +119,24 @@
     if (elements.total) {
       elements.total.textContent = formatPrice(summary.total);
     }
+
+    if (elements.checkoutButton) {
+      const hasSelectedItems = summary.itemCount > 0;
+      elements.checkoutButton.disabled = !hasSelectedItems;
+      elements.checkoutButton.textContent = hasSelectedItems
+        ? "Proceed To Checkout"
+        : "Select Items";
+      elements.checkoutButton.className = hasSelectedItems
+        ? "w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] hover:bg-secondary"
+        : "w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] opacity-60 cursor-not-allowed";
+    }
+
+    if (elements.checkoutHint) {
+      elements.checkoutHint.textContent =
+        summary.itemCount > 0
+          ? `${summary.itemCount} selected item${summary.itemCount === 1 ? "" : "s"} ready for checkout.`
+          : "Select at least one cart item to continue.";
+    }
   }
 
   function renderAlert(cart) {
@@ -118,8 +144,9 @@
       return;
     }
 
-    const unavailableItem = cart.items.find((item) => !item.isAvailable);
-    const lowStockItem = cart.items.find(
+    const selectedItems = getSelectedItems(cart);
+    const unavailableItem = selectedItems.find((item) => !item.isAvailable);
+    const lowStockItem = selectedItems.find(
       (item) => item.availableQuantity > 0 && item.availableQuantity <= 2
     );
 
@@ -186,6 +213,10 @@
             <div class="flex-1 space-y-6">
               <div class="flex justify-between items-start gap-6">
                 <div>
+                  <label class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-3 cursor-pointer">
+                    <input class="w-4 h-4 border border-outline-variant text-primary focus:ring-primary rounded-none" data-cart-select type="checkbox" ${item.selectedForCheckout ? "checked" : ""}>
+                    <span>${item.selectedForCheckout ? "Selected For Checkout" : "Saved In Cart"}</span>
+                  </label>
                   <a class="font-headline text-3xl tracking-wide uppercase hover:text-primary transition-colors" href="product.html?slug=${encodeURIComponent(item.product.slug)}">${escapeHtml(item.product.name)}</a>
                   <p class="text-xs text-on-surface-variant font-bold uppercase tracking-wider mt-1">${escapeHtml(item.product.brand)} / ${escapeHtml(item.colorName)} / US ${escapeHtml(item.sizeLabel)}</p>
                   ${availabilityMessage}
@@ -280,6 +311,15 @@
     renderItems(cart);
   }
 
+  async function handleSelectionChange(itemId, selectedForCheckout) {
+    try {
+      await api.updateCartItem(itemId, { selectedForCheckout });
+      await refreshCart({ preserveStatus: true });
+    } catch (error) {
+      setStatus(error.message || "Unable to update selection.", "error");
+    }
+  }
+
   async function refreshCart(options) {
     if (!options?.preserveStatus) {
       clearStatus();
@@ -333,6 +373,11 @@
         return;
       }
 
+      if (event.target.closest("[data-cart-select]")) {
+        await handleSelectionChange(itemId, event.target.checked);
+        return;
+      }
+
       if (event.target.closest("[data-cart-decrement]") && item.quantity > 1) {
         await handleQuantityChange(itemId, item.quantity - 1);
         return;
@@ -342,6 +387,16 @@
         await handleQuantityChange(itemId, item.quantity + 1);
       }
     });
+
+    if (elements.checkoutButton) {
+      elements.checkoutButton.addEventListener("click", () => {
+        if (elements.checkoutButton.disabled) {
+          return;
+        }
+
+        global.location.href = "checkout.html";
+      });
+    }
   }
 
   async function init() {

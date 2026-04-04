@@ -16,6 +16,10 @@ function isPositiveInteger(value) {
   return Number.isInteger(value) && value > 0;
 }
 
+function isBoolean(value) {
+  return typeof value === "boolean";
+}
+
 function validateSignupRequest(body) {
   const errors = [];
   const hasSeparateNames =
@@ -137,18 +141,81 @@ function validateAddCartItemRequest(body) {
 function validateUpdateCartItemRequest(body) {
   const errors = [];
 
-  if (!isPositiveInteger(Number(body.quantity))) {
+  const hasQuantity = body.quantity !== undefined;
+  const hasSelection = body.selectedForCheckout !== undefined;
+
+  if (!hasQuantity && !hasSelection) {
+    errors.push({
+      field: "quantity",
+      message: "Provide quantity and/or selectedForCheckout.",
+    });
+  }
+
+  if (hasQuantity && !isPositiveInteger(Number(body.quantity))) {
     errors.push({
       field: "quantity",
       message: "Quantity must be a positive whole number.",
     });
   }
 
+  if (hasSelection && !isBoolean(body.selectedForCheckout)) {
+    errors.push({
+      field: "selectedForCheckout",
+      message: "selectedForCheckout must be a boolean value.",
+    });
+  }
+
+  return errors;
+}
+
+function validateCreateOrderRequest(body) {
+  const errors = [];
+  const address = body.shippingAddress || {};
+
+  if (!isValidEmail(body.email)) {
+    errors.push({
+      field: "email",
+      message: "Email must be a valid email address.",
+    });
+  }
+
+  if (!["standard", "express", "overnight"].includes(body.shippingMethod)) {
+    errors.push({
+      field: "shippingMethod",
+      message: "Shipping method is invalid.",
+    });
+  }
+
+  if (!["card", "paypal", "bank_transfer"].includes(body.paymentMethod)) {
+    errors.push({
+      field: "paymentMethod",
+      message: "Payment method is invalid.",
+    });
+  }
+
+  [
+    "firstName",
+    "lastName",
+    "addressLine1",
+    "city",
+    "state",
+    "postalCode",
+    "country",
+  ].forEach((field) => {
+    if (!isNonEmptyString(address[field])) {
+      errors.push({
+        field: `shippingAddress.${field}`,
+        message: `${field} is required.`,
+      });
+    }
+  });
+
   return errors;
 }
 
 module.exports = {
   validateAddCartItemRequest,
+  validateCreateOrderRequest,
   validateUpdateCartItemRequest,
   validateLoginRequest,
   validateSignupRequest,

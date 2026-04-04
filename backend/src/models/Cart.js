@@ -13,6 +13,11 @@ const cartItemSchema = new mongoose.Schema(
       min: 1,
       default: 1,
     },
+    selectedForCheckout: {
+      type: Boolean,
+      default: true,
+      required: true,
+    },
     sizeLabel: {
       type: String,
       required: true,
