@@ -159,6 +159,17 @@
     elements.feedback.textContent = "";
   }
 
+  function emitCartUpdate(itemCount) {
+    global.dispatchEvent(
+      new CustomEvent("si:cart-updated", {
+        detail:
+          typeof itemCount === "number"
+            ? { itemCount }
+            : {},
+      })
+    );
+  }
+
   function buildHighlights(product) {
     const highlights = [];
 
@@ -665,12 +676,13 @@
         clearFeedback();
 
         try {
-          await api.addCartItem({
+          const response = await api.addCartItem({
             productId: state.product._id,
             sizeLabel: selectedSize.label,
             colorName: selectedColor.name,
             quantity: 1,
           });
+          emitCartUpdate(response.data?.cart?.itemCount);
 
           setFeedback("Added to cart. Review your selection in the cart.", "success");
           elements.addButton.textContent = "Added";

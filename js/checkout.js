@@ -183,6 +183,14 @@
     elements.status.classList.remove("hidden");
   }
 
+  function emitCartRefresh() {
+    global.dispatchEvent(
+      new CustomEvent("si:cart-updated", {
+        detail: {},
+      })
+    );
+  }
+
   function clearStatus() {
     if (!elements.status) {
       return;
@@ -528,6 +536,7 @@
 
     try {
       const response = await api.createOrder(payload);
+      emitCartRefresh();
       renderConfirmation(response.data.order);
     } catch (error) {
       setStatus(error.message || "Unable to place order.", "error");

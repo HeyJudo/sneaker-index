@@ -47,6 +47,14 @@
     return (cart?.items || []).filter((item) => item.selectedForCheckout);
   }
 
+  function emitCartUpdate(itemCount) {
+    global.dispatchEvent(
+      new CustomEvent("si:cart-updated", {
+        detail: { itemCount: Number(itemCount) || 0 },
+      })
+    );
+  }
+
   function escapeHtml(value) {
     return String(value)
       .replaceAll("&", "&amp;")
@@ -319,6 +327,7 @@
   function renderCart(cart) {
     state.cart = cart;
     renderBadge(cart.itemCount);
+    emitCartUpdate(cart.itemCount);
     renderSummary(cart);
     renderEmptyState(cart);
     renderAlert(cart);

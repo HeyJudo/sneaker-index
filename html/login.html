@@ -103,8 +103,9 @@
 <a class="text-primary border-b-2 border-primary pb-1 text-[10px] tracking-[0.18em] font-bold uppercase" href="login.html">Account</a>
 </div>
 <div class="flex items-center space-x-6">
-<a class="text-slate-600 hover:text-primary-container transition-colors duration-300" href="cart.html">
+<a class="relative inline-flex text-slate-600 hover:text-primary-container transition-colors duration-300" href="cart.html">
 <span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="hidden absolute -top-1.5 -right-2 min-w-[1rem] h-4 px-1 bg-primary text-white text-[9px] leading-none flex items-center justify-center font-bold" data-cart-badge>0</span>
 </a>
 <a class="text-primary-container" data-auth-account-link href="login.html">
 <span class="material-symbols-outlined" data-icon="person" style="font-variation-settings: 'FILL' 1;">person</span>
@@ -213,6 +214,8 @@
 </footer>
 <script defer="" src="../js/auth-api.js"></script>
 <script defer="" src="../js/session-ui.js"></script>
+<script defer="" src="../js/store-api.js"></script>
+<script defer="" src="../js/cart-badge.js"></script>
 <script defer="" src="../js/login.js"></script>
 </body></html>
 

@@ -67,8 +67,9 @@
       </div>
     </div>
     <div class="flex items-center gap-6">
-      <a class="text-slate-600 hover:text-blue-600 transition-colors duration-300" href="cart.html">
+      <a class="relative inline-flex text-slate-600 hover:text-blue-600 transition-colors duration-300" href="cart.html">
         <span class="material-symbols-outlined">shopping_bag</span>
+        <span class="hidden absolute -top-1.5 -right-2 min-w-[1rem] h-4 px-1 bg-primary text-white text-[9px] leading-none flex items-center justify-center font-bold" data-cart-badge>0</span>
       </a>
       <a class="text-slate-600 hover:text-blue-600 transition-colors duration-300" data-auth-account-link href="login.html">
         <span class="material-symbols-outlined">person</span>
@@ -323,6 +324,7 @@
   <script src="../js/store-api.js"></script>
   <script src="../js/auth-api.js"></script>
   <script src="../js/session-ui.js"></script>
+  <script src="../js/cart-badge.js"></script>
   <script src="../js/checkout.js"></script>
 </body>
 </html>

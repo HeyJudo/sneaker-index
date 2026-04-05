@@ -499,6 +499,17 @@
     elements.actionStatus.classList.remove("hidden");
   }
 
+  function emitCartUpdate(itemCount) {
+    global.dispatchEvent(
+      new CustomEvent("si:cart-updated", {
+        detail:
+          typeof itemCount === "number"
+            ? { itemCount }
+            : {},
+      })
+    );
+  }
+
   function clearActionStatus() {
     if (!elements.actionStatus) {
       return;
@@ -629,12 +640,13 @@
         }
 
         try {
-          await api.addCartItem({
+          const response = await api.addCartItem({
             productId: trigger.dataset.productId,
             sizeLabel: trigger.dataset.sizeLabel,
             colorName: trigger.dataset.colorName,
             quantity: 1,
           });
+          emitCartUpdate(response.data?.cart?.itemCount);
 
           if (label) {
             label.textContent = "Added";

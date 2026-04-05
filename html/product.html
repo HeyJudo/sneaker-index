@@ -91,7 +91,10 @@
 <a class="text-on-surface-variant hover:text-primary transition-colors uppercase tracking-widest text-xs font-body" href="orders.html">Orders</a>
 </div>
 <div class="flex items-center gap-6">
-<a href="cart.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors">shopping_bag</a>
+<a href="cart.html" class="relative inline-flex material-symbols-outlined text-on-surface hover:text-primary transition-colors">
+<span>shopping_bag</span>
+<span class="hidden absolute -top-1.5 -right-2 min-w-[1rem] h-4 px-1 bg-primary text-white text-[9px] leading-none flex items-center justify-center font-bold" data-cart-badge>0</span>
+</a>
 <a href="login.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors" data-auth-account-link>person</a>
 </div>
 </div>
@@ -345,6 +348,7 @@
 <script src="../js/auth-api.js"></script>
 <script src="../js/session-ui.js"></script>
 <script src="../js/store-api.js"></script>
+<script src="../js/cart-badge.js"></script>
 <script src="../js/product.js"></script>
 </body></html>
 
