@@ -1,10 +1,12 @@
 const User = require("../models/User");
+const Cart = require("../models/Cart");
 const { env } = require("../config/env");
 const { sendSuccess } = require("../utils/api-response");
 const { AppError } = require("../utils/app-error");
 const { signAccessToken } = require("../utils/jwt");
 const { setAuthCookie, clearAuthCookie } = require("../utils/auth-cookie");
 const { hashPassword, verifyPassword } = require("../utils/password");
+const { readGuestCartId, clearCartCookie } = require("../utils/cart-session");
 
 function splitFullName(fullName) {
   const parts = String(fullName).trim().split(/\s+/).filter(Boolean);
@@ -113,6 +115,59 @@ function issueAuthSession(res, user) {
   setAuthCookie(res, token);
 }
 
+function buildCartItemKey(item) {
+  return [item.productId?.toString?.() || item.productId, item.sizeSku, item.colorName]
+    .filter(Boolean)
+    .join("::");
+}
+
+async function mergeGuestCartIntoUser(req, res, userId) {
+  const guestCartId = readGuestCartId(req);
+
+  if (!guestCartId) {
+    return;
+  }
+
+  const guestCart = await Cart.findOne({ guestCartId });
+
+  if (!guestCart) {
+    clearCartCookie(res);
+    return;
+  }
+
+  let userCart = await Cart.findOne({ userId });
+
+  if (!userCart) {
+    guestCart.userId = userId;
+    guestCart.guestCartId = null;
+    await guestCart.save();
+    clearCartCookie(res);
+    return;
+  }
+
+  const cartItemMap = new Map(
+    userCart.items.map((item) => [buildCartItemKey(item), item])
+  );
+
+  guestCart.items.forEach((guestItem) => {
+    const key = buildCartItemKey(guestItem);
+    const existingItem = cartItemMap.get(key);
+
+    if (existingItem) {
+      existingItem.quantity += guestItem.quantity;
+      existingItem.selectedForCheckout =
+        existingItem.selectedForCheckout || guestItem.selectedForCheckout;
+      return;
+    }
+
+    userCart.items.push(guestItem.toObject());
+  });
+
+  await userCart.save();
+  await Cart.deleteOne({ _id: guestCart._id });
+  clearCartCookie(res);
+}
+
 async function loadCurrentUserDocument(userId, options = {}) {
   const query = User.findById(userId);
 
@@ -152,6 +207,7 @@ async function signup(req, res) {
     role: "customer",
   });
 
+  await mergeGuestCartIntoUser(req, res, user._id);
   issueAuthSession(res, user);
 
   sendSuccess(res, {
@@ -184,6 +240,7 @@ async function login(req, res) {
     });
   }
 
+  await mergeGuestCartIntoUser(req, res, user._id);
   issueAuthSession(res, user);
 
   sendSuccess(res, {

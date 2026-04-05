@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.use(optionalAuth);
 
-router.post("/", validateBody(validateCreateOrderRequest), asyncHandler(createOrder));
+router.post("/", requireAuth, validateBody(validateCreateOrderRequest), asyncHandler(createOrder));
 router.get("/", requireAuth, asyncHandler(listOrders));
 
 module.exports = router;

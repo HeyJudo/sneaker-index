@@ -120,6 +120,12 @@ function serializeOrderListItem(order) {
 }
 
 async function createOrder(req, res) {
+  if (!req.user?.id || !mongoose.isValidObjectId(req.user.id)) {
+    throw new AppError("Sign in to place an order.", 401, {
+      code: "AUTH_REQUIRED",
+    });
+  }
+
   const { owner, cart } = await loadCartForRequest(req, res);
 
   if (!cart || !cart.items.length) {

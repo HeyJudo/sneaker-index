@@ -39,8 +39,8 @@ app.use(
   })
 );
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.json({ limit: "8mb" }));
+app.use(express.urlencoded({ extended: true, limit: "8mb" }));
 app.use(cookieParser(env.COOKIE_SECRET));
 app.use(morgan(env.NODE_ENV === "production" ? "combined" : "dev"));
 

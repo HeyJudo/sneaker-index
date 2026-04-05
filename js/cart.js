@@ -1,5 +1,6 @@
 (function attachCartPage(global) {
   const api = global.SneakerIndexStoreApi;
+  const authApi = global.SneakerIndexAuthApi;
 
   if (!api) {
     return;
@@ -33,6 +34,14 @@
   const state = {
     cart: null,
   };
+
+  function isAuthenticated() {
+    return document.body.dataset.authState === "authenticated";
+  }
+
+  function getCheckoutRedirectTarget() {
+    return `login.html?redirect=${encodeURIComponent("checkout.html")}`;
+  }
 
   function getSelectedItems(cart) {
     return (cart?.items || []).filter((item) => item.selectedForCheckout);
@@ -122,9 +131,12 @@
 
     if (elements.checkoutButton) {
       const hasSelectedItems = summary.itemCount > 0;
+      const guestNeedsLogin = hasSelectedItems && !isAuthenticated();
       elements.checkoutButton.disabled = !hasSelectedItems;
       elements.checkoutButton.textContent = hasSelectedItems
-        ? "Proceed To Checkout"
+        ? guestNeedsLogin
+          ? "Sign In To Checkout"
+          : "Proceed To Checkout"
         : "Select Items";
       elements.checkoutButton.className = hasSelectedItems
         ? "w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] hover:bg-secondary"
@@ -134,7 +146,9 @@
     if (elements.checkoutHint) {
       elements.checkoutHint.textContent =
         summary.itemCount > 0
-          ? `${summary.itemCount} selected item${summary.itemCount === 1 ? "" : "s"} ready for checkout.`
+          ? isAuthenticated()
+            ? `${summary.itemCount} selected item${summary.itemCount === 1 ? "" : "s"} ready for checkout.`
+            : `Sign in to check out ${summary.itemCount} selected item${summary.itemCount === 1 ? "" : "s"}.`
           : "Select at least one cart item to continue.";
     }
   }
@@ -394,6 +408,11 @@
           return;
         }
 
+        if (!isAuthenticated()) {
+          global.location.href = getCheckoutRedirectTarget();
+          return;
+        }
+
         global.location.href = "checkout.html";
       });
     }
@@ -401,6 +420,14 @@
 
   async function init() {
     bindEvents();
+
+    if (authApi?.me) {
+      try {
+        await authApi.me();
+      } catch (_error) {
+        // Guests can still build carts; checkout gating is handled in the UI.
+      }
+    }
 
     try {
       await refreshCart();
