@@ -9,6 +9,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const defaultButtonLabel = submitButton.textContent.trim();
 
+  function initializePasswordToggles() {
+    const toggles = Array.from(document.querySelectorAll("[data-password-toggle]"));
+
+    toggles.forEach((toggle) => {
+      const selector = toggle.getAttribute("data-password-toggle");
+      const input = selector ? document.querySelector(selector) : null;
+
+      if (!input) {
+        return;
+      }
+
+      toggle.addEventListener("click", () => {
+        const isHidden = input.type === "password";
+        input.type = isHidden ? "text" : "password";
+        toggle.setAttribute("aria-label", isHidden ? "Hide password" : "Show password");
+        const icon = toggle.querySelector(".material-symbols-outlined");
+        if (icon) {
+          icon.textContent = isHidden ? "visibility_off" : "visibility";
+        }
+      });
+    });
+  }
+
   function getRedirectTarget() {
     const fallbackTarget = "catalog.html";
     const params = new URLSearchParams(window.location.search);
@@ -41,6 +64,8 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.classList.toggle("opacity-70", isPending);
     submitButton.classList.toggle("cursor-not-allowed", isPending);
   }
+
+  initializePasswordToggles();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();

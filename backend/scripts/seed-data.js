@@ -419,10 +419,102 @@ const products = [
   },
 ];
 
+const PRODUCT_IMAGE_POOL = [
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuCXrqAUNKItQswVa23_XrGuevEmumuua7DpT8o0p8o9OVuq64uRw64i5Td5ssB98lReqrhVeM9oJVsOYvUIl0YpN6kH3H1tf1VmvoR-dMt8rDFifXYcwL4QWK67iTXu7xUa26wHuLbzEtPLnUJZ0D4AdqgJWod2w9drSuxBwjRvEaF3xYFaMQWEMCKQRKyOKdEVBG42KYp4krNSvbjbOpBqzqWn4JwEh3ksy2rM-wpjHVRQSPoOLuwg4shXMBiDFkdLIL-qGdCkMR8",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuARXT_pBKFkSLeNM49YIX35tMU7Gl0mFayG8xrSgQAW8aSewwMu8SorzOPkFOAPIl_0R2ZtkwV9k3OZZKc5OToTOefQJxUOGQ0Vs6X7gLCByErpOtFvw6nc8lTtUsI4xoMoBUojhZmWAm9n1BWHNUb4JSP6bRaQGJEwYcnJjZodJK7CS6t2xV8jtQRYwWzFp_31Yf6S59DUXqFGdHuVb2DOKCd3xeqdutyUuso1Pusb0yBVXWK6CK0lQ2D7bMj1DpGCvgYKjOL7OlY",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuBHn8VY8URw3QzKLTeumInj3OBU9BxmqnMlC4xqy97MeCGTWMzVHbNVbGabDVwpwLIH4DxtwNhpMxXIEujAVAt4LkunRudgGqRAfBiLlLFWY8NNjsFjM9sJZQT04JLJeLwTdp7RBDtLIF7BEKhf2O--r42JcbXB07nmxD7woW9aW4R8QFr4M6PGCnuxASQTddT7H7pMrMT3RlLuLf-IpYSgC9cO2r_63z-izgfM1-9p51BkaDREYHrskK_VV6HPrvDtWav9HNIv6B0",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDgwPV7Cs9e-io4lysSjfzv-R63kpZX4Pp3KSRKRDqFQitdfnOiaz6BV8Aw--qEHPBfM7YpstquRs4KY0JBRT--cmTduDzfoFqnbeZYnFFJrQwt3MyleF0mdG1Q6xNF4QEAqPu9CmbOVjI4D44TGjNuGX4fUNt6Xst3RFlOb8pDil1XOf6-hKspHXUFb69orRDyUR5jGRjh1rUbrxa5LlioJecg6kaRggj6VPedbQnBQxJ8UC_1lMeg_5rrwOKqYlTgqxEQPUGge9I",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuBAEDmtm2eVXVl0UY5TCmRZIJ-ekzDyBiQk0cXjTr7u9lClwug58UUUfjqkFLKRuyFlkbQz5VID_MYxUWjchH23ussAaLA3RCjs3cij9rL9tv2fnuFvu9JRZoPvxjZREs2VlC2rLD4_wO1QhqChsYeDEFVUXQhmIEab6eB0nI7oM0uWFss1fwW_kIcjRT_aXNryGAAiWYEOwo0WlvZG0pCYBrDxNxbLD_2oMyZ80J0cVOsmiKswoZPTB4zW8EB38xCdWfx-7GyE2ps",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuC2Pwrgyw0C7CE5T-UbpNuiSMQ3OXnYPl038ISmCQBiKRunrypbqVq3ROcYOoypoHunCfeQD7rAJnTucvFfaoyhELVBuK6IJcgHej4JTcCEM_XIrFQNVZZS798cKW-Pq6bjs-AuQcFO-rvMpMTAImtm1npP7rs8Myz0axwf_8NjmkCyrowlwGg6MZy2Ley38utYzKjb9hYUSo6slznPbT37SA1vqY-FNQnVNx5EFvGWZWZ81__6c0E40OjBzV-RLy5qHb0sTD9A3BM",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuDNoqt0FpUiF8qon7CSY6Y2dTxAKIsJUUPUcXWlq4ipYLahMO_AJ1f8VMwLlNtpnAO4Cmusi7rewn1Qfdp2j5YWIyUjZRWVLpRxQASwio9EtcmyrCYFBeVprhp2LhocEQoTDjcpxuhvPjP-HGI5uJ1RvPnJvnyhVMJKUQrkYO-vmI7LajAPeXxKsY9n_DUgqVTFU9MdGv2qUA0cJRpnz2Co26vwO3heSLKGD0LM0IMlS7xVv_o3lLqnRhikBE1PWNPI4akwgg7RT1Q",
+  "https://lh3.googleusercontent.com/aida-public/AB6AXuAV58PYLP6Pt2Stc-b24QpTWhC5Z5OS56NXxZ4VU-qhoQuOvezesNWKGizoakxucGC9B39WT-NMWfGxUZuUwM7NMhF6vFz-kcWrvr89I1wioDCCWYXOquOoCUeraImcarP6bgb5sY-2B3BWXnAvOg5DXNxklvuCW_2eLVHo7f7yBfOGU7H4zy8h2Zc3ZEdUye31YT0AIp8Ms5TtPYMqR12DbWNp56lDCjEykaxaggl3STeDeIO6dNdljXEhM2Zz8XNS97D3T3wmNas",
+];
+
+const ADDITIONAL_PRODUCT_BLUEPRINTS = [
+  { name: "Gel Kayano 30", brand: "Asics", categorySlug: "running", price: 180, compareAtPrice: 210, featured: false, status: "in-stock", colorA: "Deep Navy", hexA: "#1E3A8A", colorB: "Silver", hexB: "#CBD5E1" },
+  { name: "Cloudmonster Flux", brand: "On", categorySlug: "running", price: 190, compareAtPrice: 220, featured: false, status: "in-stock", colorA: "Frost", hexA: "#F1F5F9", colorB: "Graphite", hexB: "#334155" },
+  { name: "Pegasus Trail 5", brand: "Nike", categorySlug: "outdoor", price: 170, compareAtPrice: 195, featured: false, status: "low-stock", colorA: "Stone", hexA: "#A8A29E", colorB: "Volt", hexB: "#84CC16" },
+  { name: "XT-6 Advanced", brand: "Salomon", categorySlug: "outdoor", price: 210, compareAtPrice: 240, featured: true, status: "low-stock", colorA: "Black", hexA: "#18181B", colorB: "Cobalt", hexB: "#1D4ED8" },
+  { name: "Fresh Foam X 1080", brand: "New Balance", categorySlug: "running", price: 175, compareAtPrice: 205, featured: false, status: "in-stock", colorA: "Sea Salt", hexA: "#F8FAFC", colorB: "Blue Haze", hexB: "#93C5FD" },
+  { name: "Metcon 10", brand: "Nike", categorySlug: "training", price: 150, compareAtPrice: 175, featured: false, status: "in-stock", colorA: "Onyx", hexA: "#111827", colorB: "Royal", hexB: "#1E40AF" },
+  { name: "Nano X5", brand: "Reebok", categorySlug: "training", price: 145, compareAtPrice: 165, featured: false, status: "in-stock", colorA: "Concrete", hexA: "#E5E7EB", colorB: "Carmine", hexB: "#B91C1C" },
+  { name: "Sk8-Hi Vault LX", brand: "Vans", categorySlug: "skate", price: 110, compareAtPrice: 130, featured: false, status: "in-stock", colorA: "Black Canvas", hexA: "#111827", colorB: "Marshmallow", hexB: "#FAFAF9" },
+  { name: "Dunk Low Retro PRM", brand: "Nike", categorySlug: "lifestyle", price: 155, compareAtPrice: 180, featured: true, status: "in-stock", colorA: "Sail", hexA: "#F8FAFC", colorB: "Obsidian", hexB: "#1E3A8A" },
+  { name: "9060 Drift", brand: "New Balance", categorySlug: "lifestyle", price: 185, compareAtPrice: 215, featured: true, status: "low-stock", colorA: "Grey Matter", hexA: "#9CA3AF", colorB: "Night Indigo", hexB: "#1E40AF" },
+  { name: "RS-X Efekt", brand: "Puma", categorySlug: "lifestyle", price: 130, compareAtPrice: 155, featured: false, status: "in-stock", colorA: "White", hexA: "#FFFFFF", colorB: "Electric Blue", hexB: "#2563EB" },
+  { name: "Jordan Luka 3", brand: "Jordan Brand", categorySlug: "basketball", price: 165, compareAtPrice: 190, featured: false, status: "in-stock", colorA: "Court Purple", hexA: "#6D28D9", colorB: "Ice", hexB: "#CFFAFE" },
+  { name: "AE 1 Low", brand: "Adidas", categorySlug: "basketball", price: 170, compareAtPrice: 195, featured: false, status: "low-stock", colorA: "Core Black", hexA: "#0F172A", colorB: "Signal Orange", hexB: "#F97316" },
+  { name: "Two Wxy V5", brand: "New Balance", categorySlug: "basketball", price: 155, compareAtPrice: 180, featured: false, status: "in-stock", colorA: "White", hexA: "#FFFFFF", colorB: "Cobalt", hexB: "#1D4ED8" },
+  { name: "Terrex Free Hiker", brand: "Adidas", categorySlug: "outdoor", price: 220, compareAtPrice: 255, featured: false, status: "in-stock", colorA: "Earth", hexA: "#7C6A58", colorB: "Black", hexB: "#0F172A" },
+  { name: "Merrell Agility Peak 5", brand: "Merrell", categorySlug: "outdoor", price: 165, compareAtPrice: 190, featured: false, status: "in-stock", colorA: "Olive", hexA: "#4D7C0F", colorB: "Stone", hexB: "#A8A29E" },
+  { name: "Converse Weapon Low", brand: "Converse", categorySlug: "basketball", price: 125, compareAtPrice: 145, featured: false, status: "in-stock", colorA: "White", hexA: "#FFFFFF", colorB: "Royal Blue", hexB: "#1D4ED8" },
+  { name: "Forum 84 Hi", brand: "Adidas", categorySlug: "basketball", price: 145, compareAtPrice: 170, featured: false, status: "low-stock", colorA: "Cloud White", hexA: "#FFFFFF", colorB: "Green", hexB: "#15803D" },
+  { name: "Gazelle Indoor", brand: "Adidas", categorySlug: "lifestyle", price: 115, compareAtPrice: 135, featured: false, status: "in-stock", colorA: "Navy", hexA: "#1E3A8A", colorB: "Gum", hexB: "#A16207" },
+];
+
+function getSizesForProduct(index, status) {
+  if (status === "out-of-stock") {
+    return [
+      { label: "8", stock: 0, sku: `SIA-${index}-8` },
+      { label: "9", stock: 0, sku: `SIA-${index}-9` },
+      { label: "10", stock: 0, sku: `SIA-${index}-10` },
+      { label: "11", stock: 0, sku: `SIA-${index}-11` },
+    ];
+  }
+
+  if (status === "low-stock") {
+    return [
+      { label: "8", stock: 1, sku: `SIA-${index}-8` },
+      { label: "9", stock: 1, sku: `SIA-${index}-9` },
+      { label: "10", stock: 1, sku: `SIA-${index}-10` },
+      { label: "11", stock: 0, sku: `SIA-${index}-11` },
+    ];
+  }
+
+  return [
+    { label: "8", stock: 7 + (index % 4), sku: `SIA-${index}-8` },
+    { label: "9", stock: 6 + (index % 3), sku: `SIA-${index}-9` },
+    { label: "10", stock: 5 + (index % 3), sku: `SIA-${index}-10` },
+    { label: "11", stock: 4 + (index % 2), sku: `SIA-${index}-11` },
+  ];
+}
+
+function buildGeneratedProduct(blueprint, index) {
+  const imageA = PRODUCT_IMAGE_POOL[index % PRODUCT_IMAGE_POOL.length];
+  const imageB = PRODUCT_IMAGE_POOL[(index + 3) % PRODUCT_IMAGE_POOL.length];
+  const imageC = PRODUCT_IMAGE_POOL[(index + 5) % PRODUCT_IMAGE_POOL.length];
+
+  return {
+    name: blueprint.name,
+    brand: blueprint.brand,
+    categorySlug: blueprint.categorySlug,
+    description: `${blueprint.name} is curated for Sneaker Index with premium materials, clean proportions, and all-day wearability.`,
+    price: blueprint.price,
+    compareAtPrice: blueprint.compareAtPrice,
+    tags: [blueprint.categorySlug, blueprint.brand.toLowerCase(), "curated"],
+    sizes: getSizesForProduct(index + 1, blueprint.status),
+    colors: [
+      { name: blueprint.colorA, hex: blueprint.hexA },
+      { name: blueprint.colorB, hex: blueprint.hexB },
+    ],
+    images: [imageA, imageB, imageC],
+    rating: Number((4.2 + ((index % 8) * 0.1)).toFixed(1)),
+    reviewCount: 22 + index * 3,
+    stockStatus: blueprint.status,
+    isFeatured: Boolean(blueprint.featured),
+    isArchived: false,
+    seoTitle: `${blueprint.name} | Sneaker Index`,
+    seoDescription: `Shop ${blueprint.name} at Sneaker Index. Premium curation and archive-level selection.`,
+  };
+}
+
+const additionalProducts = ADDITIONAL_PRODUCT_BLUEPRINTS.map(buildGeneratedProduct);
+const allProducts = [...products, ...additionalProducts];
+
 const users = [];
 
 module.exports = {
   categories,
-  products,
+  products: allProducts,
   users,
 };

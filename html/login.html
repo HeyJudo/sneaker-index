@@ -143,28 +143,18 @@
 <label class="text-[10px] tracking-[0.1em] font-semibold text-on-surface-variant uppercase" for="password">Password</label>
 <span class="text-[10px] tracking-[0.1em] font-semibold text-outline uppercase">Reset Soon</span>
 </div>
-<input class="w-full bg-surface-container-low border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors py-4 px-0 placeholder:text-outline-variant text-on-surface rounded-none" id="password" name="password" placeholder="Password" type="password"/>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-0 border-b-2 border-outline-variant focus:border-primary focus:ring-0 transition-colors py-4 pl-0 pr-10 placeholder:text-outline-variant text-on-surface rounded-none" id="password" name="password" placeholder="Password" type="password"/>
+<button aria-label="Show password" class="absolute right-0 top-1/2 -translate-y-1/2 text-outline hover:text-primary transition-colors" data-password-toggle="#password" type="button">
+<span class="material-symbols-outlined text-[18px]">visibility</span>
+</button>
+</div>
 </div>
 <p class="hidden text-xs tracking-wide font-body" data-auth-message="login"></p>
 <button class="w-full bg-primary-container text-white font-bold py-5 text-[12px] tracking-[0.2em] transition-all hover:bg-secondary hover:-translate-y-0.5 rounded-none uppercase" data-auth-submit="login" type="submit">
                         SIGN IN
                     </button>
 </form>
-<div class="mt-10 mb-8 flex items-center">
-<div class="flex-grow border-t border-outline-variant/30"></div>
-<span class="px-4 text-[10px] tracking-[0.1em] text-outline uppercase font-medium">Or Continue With</span>
-<div class="flex-grow border-t border-outline-variant/30"></div>
-</div>
-<div class="grid grid-cols-2 gap-4">
-<button class="flex items-center justify-center space-x-3 py-3 px-4 border border-outline-variant/50 hover:bg-surface-container-low transition-colors rounded-none">
-<img alt="Google" class="w-4 h-4" data-alt="Official Google color logo icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWbqD0rEzXmLBjsU0Ca787a7ypdSzfmfGzdHL0JMTnYzvrGiFQeocXq8ynZwHKmuU1i8utILMQA9zpWWk2IH2uIJfnGzUfkaXKHED98S7DOV19Xy3eqdjbPnflHCE8ylN5bvXr5gavwz1X4kJuDhdyASXIRA5xDUWn8USzO0tq_5OcmIY-rCM9NfvPzF6XXp67GvAGGHeTx9SLeRshq4A_pGXJeAeZn4iIKsKCFxoErt4ylsQYIOH4_sTjBdXo3aLiO3hGBa1kXl0"/>
-<span class="text-[10px] tracking-[0.1em] font-bold uppercase">Google</span>
-</button>
-<button class="flex items-center justify-center space-x-3 py-3 px-4 border border-outline-variant/50 hover:bg-surface-container-low transition-colors rounded-none">
-<span class="material-symbols-outlined text-base" data-icon="apple" style="font-variation-settings: 'FILL' 1;">ios</span>
-<span class="text-[10px] tracking-[0.1em] font-bold uppercase">Apple ID</span>
-</button>
-</div>
 <div class="mt-12 text-center">
 <p class="text-xs text-on-surface-variant">
                         Don't have an account? 
