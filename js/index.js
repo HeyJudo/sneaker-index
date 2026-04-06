@@ -278,5 +278,32 @@
     }
   });
 
+  // UX Hooks
+  const nav = document.querySelector('nav');
+  if (nav) {
+    nav.classList.add('smart-nav');
+    nav.classList.remove('glass-nav', 'border-black/5', 'shadow-sm');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 20) {
+        nav.classList.add('is-scrolled');
+      } else {
+        nav.classList.remove('is-scrolled');
+      }
+    }, { passive: true });
+    // Trigger initially
+    if (window.scrollY > 20) nav.classList.add('is-scrolled');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('si-fade-up');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.observe-fade').forEach(el => observer.observe(el));
+
   init();
 })(window);
