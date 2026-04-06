@@ -15,10 +15,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const requestedTarget = String(params.get("redirect") || "").trim();
 
     if (!/^[a-z0-9_-]+\.html(?:\?.*)?$/i.test(requestedTarget)) {
-      return fallbackTarget;
+      return "";
     }
 
-    return requestedTarget;
+    return requestedTarget || fallbackTarget;
   }
 
   function setMessage(type, text) {
@@ -52,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const password = String(formData.get("password") || "");
 
     try {
-      await window.SneakerIndexAuthApi.login({
+      const response = await window.SneakerIndexAuthApi.login({
         email,
         password,
       });
@@ -61,7 +61,22 @@ document.addEventListener("DOMContentLoaded", () => {
       form.reset();
 
       window.setTimeout(() => {
-        window.location.href = getRedirectTarget();
+        const requestedRedirect = getRedirectTarget();
+        const role = response?.data?.user?.role;
+        const isAdmin = role === "admin";
+        const isAdminRoute = /^admin-[a-z0-9_-]+\.html(?:\?.*)?$/i.test(
+          requestedRedirect
+        );
+        const fallbackTarget = isAdmin ? "admin-dashboard.html" : "catalog.html";
+        const safeRedirect = isAdmin
+          ? isAdminRoute
+            ? requestedRedirect
+            : fallbackTarget
+          : isAdminRoute
+            ? fallbackTarget
+            : requestedRedirect;
+
+        window.location.href = safeRedirect || fallbackTarget;
       }, 1000);
     } catch (error) {
       setMessage("error", error.message || "Unable to sign in.");

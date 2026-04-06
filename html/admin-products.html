@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Archive | Sneaker Index</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-container": "#004ca1",
+                        "on-secondary-container": "#fefcff",
+                        "on-primary-fixed": "#001257",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-container-highest": "#dfe3e8",
+                        "tertiary-fixed-dim": "#acc7ff",
+                        "primary": "#00289c",
+                        "on-error": "#ffffff",
+                        "on-secondary-fixed": "#00174b",
+                        "on-surface": "#181c20",
+                        "tertiary": "#003676",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f7f9fe",
+                        "surface-container-high": "#e5e8ed",
+                        "on-tertiary-container": "#a3c1ff",
+                        "on-tertiary-fixed-variant": "#004492",
+                        "background": "#f7f9fe",
+                        "primary-fixed": "#dde1ff",
+                        "outline": "#747686",
+                        "error-container": "#ffdad6",
+                        "on-tertiary": "#ffffff",
+                        "on-primary-container": "#b1bdff",
+                        "surface-container-low": "#f1f4f9",
+                        "error": "#ba1a1a",
+                        "surface-tint": "#3151d4",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#ebeef3",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#d7e2ff",
+                        "on-surface-variant": "#444654",
+                        "on-background": "#181c20",
+                        "on-primary-fixed-variant": "#0835bc",
+                        "secondary": "#0051d5",
+                        "inverse-on-surface": "#eef1f6",
+                        "on-secondary": "#ffffff",
+                        "inverse-primary": "#b9c3ff",
+                        "on-tertiary-fixed": "#001a40",
+                        "on-primary": "#ffffff",
+                        "inverse-surface": "#2d3135",
+                        "secondary-fixed": "#dbe1ff",
+                        "secondary-container": "#316bf3",
+                        "primary-container": "#1a3fc4",
+                        "outline-variant": "#c4c5d7",
+                        "surface-variant": "#dfe3e8",
+                        "surface": "#f7f9fe",
+                        "surface-dim": "#d7dadf"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader"],
+                        "body": ["Inter"],
+                        "label": ["Inter"],
+                        "bebas": ["Bebas Neue"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        * { border-radius: 0 !important; }.select-icon-wrapper {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .select-icon-wrapper .material-symbols-outlined {
+            position: absolute;
+            left: 12px;
+            pointer-events: none;
+            font-size: 14px;
+            color: #64748b;
+        }
+        .select-icon-wrapper select {
+            padding-left: 32px !important;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface flex min-h-screen" data-auth-guard="admin">
+<aside class="fixed left-0 top-0 h-screen w-64 bg-slate-950 flex flex-col py-6 shadow-[0px_12px_24px_rgba(26,63,196,0.06)] z-50">
+<div class="px-6 mb-10">
+<h1 class="text-2xl font-bold text-white tracking-tight font-headline">The Curator</h1>
+<p class="text-blue-100/50 text-[10px] uppercase tracking-widest mt-1">Management Suite</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 px-4 py-3 text-blue-100/70 hover:text-white mx-2 transition-colors hover:bg-white/5" href="admin-dashboard.html">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-['Newsreader'] tracking-tight">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white mx-2 transition-colors" href="admin-products.html">
+<span class="material-symbols-outlined text-xl">inventory_2</span>
+<span class="font-['Newsreader'] tracking-tight">Products</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-100/70 hover:text-white mx-2 transition-colors hover:bg-white/5" href="admin-orders.html">
+<span class="material-symbols-outlined text-xl">shopping_cart</span>
+<span class="font-['Newsreader'] tracking-tight">Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-100/70 hover:text-white mx-2 transition-colors hover:bg-white/5" href="admin-categories.html">
+<span class="material-symbols-outlined text-xl">category</span>
+<span class="font-['Newsreader'] tracking-tight">Categories</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-100/70 hover:text-white mx-2 transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-xl">group</span>
+<span class="font-['Newsreader'] tracking-tight">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-100/70 hover:text-white mx-2 transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="font-['Newsreader'] tracking-tight">Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-blue-100/70 hover:text-white mx-2 transition-colors hover:bg-white/5" href="#">
+<span class="material-symbols-outlined text-xl">analytics</span>
+<span class="font-['Newsreader'] tracking-tight">Analytics</span>
+</a>
+</nav>
+<div class="mt-auto px-6 flex items-center gap-3 border-t border-white/5 pt-6">
+<div class="w-8 h-8 bg-primary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-sm">account_circle</span>
+</div>
+<div>
+<p class="text-xs text-white font-medium">Admin User</p>
+<p class="text-[10px] text-blue-100/40">Super Admin</p>
+</div>
+</div>
+</aside>
+<div class="flex-1 ml-64 flex flex-col">
+<header class="sticky top-0 z-40 w-full bg-white/70 backdrop-blur-xl border-b border-slate-200/50 flex justify-between items-center h-16 px-8">
+<div class="flex items-center gap-4 flex-1">
+<div class="relative w-full max-w-md">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface-container-low border-none focus:ring-1 focus:ring-primary text-sm" data-admin-products-search="" placeholder="Search archive..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-lg font-semibold text-slate-900 font-['Inter']">Management Console</span>
+<div class="flex items-center gap-4 text-slate-500">
+<button class="hover:text-blue-700 transition-colors"><span class="material-symbols-outlined">refresh</span></button>
+<button class="hover:text-blue-700 transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-error"></span>
+</button>
+<button class="hover:text-blue-700 transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+</div>
+</div>
+</header>
+<main class="p-12 max-w-[1600px] w-full mx-auto">
+<div class="mb-12 flex flex-col gap-1">
+<span class="font-label text-[10px] uppercase tracking-[0.2em] text-primary font-bold">Inventory System v4.0</span>
+<h2 class="font-bebas text-7xl text-on-surface tracking-tight leading-none">PRODUCT ARCHIVE</h2>
+<div class="flex items-center gap-3 mt-4">
+<span class="h-[1px] w-12 bg-primary"></span>
+<p class="text-on-surface-variant font-medium text-sm">1,525 PRODUCTS REGISTERED</p>
+</div>
+</div>
+<section class="bg-surface-container-lowest p-6 mb-8 flex flex-wrap items-center justify-between gap-6 shadow-[0px_4px_20px_rgba(0,40,156,0.03)] border border-slate-100">
+<div class="flex flex-wrap items-center gap-4">
+<button class="bg-primary-container text-white px-6 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-secondary transition-all flex items-center gap-2 group" data-admin-products-new="">
+<span class="material-symbols-outlined text-sm">add</span>
+                        NEW ENTRY
+                    </button>
+<div class="h-8 w-[1px] bg-outline-variant mx-2"></div>
+<div class="select-icon-wrapper">
+<span class="material-symbols-outlined">settings_suggest</span>
+<select class="bg-surface-container-low border-none text-xs font-bold uppercase tracking-wider py-2.5 pr-8 focus:ring-1 focus:ring-primary min-w-[140px]">
+<option>BULK ACTIONS</option>
+<option>DELETE SELECTED</option>
+<option>EXPORT CSV</option>
+</select>
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-3">
+<div class="select-icon-wrapper">
+<span class="material-symbols-outlined">label</span>
+<select class="bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-wider py-2 pr-8 focus:ring-1 focus:ring-primary" data-admin-products-category="">
+<option>CATEGORY: ALL</option>
+<option>LIFESTYLE</option>
+<option>PERFORMANCE</option>
+<option>LUXURY</option>
+</select>
+</div>
+<div class="select-icon-wrapper">
+<span class="material-symbols-outlined">sell</span>
+<select class="bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-wider py-2 pr-8 focus:ring-1 focus:ring-primary" data-admin-products-brand="">
+<option>BRAND: ALL</option>
+<option>NIKE</option>
+<option>ADIDAS</option>
+<option>NEW BALANCE</option>
+</select>
+</div>
+<div class="select-icon-wrapper">
+<span class="material-symbols-outlined">warehouse</span>
+<select class="bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-wider py-2 pr-8 focus:ring-1 focus:ring-primary" data-admin-products-stock="">
+<option>STOCK: ALL</option>
+<option>IN STOCK</option>
+<option>LOW STOCK</option>
+<option>OUT OF STOCK</option>
+</select>
+</div>
+<div class="select-icon-wrapper">
+<span class="material-symbols-outlined">star</span>
+<select class="bg-white border border-slate-200 text-[10px] font-bold uppercase tracking-wider py-2 pr-8 focus:ring-1 focus:ring-primary" data-admin-products-featured="">
+<option>FEATURED: ALL</option>
+<option>YES</option>
+<option>NO</option>
+</select>
+</div>
+</div>
+</section>
+<div class="overflow-hidden bg-surface-container-lowest shadow-[0px_12px_24px_rgba(26,63,196,0.06)] border border-slate-100">
+<table class="w-full border-collapse text-left">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-100">
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 w-12 text-center">
+<input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">image</span>
+                                    Thumbnail
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">info</span>
+                                    Product Detail
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">sell</span>
+                                    Brand
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">tag</span>
+                                    Category
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center justify-end gap-2">
+<span class="material-symbols-outlined text-[14px]">payments</span>
+                                    Price
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">inventory_2</span>
+                                    Stock
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[14px]">star</span>
+                                    Featured
+                                </div>
+</th>
+<th class="px-6 py-4 text-[10px] font-bold uppercase tracking-widest text-slate-500 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50" data-admin-products-tbody="">
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-16 bg-surface-container-low flex items-center justify-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]">
+<img alt="" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAD7HRsxZBYX14_ujoSJMB3mVVi8FU_rYkeTNlDyyrwqY4zrry8aLQtD6k1538Ow6CMy1mATmXiWe9HwP-Y8WTyoHTsRxTnlVD8xCaFGPV4EYUZP9uJcG8U_Myl79J64mGrM85QAxnRgJ_8sk28Ng4nr-bxf-2Q6mLm9Jr_Yilc4Tu_SY9PhnuB7gwAoHhHQiI7_w9mTAwz1mgd7Y0smz8_hTN7nLeRBkTJGHtyi2tg3D7OH9QLtU8NS-ft9uE_U76Qyr_doPeseHA"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-slate-900 tracking-tight">Air Max 270 'Volt'</p>
+<p class="text-[10px] text-slate-400 font-mono mt-1">SKU: NK-AM270-VLT</p>
+</td>
+<td class="px-6 py-4">
+<span class="text-[11px] font-semibold text-slate-600">NIKE</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-[11px] text-slate-500 uppercase tracking-wider">Lifestyle</span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-primary">$150.00</span>
+</td>
+<td class="px-6 py-4">
+<span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 border border-emerald-100">84 IN STOCK</span>
+</td>
+<td class="px-6 py-4">
+<span class="bg-primary-container text-white text-[9px] font-bold px-2 py-0.5">YES</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-16 bg-surface-container-low flex items-center justify-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]">
+<img alt="" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbihB6fqtLUkbdTMpyQFBGpagE-5E8iCVsXVwkmBa4TfGo9QK9eMccsybYNIni9d1-gZGfkbvWQ9DZ08PFgN5tNqrT_jfSNkUCB7QmX0KSGOzh_WHrTAJUPhjO-Vi7nzOi4MTdjbSq2dpTx4pdo3ovSYyF9qEtXYdxT7JUIztexSVAxMOXN7C5Zf5D-Z86wGO0mv0uzKe5ATwZgywI4mchD91f0iRbI16SXEfSuZUVeBaWArqynQC6jA52zF94kOpHmAvF1XP_3HI"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-slate-900 tracking-tight">Triple S 'Crystal'</p>
+<p class="text-[10px] text-slate-400 font-mono mt-1">SKU: BL-TRS-CRY</p>
+</td>
+<td class="px-6 py-4">
+<span class="text-[11px] font-semibold text-slate-600">BALENCIAGA</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-[11px] text-slate-500 uppercase tracking-wider">Luxury</span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-primary">$1,100.00</span>
+</td>
+<td class="px-6 py-4">
+<span class="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-1 border border-amber-100">LOW STOCK (4)</span>
+</td>
+<td class="px-6 py-4">
+<span class="bg-slate-200 text-slate-500 text-[9px] font-bold px-2 py-0.5">NO</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4">
+<input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/>
+</td>
+<td class="px-6 py-4">
+<div class="w-16 h-16 bg-surface-container-low flex items-center justify-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]">
+<img alt="" class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCg8uq2z0jfFqXgrysfQsyigfqlAF5k0TwzoLDbaHGy-QDn0ALVTEE7I33rKpNVKVZqwvTp959VYQP3KgB9qUpXc6SnFj_bUVGq7eUq3TeHOSYH0mHFnsBK4hgS3J7SiJ3ITz9Q4xjXU2hYHJmOcvorsWbouMwrjjB19YtK3lLWD9dCSi5jyv-dXumVBpLeX-Oxb7ngcPHnUfdvUIQjP6SHaa7qUEW63Ant2DFAamGqgGb-yxwF7edzU8U1IMOKfHR8x8zLnduUTU"/>
+</div>
+</td>
+<td class="px-6 py-4">
+<p class="text-sm font-bold text-slate-900 tracking-tight">990v5 'Grey'</p>
+<p class="text-[10px] text-slate-400 font-mono mt-1">SKU: NB-990-GRY</p>
+</td>
+<td class="px-6 py-4">
+<span class="text-[11px] font-semibold text-slate-600">NEW BALANCE</span>
+</td>
+<td class="px-6 py-4">
+<span class="text-[11px] text-slate-500 uppercase tracking-wider">Heritage</span>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="text-sm font-bold text-primary">$185.00</span>
+</td>
+<td class="px-6 py-4">
+<span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 border border-emerald-100">112 IN STOCK</span>
+</td>
+<td class="px-6 py-4">
+<span class="bg-primary-container text-white text-[9px] font-bold px-2 py-0.5">YES</span>
+</td>
+<td class="px-6 py-4 text-right">
+<button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button>
+</td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4"><input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4"><div class="w-16 h-16 bg-surface-container-low flex items-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRYK0uE2ClIyV1OuuIcr7qLkoDMCN5_rgdKq2hhu7NUrcPhc5FasChabkJ5XDyvhPSAITYXE_d6hBoPVsjyn4i68deVxXUMGsv8gZpO1l-IHtQjxJ-C2Lt1BlOu-yOm6NnssW-5xP8POmMlACHAdfU4w_MAUaQiZP1xs1qPvke2fORKVkv6TWUzs1P8B1MgQIBAeZ3DOmRvHxy0YqmsIFNzR8TEXzQNqY5dzCkxEHqWTXwZTGDMn_j2V3XRbiLEeGH2dTbxv1kc7A"/></div></td>
+<td class="px-6 py-4"><p class="text-sm font-bold text-slate-900 tracking-tight">Ultraboost 22</p><p class="text-[10px] text-slate-400 font-mono mt-1">SKU: AD-UB22-CBLK</p></td>
+<td class="px-6 py-4"><span class="text-[11px] font-semibold text-slate-600">ADIDAS</span></td>
+<td class="px-6 py-4"><span class="text-[11px] text-slate-500 uppercase tracking-wider">Performance</span></td>
+<td class="px-6 py-4 text-right"><span class="text-sm font-bold text-primary">$190.00</span></td>
+<td class="px-6 py-4"><span class="bg-red-50 text-red-700 text-[10px] font-bold px-2.5 py-1 border border-red-100">OUT OF STOCK</span></td>
+<td class="px-6 py-4"><span class="bg-slate-200 text-slate-500 text-[9px] font-bold px-2 py-0.5">NO</span></td>
+<td class="px-6 py-4 text-right"><button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4"><input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4"><div class="w-16 h-16 bg-surface-container-low flex items-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCey4lKAtSbPivKUt-9RnToZOA_YS9qn56MPdcV-qMzuu4T1_3L5eALJGLiaSfIPU9Bi-rKnTL6puNxTKyMlrdezVxxBY8qt2gSq2LuZNs_-xf73u49bDwoNtfAMoz-6LcC-NlAc2MC8V8__DBqLvUvytH51tAdhPJNgx3fjKmFjlqAiQSaMYcyM__IEpwuDyEs98MjDcWDkIzTYTfA5g-A6z-tb0vV8ejAyF4xWSFqqZ6XJGKVmO6a-mcSZ0LQOMk8UiYjiG19GPM"/></div></td>
+<td class="px-6 py-4"><p class="text-sm font-bold text-slate-900 tracking-tight">Jordan 1 'Chicago'</p><p class="text-[10px] text-slate-400 font-mono mt-1">SKU: JB-AJ1-CHI</p></td>
+<td class="px-6 py-4"><span class="text-[11px] font-semibold text-slate-600">JORDAN</span></td>
+<td class="px-6 py-4"><span class="text-[11px] text-slate-500 uppercase tracking-wider">Basketball</span></td>
+<td class="px-6 py-4 text-right"><span class="text-sm font-bold text-primary">$170.00</span></td>
+<td class="px-6 py-4"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 border border-emerald-100">12 IN STOCK</span></td>
+<td class="px-6 py-4"><span class="bg-primary-container text-white text-[9px] font-bold px-2 py-0.5">YES</span></td>
+<td class="px-6 py-4 text-right"><button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4"><input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4"><div class="w-16 h-16 bg-surface-container-low flex items-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAaPGwwMljhBYglgzQo4GWDPMdRiGkHBhOP0aM7i__XxJApvVhGgYxfqjuKpJinQUc9p7Ke13pqVp1QDbON8sE6cvV8UhjmhoMu2B42uFJ7uR5_TbcpdEqkGCdmTaIYoSoVH1-IHVsBtZ8uwfq-FN3l-Eh5xGqO9MDnCguDkc2IP8hUP-25vce7pawlOPbxBmNMBKMsEiVj0TD1yBVv0tB78uzYgujf_YV9kg19ggwUJVAmybUHrQ-JQ7l_OKGWZqwyEZCkEhixI0Q"/></div></td>
+<td class="px-6 py-4"><p class="text-sm font-bold text-slate-900 tracking-tight">Gel-Lyte III 'OG'</p><p class="text-[10px] text-slate-400 font-mono mt-1">SKU: AS-GL3-OG</p></td>
+<td class="px-6 py-4"><span class="text-[11px] font-semibold text-slate-600">ASICS</span></td>
+<td class="px-6 py-4"><span class="text-[11px] text-slate-500 uppercase tracking-wider">Lifestyle</span></td>
+<td class="px-6 py-4 text-right"><span class="text-sm font-bold text-primary">$120.00</span></td>
+<td class="px-6 py-4"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 border border-emerald-100">45 IN STOCK</span></td>
+<td class="px-6 py-4"><span class="bg-slate-200 text-slate-500 text-[9px] font-bold px-2 py-0.5">NO</span></td>
+<td class="px-6 py-4 text-right"><button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4"><input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4"><div class="w-16 h-16 bg-surface-container-low flex items-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFZ_lSFotwRQ_jttGUNFiY6mZiH4InhEViN4Qq2f0HYMCVTCFmgXmIbgY33wctmGdBfoqu38jWz-L6-2oN8seNTIM8eVQz4Lu7IfwKC9sJoXyHDIGzP7abo-bRg-V3j_ClYfNxWHfwsQt9pfI8UTtJcNEh_oBOn3VyZrHKCSAwzPr8DzC3NhXIyveLfV11HKEYTW6bqJWmlTdGtJrkqIBiAgtJlyoo8RSKPx2hgKQjncxbWx_ab3Vi4uc_bK5FKh2ItenC3kBZeLg"/></div></td>
+<td class="px-6 py-4"><p class="text-sm font-bold text-slate-900 tracking-tight">Vaporfly NEXT% 2</p><p class="text-[10px] text-slate-400 font-mono mt-1">SKU: NK-VPF2-VOLT</p></td>
+<td class="px-6 py-4"><span class="text-[11px] font-semibold text-slate-600">NIKE</span></td>
+<td class="px-6 py-4"><span class="text-[11px] text-slate-500 uppercase tracking-wider">Performance</span></td>
+<td class="px-6 py-4 text-right"><span class="text-sm font-bold text-primary">$250.00</span></td>
+<td class="px-6 py-4"><span class="bg-amber-50 text-amber-700 text-[10px] font-bold px-2.5 py-1 border border-amber-100">8 LEFT</span></td>
+<td class="px-6 py-4"><span class="bg-primary-container text-white text-[9px] font-bold px-2 py-0.5">YES</span></td>
+<td class="px-6 py-4 text-right"><button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button></td>
+</tr>
+<tr class="hover:bg-slate-50/50 transition-colors group">
+<td class="px-6 py-4"><input class="border-slate-300 text-primary focus:ring-primary" type="checkbox"/></td>
+<td class="px-6 py-4"><div class="w-16 h-16 bg-surface-container-low flex items-center p-2 group-hover:shadow-[inset_0_0_0_2px_#1a3fc4]"><img class="w-full h-full object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-PjnNvS5V_soNu-zajku286IkxTrZ09mbXbjszmjg_JYxsY3LZv400Nv9PtqttC48Tx8pFBOIwqIZcuLwCNYzWinIDXQ86DrTKitRkeII2TxFNJ_SD-D4r5liBK5lQlqjXMCF84BJLgJNlyiLSVdLjFgsdV6z2osi_zVFEfk0WFZfLVB6DcO4hjkdECn4NQse2S9P83mADrZ32MNLLbnl0qX4gNTMZxqrDI6GtTBt_H30PNaD8BzdFfPYxe3XdQVIiV2w1qjiWt8"/></div></td>
+<td class="px-6 py-4"><p class="text-sm font-bold text-slate-900 tracking-tight">Questar Flow</p><p class="text-[10px] text-slate-400 font-mono mt-1">SKU: AD-QSFL-BLK</p></td>
+<td class="px-6 py-4"><span class="text-[11px] font-semibold text-slate-600">ADIDAS</span></td>
+<td class="px-6 py-4"><span class="text-[11px] text-slate-500 uppercase tracking-wider">Lifestyle</span></td>
+<td class="px-6 py-4 text-right"><span class="text-sm font-bold text-primary">$85.00</span></td>
+<td class="px-6 py-4"><span class="bg-emerald-50 text-emerald-700 text-[10px] font-bold px-2.5 py-1 border border-emerald-100">230 IN STOCK</span></td>
+<td class="px-6 py-4"><span class="bg-slate-200 text-slate-500 text-[9px] font-bold px-2 py-0.5">NO</span></td>
+<td class="px-6 py-4 text-right"><button class="text-slate-400 hover:text-primary transition-colors"><span class="material-symbols-outlined">more_vert</span></button></td>
+</tr>
+</tbody>
+</table>
+<div class="p-6 bg-white flex items-center justify-between border-t border-slate-100">
+<p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold" data-admin-products-count="">Showing 1 to 8 of 1,525 results</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-50 transition-colors" data-admin-products-prev="">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 bg-primary-container text-white flex items-center justify-center font-bold text-xs" data-admin-products-page="">1</button>
+<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs hover:bg-slate-50 transition-colors">2</button>
+<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs hover:bg-slate-50 transition-colors">3</button>
+<span class="w-10 h-10 flex items-center justify-center text-slate-400">...</span>
+<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-600 font-bold text-xs hover:bg-slate-50 transition-colors">191</button>
+<button class="w-10 h-10 border border-slate-200 flex items-center justify-center text-slate-400 hover:bg-slate-50 transition-colors" data-admin-products-next="">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</main>
+<footer class="w-full py-6 mt-auto bg-slate-50 border-t border-slate-200/50 flex justify-between items-center px-8 font-['Inter'] text-xs uppercase tracking-widest">
+<p class="text-slate-400">© 2024 Editorial Luxury E-Commerce. All rights reserved.</p>
+<div class="flex gap-8">
+<a class="text-slate-400 hover:text-blue-600 hover:underline underline-offset-4 transition-colors" href="#">Support</a>
+<a class="text-slate-400 hover:text-blue-600 hover:underline underline-offset-4 transition-colors" href="#">Privacy Policy</a>
+<a class="text-slate-400 hover:text-blue-600 hover:underline underline-offset-4 transition-colors" href="#">Terms</a>
+</div>
+</footer>
+</div>
+<script defer src="../js/auth-api.js"></script>
+<script defer src="../js/session-ui.js"></script>
+<script defer src="../js/admin-products.js"></script>
+</body></html>

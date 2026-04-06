@@ -35,6 +35,21 @@
     return payload;
   }
 
+  function toQueryString(params = {}) {
+    const search = new URLSearchParams();
+
+    Object.entries(params).forEach(([key, value]) => {
+      if (value === undefined || value === null || value === "") {
+        return;
+      }
+
+      search.set(key, String(value));
+    });
+
+    const query = search.toString();
+    return query ? `?${query}` : "";
+  }
+
   global.SneakerIndexAuthApi = {
     signup(data) {
       return request("/auth/signup", {
@@ -68,6 +83,44 @@
       return request("/auth/me/password", {
         method: "PATCH",
         body: JSON.stringify(data),
+      });
+    },
+    listCategories() {
+      return request("/categories", {
+        method: "GET",
+      });
+    },
+    adminListProducts(params) {
+      return request(`/admin/products${toQueryString(params)}`, {
+        method: "GET",
+      });
+    },
+    adminGetProduct(productId) {
+      return request(`/admin/products/${productId}`, {
+        method: "GET",
+      });
+    },
+    adminCreateProduct(data) {
+      return request("/admin/products", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+    },
+    adminUpdateProduct(productId, data) {
+      return request(`/admin/products/${productId}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+      });
+    },
+    adminArchiveProduct(productId, isArchived = true) {
+      return request(`/admin/products/${productId}/archive`, {
+        method: "PATCH",
+        body: JSON.stringify({ isArchived }),
+      });
+    },
+    adminDeleteProduct(productId) {
+      return request(`/admin/products/${productId}`, {
+        method: "DELETE",
       });
     },
   };

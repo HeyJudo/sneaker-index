@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sneaker Index | Command Center</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Inter:wght@300;400;500;600;700&amp;family=Bebas+Neue&amp;family=Lato:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-low": "#f1f4f9",
+                        "on-primary": "#ffffff",
+                        "surface-bright": "#f7f9fe",
+                        "on-primary-container": "#b1bdff",
+                        "inverse-surface": "#2d3135",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-error-container": "#93000a",
+                        "secondary-container": "#316bf3",
+                        "error-container": "#ffdad6",
+                        "on-background": "#181c20",
+                        "primary": "#00289c",
+                        "primary-fixed": "#dde1ff",
+                        "outline": "#747686",
+                        "surface-container-highest": "#dfe3e8",
+                        "on-tertiary-fixed-variant": "#004492",
+                        "surface-tint": "#3151d4",
+                        "surface-container-high": "#e5e8ed",
+                        "outline-variant": "#c4c5d7",
+                        "primary-container": "#1a3fc4",
+                        "inverse-primary": "#b9c3ff",
+                        "on-secondary-container": "#fefcff",
+                        "tertiary-fixed-dim": "#acc7ff",
+                        "error": "#ba1a1a",
+                        "tertiary-container": "#004ca1",
+                        "on-surface": "#181c20",
+                        "surface-variant": "#dfe3e8",
+                        "on-surface-variant": "#444654",
+                        "on-secondary-fixed": "#00174b",
+                        "surface-container": "#ebeef3",
+                        "tertiary": "#003676",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "tertiary-fixed": "#d7e2ff",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "inverse-on-surface": "#eef1f6",
+                        "on-tertiary-container": "#a3c1ff",
+                        "surface-dim": "#d7dadf",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "secondary": "#0051d5",
+                        "background": "#f7f9fe",
+                        "on-primary-fixed-variant": "#0835bc",
+                        "on-primary-fixed": "#001257",
+                        "surface": "#f7f9fe",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#001a40"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Bebas Neue"],
+                        "body": ["Lato"],
+                        "label": ["Lato"],
+                        "serif": ["Newsreader"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .cobalt-grade {
+            position: relative;
+        }
+        .cobalt-grade::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: #1a3fc4;
+            mix-blend-mode: multiply;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #f7f9fe;
+        }
+        h1, h2, h3, .kpi-val {
+            font-family: 'Bebas Neue', sans-serif;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen" data-auth-guard="admin">
+<!-- SideNavBar (Fixed Left) -->
+<aside class="bg-slate-900 dark:bg-black h-screen w-64 fixed left-0 top-0 flex flex-col h-full shadow-xl shadow-blue-900/10 z-50">
+<div class="px-8 py-10">
+<span class="text-xl font-bold text-white tracking-widest block font-serif newsreader headline-md uppercase tracking-wider">Command Center</span>
+<p class="text-slate-400 text-xs tracking-widest mt-1 opacity-60">Curator Access</p>
+</div>
+<nav class="flex-1 mt-4">
+<a class="text-white bg-blue-700/20 border-l-4 border-blue-600 px-6 py-4 flex items-center gap-4 transition-all duration-300 ease-in-out" href="admin-dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="tracking-widest uppercase text-sm">Dashboard</span>
+</a>
+<a class="text-slate-400 hover:text-white hover:bg-slate-800/50 px-6 py-4 flex items-center gap-4 transition-colors transition-all duration-300 ease-in-out" href="admin-products.html">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span class="tracking-widest uppercase text-sm">Products</span>
+</a>
+<a class="text-slate-400 hover:text-white hover:bg-slate-800/50 px-6 py-4 flex items-center gap-4 transition-colors transition-all duration-300 ease-in-out" href="admin-orders.html">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="tracking-widest uppercase text-sm">Orders</span>
+</a>
+<a class="text-slate-400 hover:text-white hover:bg-slate-800/50 px-6 py-4 flex items-center gap-4 transition-colors transition-all duration-300 ease-in-out" href="admin-categories.html">
+<span class="material-symbols-outlined" data-icon="category">category</span>
+<span class="tracking-widest uppercase text-sm">Categories</span>
+</a>
+<a class="text-slate-400 hover:text-white hover:bg-slate-800/50 px-6 py-4 flex items-center gap-4 transition-colors transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="tracking-widest uppercase text-sm">Customers</span>
+</a>
+<a class="text-slate-400 hover:text-white hover:bg-slate-800/50 px-6 py-4 flex items-center gap-4 transition-colors transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="tracking-widest uppercase text-sm">Settings</span>
+</a>
+<a class="text-slate-400 hover:text-white hover:bg-slate-800/50 px-6 py-4 flex items-center gap-4 transition-colors transition-all duration-300 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="analytics">analytics</span>
+<span class="tracking-widest uppercase text-sm">Analytics</span>
+</a>
+</nav>
+<div class="p-8 border-t border-white/5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-slate-400">admin_panel_settings</span>
+</div>
+<div>
+<p class="text-white text-xs font-bold uppercase tracking-tighter">Admin User Profile</p>
+<p class="text-slate-500 text-[10px] uppercase">Super Admin</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-64 min-h-screen pb-20">
+<!-- TopNavBar -->
+<header class="bg-white/70 dark:bg-slate-950/70 backdrop-blur-md fixed top-0 right-0 w-[calc(100%-16rem)] z-40 flex justify-between items-center h-20 px-12 transition-all">
+<div>
+<h1 class="text-2xl font-serif italic text-slate-900 dark:text-white">DASHBOARD</h1>
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">APRIL 5, 2026 | 11:55 PM</p>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex gap-4">
+<button class="text-slate-500 hover:text-blue-600 transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors scale-95 active:scale-90">
+<span class="material-symbols-outlined" data-icon="schedule">schedule</span>
+</button>
+</div>
+<button class="bg-primary-container text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-secondary transition-colors">
+                    Refresh
+                </button>
+</div>
+</header>
+<div class="pt-32 px-12 max-w-[1600px] mx-auto">
+<!-- KPI Grid -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-l-4 border-primary">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Total Products</span>
+<span class="text-5xl kpi-val mt-4 text-primary">1,284</span>
+<div class="mt-4 flex items-center text-[10px] text-primary font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="ml-1">+12.5% VS LAST MONTH</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-l-4 border-primary">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Total Orders</span>
+<span class="text-5xl kpi-val mt-4 text-primary">8,421</span>
+<div class="mt-4 flex items-center text-[10px] text-primary font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+<span class="ml-1">+5.2% VS LAST MONTH</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-2 border-error">
+<span class="text-xs font-bold text-error uppercase tracking-widest">Low Stock Alerts</span>
+<span class="text-5xl kpi-val mt-4 text-error">24</span>
+<div class="mt-4 flex items-center text-[10px] text-error font-bold">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
+<span class="ml-1">IMMEDIATE ACTION REQUIRED</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-l-4 border-primary">
+<span class="text-xs font-bold text-outline uppercase tracking-widest">Total Categories</span>
+<span class="text-5xl kpi-val mt-4 text-primary">18</span>
+<div class="mt-4 flex items-center text-[10px] text-slate-400 font-bold">
+<span class="material-symbols-outlined text-sm">category</span>
+<span class="ml-1">STABLE ARCHIVE</span>
+</div>
+</div>
+</section>
+<!-- Quick Actions -->
+<div class="flex flex-wrap gap-4 mb-12">
+<button class="bg-primary text-white px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-primary-container transition-all">
+<span class="material-symbols-outlined text-sm">add</span>
+                    Add Product
+                </button>
+<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">list_alt</span>
+                    Manage Orders
+                </button>
+<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">file_download</span>
+                    Export Data
+                </button>
+<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<span class="material-symbols-outlined text-sm">sync</span>
+                    Sync Inventory
+                </button>
+</div>
+<!-- Bento Grid Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Recent Orders Table -->
+<div class="lg:col-span-2 bg-surface-container-lowest p-0 shadow-sm border border-surface-container-high overflow-hidden">
+<div class="p-8 flex justify-between items-center bg-white border-b border-surface-container-low">
+<h3 class="text-xl tracking-widest uppercase">Recent Orders</h3>
+<a class="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest" href="#">View All Archives</a>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] font-bold text-outline uppercase tracking-widest bg-surface-container-low/50">
+<th class="px-8 py-4">ID</th>
+<th class="px-8 py-4">Customer</th>
+<th class="px-8 py-4">Amount</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4">Action</th>
+</tr>
+</thead>
+<tbody class="text-xs">
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-5 font-mono">#ORD-9921</td>
+<td class="px-8 py-5 font-bold uppercase">Marcus Sterling</td>
+<td class="px-8 py-5">$1,240.00</td>
+<td class="px-8 py-5">
+<span class="bg-green-100 text-green-700 px-3 py-1 text-[9px] font-extrabold uppercase tracking-tighter">Delivered</span>
+</td>
+<td class="px-8 py-5">
+<button class="text-primary hover:text-secondary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-5 font-mono">#ORD-9920</td>
+<td class="px-8 py-5 font-bold uppercase">Elena Rossi</td>
+<td class="px-8 py-5">$845.00</td>
+<td class="px-8 py-5">
+<span class="bg-blue-100 text-blue-700 px-3 py-1 text-[9px] font-extrabold uppercase tracking-tighter">Processing</span>
+</td>
+<td class="px-8 py-5">
+<button class="text-primary hover:text-secondary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-5 font-mono">#ORD-9919</td>
+<td class="px-8 py-5 font-bold uppercase">Jordan Vance</td>
+<td class="px-8 py-5">$3,100.00</td>
+<td class="px-8 py-5">
+<span class="bg-yellow-100 text-yellow-700 px-3 py-1 text-[9px] font-extrabold uppercase tracking-tighter">Pending</span>
+</td>
+<td class="px-8 py-5">
+<button class="text-primary hover:text-secondary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low transition-colors">
+<td class="px-8 py-5 font-mono">#ORD-9918</td>
+<td class="px-8 py-5 font-bold uppercase">Sarah Jenkins</td>
+<td class="px-8 py-5">$520.00</td>
+<td class="px-8 py-5">
+<span class="bg-green-100 text-green-700 px-3 py-1 text-[9px] font-extrabold uppercase tracking-tighter">Delivered</span>
+</td>
+<td class="px-8 py-5">
+<button class="text-primary hover:text-secondary"><span class="material-symbols-outlined text-lg">visibility</span></button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Activity Feed -->
+<div class="bg-slate-900 text-white p-8 border border-slate-800">
+<h3 class="text-xl tracking-widest uppercase mb-8">System Activity</h3>
+<div class="space-y-8">
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-primary-container flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">inventory</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-wide">Stock Update</p>
+<p class="text-[10px] text-slate-400 mt-1">Air Jordan 1 'High' (+12 units) added by System Admin.</p>
+<p class="text-[9px] text-blue-400 mt-2 font-mono">12:04 PM</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-green-700 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">payments</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-wide">New Revenue</p>
+<p class="text-[10px] text-slate-400 mt-1">Transaction #ORD-9921 confirmed ($1,240.00).</p>
+<p class="text-[9px] text-blue-400 mt-2 font-mono">11:50 PM</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-error flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">priority_high</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-wide">Stock Alert</p>
+<p class="text-[10px] text-slate-400 mt-1">Yeezy Boost 350 fell below threshold (2 left).</p>
+<p class="text-[9px] text-blue-400 mt-2 font-mono">11:32 PM</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-8 h-8 bg-slate-700 flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-sm">person_add</span>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-wide">User Registration</p>
+<p class="text-[10px] text-slate-400 mt-1">New curator account verified for "L. Hamilton".</p>
+<p class="text-[9px] text-blue-400 mt-2 font-mono">10:15 PM</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Low Stock Table -->
+<div class="lg:col-span-3 bg-surface-container-lowest p-0 border border-surface-container-high overflow-hidden">
+<div class="p-8 flex justify-between items-center bg-white border-b border-surface-container-low">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-error">warning</span>
+<h3 class="text-xl tracking-widest uppercase">Critical Stock Alerts</h3>
+</div>
+<button class="bg-error text-white px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Restock All</button>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left">
+<thead>
+<tr class="text-[10px] font-bold text-outline uppercase tracking-widest bg-surface-container-low/50">
+<th class="px-8 py-4">Product</th>
+<th class="px-8 py-4">SKU</th>
+<th class="px-8 py-4">Last Sale</th>
+<th class="px-8 py-4">In Stock</th>
+<th class="px-8 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="text-xs">
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-4 flex items-center gap-4">
+<div class="w-12 h-12 cobalt-grade bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img alt="Sneaker Detail" class="w-full h-full object-cover" data-alt="professional studio shot of limited edition high-top sneaker on minimalist concrete pedestal with cinematic lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJ5fLbTpAu9C0d8fAyJm3tX7lE7P3ez5NmHZ-LdnqvX3kedLwfsu71Vi95-RXy6_tpqlHuib6EtLhlan3YXIA7jfELCBgR9KQuajczd7zkzRYEzm8MSuHgw7-cs-BUdbxVEjjG-CpHIhpMAn_4EmrTZpziTmEppO7rf1OMhzn65RWP3AgIqLYUFaf-hN3BU4MWQU9mq826Cr_hy_MFcYzok2g0xnuwwBIi57vLw0jrmz9p3HvZZ2Bn0IZUu_BmDz1x_aYf0ecymqM"/>
+</div>
+<span class="font-bold uppercase tracking-tighter">Retro Air Jordan 1 'Chicago'</span>
+</td>
+<td class="px-8 py-4 font-mono text-slate-500">AJ1-2022-CHI</td>
+<td class="px-8 py-4">2 Hours Ago</td>
+<td class="px-8 py-4 font-bold text-error">03 Units</td>
+<td class="px-8 py-4 text-right">
+<button class="text-primary hover:bg-primary-fixed px-3 py-1 font-bold uppercase text-[10px] transition-colors">Edit</button>
+<button class="text-primary hover:bg-primary-fixed px-3 py-1 font-bold uppercase text-[10px] transition-colors">Order</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-4 flex items-center gap-4">
+<div class="w-12 h-12 cobalt-grade bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img alt="Sneaker Detail" class="w-full h-full object-cover" data-alt="close up macro shot of premium sneaker suede textures and stitching details with cool blue ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_JlK1GyoApSZbeMZKSGaNNYgXJ9qBWNj1L9YzQmeTx_3e6yD1-Zjpg9aFQK58uwgv9yOzkgrG6Uj8L_tt2yfDU73kqJ8RATE_4gq6tdByeR5Zs_gErJmk8CEuzietIF706TfZZcomwb6ow6ITZ44VmYN2jUfJw3S4Oxjbuye-rHpG84FEjJtJoAnfG_sNnX6vFpVarFWbCwCMyNamdlFdCc1zG40WM4ucoKpl0ug5DfWa5Nwag8CA-iH2Qau5xGynOa1j8o8KLXw"/>
+</div>
+<span class="font-bold uppercase tracking-tighter">Yeezy Boost 350 V2 'Onyx'</span>
+</td>
+<td class="px-8 py-4 font-mono text-slate-500">YZY-350-ONX</td>
+<td class="px-8 py-4">15 Mins Ago</td>
+<td class="px-8 py-4 font-bold text-error">01 Units</td>
+<td class="px-8 py-4 text-right">
+<button class="text-primary hover:bg-primary-fixed px-3 py-1 font-bold uppercase text-[10px] transition-colors">Edit</button>
+<button class="text-primary hover:bg-primary-fixed px-3 py-1 font-bold uppercase text-[10px] transition-colors">Order</button>
+</td>
+</tr>
+<tr class="border-b border-surface-container-low hover:bg-surface-container-low/50 transition-colors">
+<td class="px-8 py-4 flex items-center gap-4">
+<div class="w-12 h-12 cobalt-grade bg-surface-container-low flex items-center justify-center overflow-hidden">
+<img alt="Sneaker Detail" class="w-full h-full object-cover" data-alt="clean minimal product shot of vibrant running sneaker on stark white background with sharp shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTPugkr-NSSNLzsZLnh1gqBfMwFbCouqBj7TDvua2DVDO2KX07oLahCpH7MVxiFD7Mi6_tWbU8Gn7OdRlawzuWdRWVKXHPeRqyQmI_c3DjPTZE2yKRC8MqZLe-WR-RMKHGFL-yyrXOIjjLf2YskSI33NHGMj2DO2do9-WyGGRpHHy6NbYEntTa7CnEwE1tzc7bqJvZQuvjBbnjxPtY-BX7bMJsIsdgZXbEsRuAMeUvRU8bsyXzbLzff8y0m-bq1khqLPCvPFIx3_E"/>
+</div>
+<span class="font-bold uppercase tracking-tighter">Nike Dunk Low 'Panda'</span>
+</td>
+<td class="px-8 py-4 font-mono text-slate-500">NK-DNK-PND</td>
+<td class="px-8 py-4">Yesterday</td>
+<td class="px-8 py-4 font-bold text-error">05 Units</td>
+<td class="px-8 py-4 text-right">
+<button class="text-primary hover:bg-primary-fixed px-3 py-1 font-bold uppercase text-[10px] transition-colors">Edit</button>
+<button class="text-primary hover:bg-primary-fixed px-3 py-1 font-bold uppercase text-[10px] transition-colors">Order</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</main>
+<script defer src="../js/auth-api.js"></script>
+<script defer src="../js/session-ui.js"></script>
+</body></html>

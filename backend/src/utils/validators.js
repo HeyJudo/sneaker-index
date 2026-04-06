@@ -404,6 +404,189 @@ function validateCreateOrderRequest(body) {
   return errors;
 }
 
+function isValidStockStatus(value) {
+  return ["in-stock", "low-stock", "out-of-stock", "preorder"].includes(value);
+}
+
+function validateAdminProductUpsertRequest(body) {
+  const errors = [];
+
+  if (!isNonEmptyString(body.name)) {
+    errors.push({
+      field: "name",
+      message: "name is required.",
+    });
+  }
+
+  if (!isNonEmptyString(body.brand)) {
+    errors.push({
+      field: "brand",
+      message: "brand is required.",
+    });
+  }
+
+  if (!isNonEmptyString(body.description)) {
+    errors.push({
+      field: "description",
+      message: "description is required.",
+    });
+  }
+
+  if (body.categoryId === undefined && !isNonEmptyString(body.categorySlug)) {
+    errors.push({
+      field: "categoryId",
+      message: "Provide categoryId or categorySlug.",
+    });
+  }
+
+  if (!Number.isFinite(Number(body.price)) || Number(body.price) < 0) {
+    errors.push({
+      field: "price",
+      message: "price must be a non-negative number.",
+    });
+  }
+
+  if (
+    body.compareAtPrice !== undefined &&
+    body.compareAtPrice !== null &&
+    body.compareAtPrice !== "" &&
+    (!Number.isFinite(Number(body.compareAtPrice)) || Number(body.compareAtPrice) < 0)
+  ) {
+    errors.push({
+      field: "compareAtPrice",
+      message: "compareAtPrice must be a non-negative number.",
+    });
+  }
+
+  if (!isValidStockStatus(body.stockStatus)) {
+    errors.push({
+      field: "stockStatus",
+      message: "stockStatus is invalid.",
+    });
+  }
+
+  if (!Array.isArray(body.images) || body.images.length === 0) {
+    errors.push({
+      field: "images",
+      message: "At least one image is required.",
+    });
+  } else {
+    body.images.forEach((image, index) => {
+      if (!isNonEmptyString(image)) {
+        errors.push({
+          field: `images.${index}`,
+          message: "Image URL must be a non-empty string.",
+        });
+      }
+    });
+  }
+
+  if (!Array.isArray(body.colors) || body.colors.length === 0) {
+    errors.push({
+      field: "colors",
+      message: "At least one color is required.",
+    });
+  } else {
+    body.colors.forEach((color, index) => {
+      if (!color || typeof color !== "object") {
+        errors.push({
+          field: `colors.${index}`,
+          message: "Color must be an object.",
+        });
+        return;
+      }
+
+      if (!isNonEmptyString(color.name)) {
+        errors.push({
+          field: `colors.${index}.name`,
+          message: "Color name is required.",
+        });
+      }
+
+      if (!isNonEmptyString(color.hex)) {
+        errors.push({
+          field: `colors.${index}.hex`,
+          message: "Color hex is required.",
+        });
+      }
+    });
+  }
+
+  if (!Array.isArray(body.sizes) || body.sizes.length === 0) {
+    errors.push({
+      field: "sizes",
+      message: "At least one size is required.",
+    });
+  } else {
+    body.sizes.forEach((size, index) => {
+      if (!size || typeof size !== "object") {
+        errors.push({
+          field: `sizes.${index}`,
+          message: "Size must be an object.",
+        });
+        return;
+      }
+
+      if (!isNonEmptyString(size.label)) {
+        errors.push({
+          field: `sizes.${index}.label`,
+          message: "Size label is required.",
+        });
+      }
+
+      if (!isNonEmptyString(size.sku)) {
+        errors.push({
+          field: `sizes.${index}.sku`,
+          message: "Size sku is required.",
+        });
+      }
+
+      if (!Number.isFinite(Number(size.stock)) || Number(size.stock) < 0) {
+        errors.push({
+          field: `sizes.${index}.stock`,
+          message: "Size stock must be a non-negative number.",
+        });
+      }
+    });
+  }
+
+  if (body.isFeatured !== undefined && !isBoolean(body.isFeatured)) {
+    errors.push({
+      field: "isFeatured",
+      message: "isFeatured must be a boolean.",
+    });
+  }
+
+  if (body.isArchived !== undefined && !isBoolean(body.isArchived)) {
+    errors.push({
+      field: "isArchived",
+      message: "isArchived must be a boolean.",
+    });
+  }
+
+  if (
+    body.rating !== undefined &&
+    (!Number.isFinite(Number(body.rating)) || Number(body.rating) < 0 || Number(body.rating) > 5)
+  ) {
+    errors.push({
+      field: "rating",
+      message: "rating must be between 0 and 5.",
+    });
+  }
+
+  if (
+    body.reviewCount !== undefined &&
+    (!Number.isInteger(Number(body.reviewCount)) || Number(body.reviewCount) < 0)
+  ) {
+    errors.push({
+      field: "reviewCount",
+      message: "reviewCount must be a non-negative whole number.",
+    });
+  }
+
+  return errors;
+}
+
 module.exports = {
   validateAddCartItemRequest,
   validateCreateOrderRequest,
@@ -413,4 +596,5 @@ module.exports = {
   validateDevelopmentTokenRequest,
   validateUpdateProfileRequest,
   validateUpdatePasswordRequest,
+  validateAdminProductUpsertRequest,
 };

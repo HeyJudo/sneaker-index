@@ -243,7 +243,11 @@
       menu = document.createElement("div");
       menu.dataset.authAccountMenu = "true";
       menu.dataset.open = "false";
+      const adminLink = user?.role === "admin"
+        ? '<a data-auth-menu-link href="admin-dashboard.html">Admin<span class="material-symbols-outlined text-base">admin_panel_settings</span></a>'
+        : "";
       menu.innerHTML = `
+        ${adminLink}
         <a data-auth-menu-link href="account.html">Profile<span class="material-symbols-outlined text-base">north_east</span></a>
         <a data-auth-menu-link href="orders.html">Orders<span class="material-symbols-outlined text-base">inventory_2</span></a>
         <a data-auth-menu-link href="catalog.html">Vault<span class="material-symbols-outlined text-base">storefront</span></a>
@@ -388,7 +392,7 @@
     bindLogout(authApi);
 
     const guard = body.dataset.authGuard || "";
-    const guardApplies = guard === "protected" || guard === "guest";
+    const guardApplies = guard === "protected" || guard === "guest" || guard === "admin";
 
     if (guardApplies) {
       body.style.visibility = "hidden";
@@ -408,13 +412,18 @@
         redirectTo(getRedirectTargetFromQuery("account.html"));
         return;
       }
+
+      if (guard === "admin" && user?.role !== "admin") {
+        redirectTo("account.html");
+        return;
+      }
     } catch (error) {
       body.dataset.authState = "guest";
       updateAccountLinks({ isAuthenticated: false, user: null });
       toggleLogoutTriggers(false);
       closeAccountMenu();
 
-      if (guard === "protected" && error?.status === 401) {
+      if ((guard === "protected" || guard === "admin") && error?.status === 401) {
         redirectTo(getLoginTarget());
         return;
       }

@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sneaker Index | Order Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,700&amp;family=Inter:wght@400;500;600;700;900&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed": "#dde1ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "on-secondary-fixed": "#00174b",
+                        "on-primary-fixed-variant": "#0835bc",
+                        "surface-container": "#ebeef3",
+                        "on-secondary-container": "#fefcff",
+                        "on-error": "#ffffff",
+                        "error-container": "#ffdad6",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#444654",
+                        "on-primary-fixed": "#001257",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-secondary": "#ffffff",
+                        "inverse-on-surface": "#eef1f6",
+                        "surface-dim": "#d7dadf",
+                        "tertiary-container": "#004ca1",
+                        "surface-tint": "#3151d4",
+                        "on-primary": "#ffffff",
+                        "on-background": "#181c20",
+                        "surface-container-high": "#e5e8ed",
+                        "tertiary-fixed-dim": "#acc7ff",
+                        "on-tertiary-fixed-variant": "#004492",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "surface-container-low": "#f1f4f9",
+                        "outline-variant": "#c4c5d7",
+                        "primary": "#00289c",
+                        "tertiary-fixed": "#d7e2ff",
+                        "on-primary-container": "#b1bdff",
+                        "inverse-primary": "#b9c3ff",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "primary-container": "#1a3fc4",
+                        "surface-bright": "#f7f9fe",
+                        "secondary-container": "#316bf3",
+                        "on-tertiary": "#ffffff",
+                        "error": "#ba1a1a",
+                        "surface-container-highest": "#dfe3e8",
+                        "inverse-surface": "#2d3135",
+                        "background": "#f7f9fe",
+                        "surface": "#f7f9fe",
+                        "outline": "#747686",
+                        "surface-variant": "#dfe3e8",
+                        "on-surface": "#181c20",
+                        "secondary": "#0051d5",
+                        "tertiary": "#003676",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed": "#001a40",
+                        "on-tertiary-container": "#a3c1ff"
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    fontFamily: {
+                        "headline": ["Newsreader"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 20;
+            vertical-align: middle;
+            font-size: 1.1em;
+        }
+        .cobalt-grade {
+            position: relative;
+        }
+        .cobalt-grade::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #1a3fc4;
+            opacity: 0.15;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased overflow-hidden" data-auth-guard="admin">
+<aside class="fixed left-0 top-0 h-full w-64 rounded-none bg-blue-900 dark:bg-slate-950 flex flex-col py-8 shadow-2xl shadow-blue-900/20 z-50">
+<div class="px-8 mb-10">
+<h1 class="text-xl font-bold italic tracking-tighter text-white font-headline">Sneaker Index</h1>
+<p class="text-[10px] uppercase tracking-[0.2em] text-blue-300/60 mt-1">Global Curator Access</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-8 py-3 transition-colors hover:bg-blue-800/30 transition-all font-newsreader tracking-tight group" href="admin-dashboard.html">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span>Dashboard</span>
+</a>
+<a class="flex items-center gap-3 text-white bg-blue-800/50 border-l-4 border-white px-8 py-3 font-newsreader tracking-tight" href="admin-orders.html">
+<span class="material-symbols-outlined" data-icon="package_2">package_2</span>
+<span>Order Index</span>
+</a>
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-8 py-3 transition-colors hover:bg-blue-800/30 transition-all font-newsreader tracking-tight" href="admin-products.html">
+<span class="material-symbols-outlined" data-icon="inventory_2">inventory_2</span>
+<span>Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-8 py-3 transition-colors hover:bg-blue-800/30 transition-all font-newsreader tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span>Customer Records</span>
+</a>
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-8 py-3 transition-colors hover:bg-blue-800/30 transition-all font-newsreader tracking-tight" href="#">
+<span class="material-symbols-outlined" data-icon="monitoring">monitoring</span>
+<span>Analytics</span>
+</a>
+</nav>
+<div class="px-8 pt-8 border-t border-blue-800/50">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 bg-blue-700 flex items-center justify-center rounded-sm overflow-hidden">
+<img alt="Admin User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaCIgb_1i8rcBRdEpJF0ybxuZBIlFnKLuRWZ0DkBpFqEQmxYGXFrUaAtjRTbTRhOZ9gmtnIEPlQqcYsoqSL3rJMCGvT85CtresS5YlgyKRuEaUu53X6NXTPBqqlBRmeYsZoEi7D0RbOIeNlej41mqNU4EHjlslS6zTR53VLCTjAeMcLBhR8BCIhSa7r_Z5uvAvr4KKI0fYfDrG_eBlz96Qeiz7_n6848iDiG0lpOS90Ci-8LMP6HFFNc1ebhKJcJ3285MneQ3kF0Y"/>
+</div>
+<div class="overflow-hidden">
+<p class="text-xs font-bold text-white truncate">Marcus Vane</p>
+<p class="text-[10px] text-blue-300/50 truncate">Senior Curator</p>
+</div>
+</div>
+</div>
+</aside>
+<main class="ml-64 h-screen flex flex-col">
+<header class="flex justify-between items-center w-full h-16 px-8 bg-white/70 backdrop-blur-md border-b border-slate-100 z-40 sticky top-0">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg" data-icon="search">search</span>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 text-sm font-inter py-2 pl-10 pr-4" placeholder="Search order ID, SKU, or customer name..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-8">
+<nav class="hidden md:flex gap-6">
+<a class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" href="#">Recent</a>
+<a class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" href="#">Flagged</a>
+<a class="text-blue-700 font-inter text-sm uppercase tracking-widest font-bold border-b-2 border-blue-700" href="#">Fulfilled</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-blue-600 transition-colors opacity-100 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-slate-500 hover:text-blue-600 transition-colors opacity-100 hover:opacity-80">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<section class="w-7/12 overflow-auto bg-surface-container-lowest">
+<div class="p-8 pb-0">
+<span class="label-md font-label text-[10px] tracking-[0.2em] text-primary uppercase mb-2 block">Curation Management</span>
+<h2 class="display-lg font-headline text-4xl mb-8">Active Shipments</h2>
+</div>
+<table class="w-full text-left border-collapse">
+<thead class="sticky top-0 bg-white z-10">
+<tr class="text-[11px] font-label uppercase tracking-wider text-outline border-b border-surface-container">
+<th class="px-8 py-4 font-semibold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="sell">sell</span>Order #
+    </div>
+</th>
+<th class="px-4 py-4 font-semibold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="person">person</span>Customer
+    </div>
+</th>
+<th class="px-4 py-4 font-semibold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="calendar_today">calendar_today</span>Date
+    </div>
+</th>
+<th class="px-4 py-4 font-semibold">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="inventory_2">inventory_2</span>Items
+    </div>
+</th>
+<th class="px-4 py-4 font-semibold">
+<div class="flex items-center justify-end gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="payments">payments</span>Total
+    </div>
+</th>
+<th class="px-8 py-4 font-semibold">
+<div class="flex items-center justify-end gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="check_circle">check_circle</span>Status
+    </div>
+</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<tr class="bg-blue-50/50 group cursor-pointer border-l-4 border-primary">
+<td class="px-8 py-5 text-sm font-bold font-headline">#SI-20240405</td>
+<td class="px-4 py-5">
+<div class="text-sm font-medium">Elena Rostova</div>
+<div class="text-[10px] text-outline">erostova@curator.io</div>
+</td>
+<td class="px-4 py-5 text-[12px]">Apr 12, 14:20</td>
+<td class="px-4 py-5 text-[12px]">3 Items</td>
+<td class="px-4 py-5 text-sm font-bold text-right font-headline">$2,450.00</td>
+<td class="px-8 py-5 text-right">
+<span class="bg-primary text-white px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-none inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[12px]" data-icon="settings">settings</span>Processing
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent">
+<td class="px-8 py-5 text-sm font-bold font-headline">#SI-20240404</td>
+<td class="px-4 py-5">
+<div class="text-sm font-medium">Julian Thorne</div>
+<div class="text-[10px] text-outline">j.thorne@style.com</div>
+</td>
+<td class="px-4 py-5 text-[12px]">Apr 12, 11:05</td>
+<td class="px-4 py-5 text-[12px]">1 Item</td>
+<td class="px-4 py-5 text-sm font-bold text-right font-headline">$890.00</td>
+<td class="px-8 py-5 text-right">
+<span class="bg-slate-900 text-white px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-none inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[12px]" data-icon="local_shipping">local_shipping</span>Shipped
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent">
+<td class="px-8 py-5 text-sm font-bold font-headline">#SI-20240403</td>
+<td class="px-4 py-5">
+<div class="text-sm font-medium">Sarah Jenkins</div>
+<div class="text-[10px] text-outline">sj@private.net</div>
+</td>
+<td class="px-4 py-5 text-[12px]">Apr 11, 16:45</td>
+<td class="px-4 py-5 text-[12px]">2 Items</td>
+<td class="px-4 py-5 text-sm font-bold text-right font-headline">$1,120.00</td>
+<td class="px-8 py-5 text-right">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-none inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[12px]" data-icon="package">package</span>Delivered
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent">
+<td class="px-8 py-5 text-sm font-bold font-headline">#SI-20240402</td>
+<td class="px-4 py-5">
+<div class="text-sm font-medium">Hiroshi Tanaka</div>
+<div class="text-[10px] text-outline">ht@tokyo-arch.jp</div>
+</td>
+<td class="px-4 py-5 text-[12px]">Apr 11, 09:12</td>
+<td class="px-4 py-5 text-[12px]">5 Items</td>
+<td class="px-4 py-5 text-sm font-bold text-right font-headline">$4,600.00</td>
+<td class="px-8 py-5 text-right">
+<span class="bg-error-container text-on-error-container px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-none inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[12px]" data-icon="close">close</span>Cancelled
+</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group cursor-pointer border-l-4 border-transparent">
+<td class="px-8 py-5 text-sm font-bold font-headline">#SI-20240401</td>
+<td class="px-4 py-5">
+<div class="text-sm font-medium">Amara Diop</div>
+<div class="text-[10px] text-outline">amara.d@design.sn</div>
+</td>
+<td class="px-4 py-5 text-[12px]">Apr 10, 22:30</td>
+<td class="px-4 py-5 text-[12px]">1 Item</td>
+<td class="px-4 py-5 text-sm font-bold text-right font-headline">$650.00</td>
+<td class="px-8 py-5 text-right">
+<span class="bg-slate-900 text-white px-3 py-1 text-[10px] font-bold tracking-widest uppercase rounded-none inline-flex items-center gap-1.5">
+<span class="material-symbols-outlined !text-[12px]" data-icon="local_shipping">local_shipping</span>Shipped
+</span>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section class="w-5/12 overflow-auto bg-surface border-l border-surface-container-high p-10">
+<div class="max-w-xl mx-auto space-y-12">
+<div class="flex justify-between items-start">
+<div>
+<span class="label-md font-label text-[10px] tracking-[0.2em] text-outline uppercase mb-1 block">Selected Order</span>
+<h3 class="display-lg font-headline text-3xl">#SI-20240405</h3>
+</div>
+<div class="flex flex-col items-end">
+<label class="text-[10px] uppercase font-bold tracking-widest text-outline mb-2">Update Status</label>
+<select class="bg-white border-2 border-primary text-primary text-xs font-bold px-4 py-2 rounded-none focus:ring-0">
+<option>PROCESSING</option>
+<option>SHIPPED</option>
+<option>DELIVERED</option>
+<option>CANCELLED</option>
+</select>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="person">person</span>Customer Information
+</h4>
+<div class="space-y-1">
+<p class="text-sm font-bold">Elena Rostova</p>
+<p class="text-xs text-outline">erostova@curator.io</p>
+<p class="text-xs text-outline">+44 7700 900077</p>
+</div>
+</div>
+<div>
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="location_on">location_on</span>Shipping Destination
+</h4>
+<div class="space-y-1">
+<p class="text-sm">Apartment 4B, The Shard</p>
+<p class="text-sm">32 London Bridge St</p>
+<p class="text-sm">London SE1 9SG</p>
+<p class="text-xs font-bold text-outline uppercase mt-1">United Kingdom</p>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-6 pb-2 border-b border-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="shopping_bag">shopping_bag</span>Ordered Items
+</h4>
+<div class="space-y-6">
+<div class="flex gap-4 items-center group">
+<div class="w-20 h-20 bg-surface-container-low cobalt-grade overflow-hidden">
+<img alt="Product Thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrz4zdikBNsuwRFaDxHnKvZGRZFrZSLmIsG5NH29F2AgltOoWPh0aAOUYrR_eprlN-qZRvjLw8nLrCYmi3l-bXBgzXlMC9FYHiU4n8Vxdw0le_GJAb21MxWkX-WqDtSGRXMUDm94ZRY9aYST3wJza4Bn0VEcyNG95bjkxvHzJU8mNL2l2E7xqal3lSmjKWuIs_wiTSOfDtGwQcd3P9bxiiBFnN4WZUOWR2lVgkpLJ0Fv55-gQcgKSBYtUPF-GI5KThClTD4MjDGPk"/>
+</div>
+<div class="flex-1">
+<p class="text-[10px] uppercase tracking-widest font-bold text-outline">Jordan</p>
+<p class="text-sm font-headline font-bold">Air Jordan 1 High '85 'Black/White'</p>
+<p class="text-[10px] font-medium text-outline mt-1">SIZE: 10.5 US | SKU: BQ4422-001</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold font-headline">$1,200.00</p>
+<p class="text-[10px] text-outline">x 1</p>
+</div>
+</div>
+<div class="flex gap-4 items-center group">
+<div class="w-20 h-20 bg-surface-container-low cobalt-grade overflow-hidden">
+<img alt="Product Thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDlc6iWlKhVTd2ZAg_Ux27F8BNo82GP0CTW45_R_HG9cj5vgXfgBha3ERL3nIJXqUMq1-pgtR8iw3r9lNTUpDH3iM9glaTNASpZmK9SUHZNxBG1QZTOA_SRNhQbHv52Sj5rv00SNDw-vkNTBXazApFlY5fDv1xePv6N-hIBd131GDQXDEmuHmS5mLD8XFU1yEBj2Zu6nxdzfDjtIC5IxnUIq9PsDJZe9ZAIXp4C7wojJMshxosV-G866LFgmVZsrlSs_dqgtQUCUBg"/>
+</div>
+<div class="flex-1">
+<p class="text-[10px] uppercase tracking-widest font-bold text-outline">Nike</p>
+<p class="text-sm font-headline font-bold">Nike x Sacai LDWaffle 'Summit White'</p>
+<p class="text-[10px] font-medium text-outline mt-1">SIZE: 10 US | SKU: BV0073-100</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold font-headline">$650.00</p>
+<p class="text-[10px] text-outline">x 1</p>
+</div>
+</div>
+<div class="flex gap-4 items-center group">
+<div class="w-20 h-20 bg-surface-container-low cobalt-grade overflow-hidden">
+<img alt="Product Thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoB3l6EdxHxdP951XCTCLmVu-rWoT80puuEFGN7NOR0lNsBCglPOta8SwBLr2yLmpfUOBTn2_rWyE_MeNA8pcGtbub9bBGuA9phK4Tso98nMIdBZhx50zxjtCotSF7E_R5g-9Jg5RRkegeAI2XXeZjOZWJZ38RIGZZr6leaHOaSsFpk9J4pJaA6ep9J-U_4MjPbl4zQ35sZ0Gl3HvbkJ_mFjp5q-SWpfJo6AFAKfBo7EqiM889nOW2PcysO-eS6s4OTXyTjg4_Z1I"/>
+</div>
+<div class="flex-1">
+<p class="text-[10px] uppercase tracking-widest font-bold text-outline">Adidas</p>
+<p class="text-sm font-headline font-bold">Adidas Yeezy Boost 700 'Wave Runner'</p>
+<p class="text-[10px] font-medium text-outline mt-1">SIZE: 11 US | SKU: B75571</p>
+</div>
+<div class="text-right">
+<p class="text-sm font-bold font-headline">$600.00</p>
+<p class="text-[10px] text-outline">x 1</p>
+</div>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-6 space-y-3">
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="receipt_long">receipt_long</span>Financial Breakdown
+</h4>
+<div class="flex justify-between text-xs">
+<span class="text-outline uppercase tracking-wider font-bold">Subtotal</span>
+<span class="font-headline font-bold">$2,450.00</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-outline uppercase tracking-wider font-bold">Shipping (Priority)</span>
+<span class="font-headline font-bold">$0.00</span>
+</div>
+<div class="flex justify-between text-xs">
+<span class="text-outline uppercase tracking-wider font-bold">Insurance</span>
+<span class="font-headline font-bold">$120.00</span>
+</div>
+<div class="pt-3 mt-3 border-t border-white/40 flex justify-between items-end">
+<span class="text-primary font-bold uppercase tracking-widest text-[11px]">Total Balance</span>
+<span class="text-2xl font-headline font-bold text-primary">$2,570.00</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-8">
+<div>
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="credit_card">credit_card</span>Payment Method
+</h4>
+<div class="flex items-center gap-3">
+<div class="space-y-0.5">
+<p class="text-xs font-bold uppercase tracking-tighter">Visa Platinum</p>
+<p class="text-[10px] text-outline">Ending in •••• 9901</p>
+</div>
+</div>
+</div>
+<div>
+<h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
+<span class="material-symbols-outlined !text-[14px]" data-icon="schedule">schedule</span>Timeline
+</h4>
+<div class="relative space-y-4 pl-4 border-l border-surface-container-highest">
+<div class="relative">
+<div class="absolute -left-[1.35rem] top-1 w-2.5 h-2.5 bg-primary"></div>
+<p class="text-[10px] font-bold uppercase tracking-wider">Order Placed</p>
+<p class="text-[9px] text-outline">Apr 12, 14:15</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[1.35rem] top-1 w-2.5 h-2.5 bg-primary"></div>
+<p class="text-[10px] font-bold uppercase tracking-wider">Payment Verified</p>
+<p class="text-[9px] text-outline">Apr 12, 14:18</p>
+</div>
+<div class="relative opacity-30">
+<div class="absolute -left-[1.35rem] top-1 w-2.5 h-2.5 bg-outline"></div>
+<p class="text-[10px] font-bold uppercase tracking-wider">Authentication</p>
+<p class="text-[9px] text-outline">Pending</p>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-6 border-t border-surface-container-high flex gap-4">
+<button class="flex-1 bg-primary text-white py-3 text-[11px] font-bold tracking-widest uppercase hover:bg-secondary transition-all active:scale-95 duration-150 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined !text-[16px]" data-icon="description">description</span>Generate Commercial Invoice
+</button>
+<button class="px-6 border-2 border-outline/20 text-outline py-3 text-[11px] font-bold tracking-widest uppercase hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined !text-[16px]" data-icon="archive">archive</span>Archive
+</button>
+</div>
+</div>
+</section>
+</div>
+</main>
+<script defer src="../js/auth-api.js"></script>
+<script defer src="../js/session-ui.js"></script>
+</body></html>

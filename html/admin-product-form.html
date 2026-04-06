@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Product Entry | Sneaker Index Admin</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,700;1,6..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-low": "#f1f4f9",
+                        "on-tertiary-container": "#a3c1ff",
+                        "on-secondary-fixed-variant": "#003ea8",
+                        "outline-variant": "#c4c5d7",
+                        "primary-fixed-dim": "#b9c3ff",
+                        "surface-tint": "#3151d4",
+                        "primary-fixed": "#dde1ff",
+                        "surface-container-lowest": "#ffffff",
+                        "on-secondary": "#ffffff",
+                        "on-error": "#ffffff",
+                        "secondary-container": "#316bf3",
+                        "error-container": "#ffdad6",
+                        "on-background": "#181c20",
+                        "on-tertiary-fixed": "#001a40",
+                        "secondary": "#0051d5",
+                        "on-primary-fixed-variant": "#0835bc",
+                        "surface-variant": "#dfe3e8",
+                        "on-surface-variant": "#444654",
+                        "on-primary-fixed": "#001257",
+                        "tertiary-container": "#004ca1",
+                        "background": "#f7f9fe",
+                        "primary-container": "#1a3fc4",
+                        "on-primary": "#ffffff",
+                        "primary": "#00289c",
+                        "error": "#ba1a1a",
+                        "secondary-fixed": "#dbe1ff",
+                        "on-secondary-container": "#fefcff",
+                        "on-surface": "#181c20",
+                        "inverse-on-surface": "#eef1f6",
+                        "on-tertiary-fixed-variant": "#004492",
+                        "surface-container-highest": "#dfe3e8",
+                        "tertiary-fixed-dim": "#acc7ff",
+                        "tertiary": "#003676",
+                        "tertiary-fixed": "#d7e2ff",
+                        "on-secondary-fixed": "#00174b",
+                        "on-error-container": "#93000a",
+                        "surface-bright": "#f7f9fe",
+                        "surface": "#f7f9fe",
+                        "inverse-primary": "#b9c3ff",
+                        "surface-container": "#ebeef3",
+                        "secondary-fixed-dim": "#b4c5ff",
+                        "on-primary-container": "#b1bdff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-high": "#e5e8ed",
+                        "outline": "#747686",
+                        "surface-dim": "#d7dadf",
+                        "inverse-surface": "#2d3135"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0px",
+                        "lg": "0px",
+                        "xl": "0px",
+                        "full": "0px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Newsreader", "serif"],
+                        "body": ["Inter", "sans-serif"],
+                        "label": ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style type="text/tailwindcss">
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        input:focus, textarea:focus, select:focus {
+            outline: none !important;
+            box-shadow: none !important;
+            border-bottom: 2px solid #00289c !important;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f7f9fe;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #00289c;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body custom-scrollbar" data-auth-guard="admin">
+<aside class="fixed left-0 top-0 h-full w-64 bg-blue-950 flex flex-col py-6 z-50">
+<div class="px-6 mb-12">
+<h1 class="text-xl font-bold tracking-tight text-white font-headline">Sneaker Index</h1>
+<p class="text-[0.65rem] tracking-[0.2em] text-blue-300/60 uppercase font-label mt-1">Management Console</p>
+</div>
+<nav class="flex-1 space-y-1">
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-dashboard.html">
+<span class="material-symbols-outlined">dashboard</span>
+<span class="text-sm font-medium tracking-wide">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 bg-white/10 text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-products.html">
+<span class="material-symbols-outlined">inventory</span>
+<span class="text-sm font-medium tracking-wide">Inventory</span>
+</a>
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-categories.html">
+<span class="material-symbols-outlined">collections</span>
+<span class="text-sm font-medium tracking-wide">Curations</span>
+</a>
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-orders.html">
+<span class="material-symbols-outlined">shopping_cart</span>
+<span class="text-sm font-medium tracking-wide">Orders</span>
+</a>
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">bar_chart</span>
+<span class="text-sm font-medium tracking-wide">Analytics</span>
+</a>
+</nav>
+<div class="px-4 mt-auto">
+<a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span class="text-sm font-medium tracking-wide">Settings</span>
+</a>
+</div>
+</aside>
+<header class="fixed top-0 left-64 right-0 h-16 bg-white/70 backdrop-blur-xl flex justify-between items-center px-8 z-40 border-b border-outline-variant/20">
+<div class="flex items-center gap-4 w-1/3">
+<span class="material-symbols-outlined text-slate-400">search</span>
+<input class="bg-transparent border-none text-xs tracking-widest font-label focus:ring-0 w-full placeholder:text-slate-400" placeholder="SEARCH CATALOGUE..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<span class="text-[0.65rem] tracking-[0.3em] font-label text-slate-500 uppercase">Management Console</span>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-slate-600 hover:text-primary cursor-pointer">notifications</span>
+<span class="material-symbols-outlined text-slate-600 hover:text-primary cursor-pointer">account_circle</span>
+</div>
+</div>
+</header>
+<main class="ml-64 pt-24 pb-32 px-12 max-w-[1100px] mx-auto">
+<header class="mb-16">
+<div class="flex items-baseline gap-4 mb-2">
+<span class="text-[0.7rem] uppercase tracking-[0.4em] text-primary font-bold">New Entry</span>
+<div class="h-px bg-primary-container/20 flex-1"></div>
+</div>
+<h2 class="text-6xl font-headline font-bold text-on-surface tracking-tight">Archive Submission</h2>
+</header>
+<form class="space-y-20" data-admin-product-form="">
+<section class="grid grid-cols-12 gap-10">
+<div class="col-span-4">
+<p class="text-[0.65rem] tracking-[0.25em] font-label text-on-surface-variant uppercase mb-2">01 / Foundation</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">description</span>
+<h3 class="text-2xl font-headline italic">Core Details</h3>
+</div>
+<p class="text-sm text-on-surface-variant mt-4 leading-relaxed font-light">Establish the product's primary identity within the global index. Ensure brand naming follows editorial standards.</p>
+</div>
+<div class="col-span-8 space-y-8">
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Product Name</label>
+<input class="border-none bg-transparent p-0 text-lg font-headline focus:ring-0" data-admin-product-name="" placeholder="e.g. Air Jordan 1 Retro High" type="text"/>
+</div>
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Brand Entity</label>
+<input class="border-none bg-transparent p-0 text-lg font-headline focus:ring-0" data-admin-product-brand="" placeholder="NIKE / JORDAN" type="text"/>
+</div>
+</div>
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Category Classification</label>
+<select class="border-none bg-transparent p-0 text-lg font-headline focus:ring-0 appearance-none cursor-pointer" data-admin-product-category="">
+<option>BASKETBALL PERFORMANCE</option>
+<option>LIFESTYLE ARCHIVE</option>
+<option>LUXURY COLLABORATION</option>
+<option>SKATEBOARDING</option>
+</select>
+</div>
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Editorial Description</label>
+<textarea class="border-none bg-transparent p-0 text-base font-body leading-relaxed resize-none focus:ring-0" data-admin-product-description="" placeholder="Narrate the story of this artifact..." rows="4"></textarea>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-12 gap-10">
+<div class="col-span-4">
+<p class="text-[0.65rem] tracking-[0.25em] font-label text-on-surface-variant uppercase mb-2">02 / Valuation</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">payments</span>
+<h3 class="text-2xl font-headline italic">Market Position</h3>
+</div>
+</div>
+<div class="col-span-8 space-y-10">
+<div class="grid grid-cols-2 gap-8">
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Retail Price (USD)</label>
+<div class="flex items-center">
+<span class="text-lg font-headline text-on-surface-variant mr-2">$</span>
+<input class="border-none bg-transparent p-0 text-lg font-headline focus:ring-0 w-full" data-admin-product-price="" placeholder="0.00" type="number"/>
+</div>
+</div>
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Market Compare Price</label>
+<div class="flex items-center">
+<span class="text-lg font-headline text-on-surface-variant mr-2">$</span>
+<input class="border-none bg-transparent p-0 text-lg font-headline focus:ring-0 w-full" data-admin-product-compare="" placeholder="0.00" type="number"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-12">
+<div>
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-4 block">Featured Entry</label>
+<div class="flex">
+<button class="flex-1 py-3 text-xs tracking-widest font-label bg-primary text-white border border-primary" data-admin-product-featured-value="true" type="button">YES</button>
+<button class="flex-1 py-3 text-xs tracking-widest font-label bg-white text-on-surface border border-outline-variant hover:bg-surface-container" data-admin-product-featured-value="false" type="button">NO</button>
+</div>
+</div>
+<div>
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-4 block">Visibility Tier</label>
+<div class="flex">
+<button class="flex-1 py-3 text-xs tracking-widest font-label bg-primary text-white border border-primary" data-admin-product-archived-value="false" type="button">ACTIVE</button>
+<button class="flex-1 py-3 text-xs tracking-widest font-label bg-white text-on-surface border border-outline-variant hover:bg-surface-container" data-admin-product-archived-value="true" type="button">ARCHIVED</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-12 gap-10">
+<div class="col-span-4">
+<p class="text-[0.65rem] tracking-[0.25em] font-label text-on-surface-variant uppercase mb-2">03 / Visuals</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">image</span>
+<h3 class="text-2xl font-headline italic">Media Archive</h3>
+</div>
+</div>
+<div class="col-span-8 space-y-6">
+<div class="border-2 border-dashed border-outline-variant p-12 flex flex-col items-center justify-center bg-surface-container-low group cursor-pointer hover:border-primary transition-colors">
+<span class="material-symbols-outlined text-4xl text-outline mb-4 group-hover:text-primary transition-colors">upload_file</span>
+<p class="text-xs tracking-widest font-label text-on-surface-variant mb-2">DRAG ASSETS OR CLICK TO BROWSE</p>
+<p class="text-[0.6rem] text-outline uppercase">High-res TIFF or PNG (Transparent Preferred)</p>
+</div>
+<div class="flex flex-col border-b border-outline-variant py-2">
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Direct Image URL</label>
+<input class="border-none bg-transparent p-0 text-sm font-body tracking-wider focus:ring-0" data-admin-product-image="" placeholder="HTTPS://ASSETS.SNEAKERINDEX.COM/..." type="url"/>
+</div>
+<div class="grid grid-cols-4 gap-4 pt-4">
+<div class="aspect-square bg-surface-container overflow-hidden">
+<img alt="Product preview" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGUIun7W_90Wud0EL7afJMe8OaS0c7dgG-8NxQXO2QwZIyw1XfJB7WTe3Jvq9yjgDLcgBRZSIppDuuO0NFDUUb357b4FrFkixj21MBHHMppZyQPw5C6otIO_VAfy8y0XLtTSriBB8Bze6FwvYBCm9btax8YUYmNMCJr3YGJQFquIumiQJbRltwNijol7UaztrMqlHfhQbsHbs0KRRFcijWlfS2pEK_kxOyWaWhDi-aV9w-H7PaKVMWOBqHsvjWCDIh5zGvFWTcWIA"/>
+</div>
+<div class="aspect-square border border-outline-variant/30 bg-surface flex items-center justify-center text-outline-variant hover:text-primary hover:border-primary cursor-pointer transition-colors">
+<span class="material-symbols-outlined">add</span>
+</div>
+</div>
+</div>
+</section>
+<section class="grid grid-cols-12 gap-10">
+<div class="col-span-4">
+<p class="text-[0.65rem] tracking-[0.25em] font-label text-on-surface-variant uppercase mb-2">04 / Logistics</p>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-xl">inventory_2</span>
+<h3 class="text-2xl font-headline italic">Inventory Matrix</h3>
+</div>
+</div>
+<div class="col-span-8 space-y-12">
+<div>
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-6 block">Defined Colorways</label>
+<div class="space-y-4" data-admin-product-colors="">
+<div class="flex items-center gap-6 p-4 bg-white border border-outline-variant/30" data-admin-product-color-row="">
+<div class="w-10 h-10 bg-[#00289c]"></div>
+<div class="flex-1 grid grid-cols-2 gap-4">
+<input class="border-none bg-transparent p-0 text-sm font-label uppercase tracking-wider focus:ring-0" data-admin-product-color-name="" type="text" value="Royal Sovereign"/>
+<input class="border-none bg-transparent p-0 text-sm font-label text-outline uppercase tracking-wider focus:ring-0" data-admin-product-color-hex="" type="text" value="#00289C"/>
+</div>
+<button class="material-symbols-outlined text-outline hover:text-error transition-colors" data-admin-product-color-delete="" type="button">delete</button>
+</div>
+<button class="flex items-center gap-2 py-3 px-6 border border-outline-variant text-[0.65rem] tracking-[0.2em] font-label hover:bg-surface-container transition-colors uppercase" data-admin-product-color-add="" type="button">
+<span class="material-symbols-outlined text-sm">add</span> Add New Variant
+                            </button>
+</div>
+</div>
+<div>
+<label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-4 block">Stock Allocations</label>
+<table class="w-full border-collapse">
+<thead>
+<tr class="text-left border-b border-on-surface/10">
+<th class="py-4 text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant">Size (US)</th>
+<th class="py-4 text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant">Global SKU</th>
+<th class="py-4 text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant text-right">Available Stock</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10" data-admin-product-sizes="">
+<tr>
+<td class="py-4 font-headline text-lg italic" data-admin-product-size-label="">8.0</td>
+<td class="py-4"><input class="bg-transparent border-none p-0 text-xs font-label tracking-widest focus:ring-0 w-full" data-admin-product-size-sku="" type="text" value="SI-AJ1-080-RS"/></td>
+<td class="py-4 text-right"><input class="bg-transparent border-none p-0 text-sm font-headline text-right focus:ring-0 w-20" data-admin-product-size-stock="" type="number" value="12"/></td>
+</tr>
+<tr>
+<td class="py-4 font-headline text-lg italic" data-admin-product-size-label="">9.0</td>
+<td class="py-4"><input class="bg-transparent border-none p-0 text-xs font-label tracking-widest focus:ring-0 w-full" data-admin-product-size-sku="" type="text" value="SI-AJ1-090-RS"/></td>
+<td class="py-4 text-right"><input class="bg-transparent border-none p-0 text-sm font-headline text-right focus:ring-0 w-20" data-admin-product-size-stock="" type="number" value="24"/></td>
+</tr>
+<tr>
+<td class="py-4 font-headline text-lg italic" data-admin-product-size-label="">10.5</td>
+<td class="py-4"><input class="bg-transparent border-none p-0 text-xs font-label tracking-widest focus:ring-0 w-full" data-admin-product-size-sku="" type="text" value="SI-AJ1-105-RS"/></td>
+<td class="py-4 text-right"><input class="bg-transparent border-none p-0 text-sm font-headline text-right focus:ring-0 w-20" data-admin-product-size-stock="" type="number" value="8"/></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+</form>
+</main>
+<footer class="fixed bottom-0 right-0 left-64 bg-blue-700 flex justify-between items-center px-8 py-4 z-50 shadow-[0px_-12px_24px_rgba(13,27,75,0.2)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-blue-200 text-base animate-[spin_4s_linear_infinite]">sync</span>
+<span class="text-[0.65rem] tracking-[0.2em] font-label text-blue-100 uppercase" data-admin-product-status="">Unsaved changes detected in draft</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="px-8 py-3 text-[0.65rem] tracking-[0.3em] font-label text-white border border-white/20 hover:bg-white/10 transition-colors uppercase" data-admin-product-cancel="" type="button">
+                Cancel
+            </button>
+<button class="px-10 py-3 text-[0.65rem] tracking-[0.3em] font-label bg-white text-blue-800 hover:bg-blue-50 transition-colors font-bold uppercase shadow-lg active:scale-95 transition-transform" data-admin-product-save="" type="button">
+                Save Entry
+            </button>
+</div>
+</footer>
+<script defer src="../js/auth-api.js"></script>
+<script defer src="../js/session-ui.js"></script>
+<script defer src="../js/admin-product-form.js"></script>
+</body></html>
