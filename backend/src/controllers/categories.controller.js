@@ -2,8 +2,8 @@ const Category = require("../models/Category");
 const { sendSuccess } = require("../utils/api-response");
 
 async function listCategories(_req, res) {
-  const categories = await Category.find({})
-    .sort({ isFeatured: -1, name: 1 })
+  const categories = await Category.find({ isActive: { $ne: false } })
+    .sort({ sortOrder: 1, isFeatured: -1, name: 1 })
     .lean();
 
   sendSuccess(res, {

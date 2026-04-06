@@ -96,7 +96,7 @@
     </style>
 </head>
 <body class="bg-background text-on-surface font-body custom-scrollbar" data-auth-guard="admin">
-<aside class="fixed left-0 top-0 h-full w-64 bg-blue-950 flex flex-col py-6 z-50">
+<aside class="fixed left-0 top-0 h-full w-64 bg-slate-950 flex flex-col py-6 z-50">
 <div class="px-6 mb-12">
 <h1 class="text-xl font-bold tracking-tight text-white font-headline">Sneaker Index</h1>
 <p class="text-[0.65rem] tracking-[0.2em] text-blue-300/60 uppercase font-label mt-1">Management Console</p>
@@ -108,11 +108,11 @@
 </a>
 <a class="flex items-center gap-3 bg-white/10 text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-products.html">
 <span class="material-symbols-outlined">inventory</span>
-<span class="text-sm font-medium tracking-wide">Inventory</span>
+<span class="text-sm font-medium tracking-wide">Products</span>
 </a>
 <a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-categories.html">
 <span class="material-symbols-outlined">collections</span>
-<span class="text-sm font-medium tracking-wide">Curations</span>
+<span class="text-sm font-medium tracking-wide">Categories</span>
 </a>
 <a class="flex items-center gap-3 text-blue-200/70 hover:text-white px-4 py-3 mx-2 transition-colors duration-200" href="admin-orders.html">
 <span class="material-symbols-outlined">shopping_cart</span>
@@ -214,6 +214,7 @@
 <span class="text-lg font-headline text-on-surface-variant mr-2">$</span>
 <input class="border-none bg-transparent p-0 text-lg font-headline focus:ring-0 w-full" data-admin-product-compare="" placeholder="0.00" type="number"/>
 </div>
+<p class="mt-2 text-[10px] uppercase tracking-[0.18em] text-on-surface-variant">For strike-through pricing and discount display on catalog.</p>
 </div>
 </div>
 <div class="grid grid-cols-2 gap-12">
@@ -243,20 +244,21 @@
 </div>
 </div>
 <div class="col-span-8 space-y-6">
-<div class="border-2 border-dashed border-outline-variant p-12 flex flex-col items-center justify-center bg-surface-container-low group cursor-pointer hover:border-primary transition-colors">
+<div class="border-2 border-dashed border-outline-variant p-12 flex flex-col items-center justify-center bg-surface-container-low group cursor-pointer hover:border-primary transition-colors" data-admin-product-upload-zone="">
 <span class="material-symbols-outlined text-4xl text-outline mb-4 group-hover:text-primary transition-colors">upload_file</span>
 <p class="text-xs tracking-widest font-label text-on-surface-variant mb-2">DRAG ASSETS OR CLICK TO BROWSE</p>
 <p class="text-[0.6rem] text-outline uppercase">High-res TIFF or PNG (Transparent Preferred)</p>
 </div>
+<input accept="image/*" class="hidden" data-admin-product-upload-input="" type="file"/>
 <div class="flex flex-col border-b border-outline-variant py-2">
 <label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-1">Direct Image URL</label>
 <input class="border-none bg-transparent p-0 text-sm font-body tracking-wider focus:ring-0" data-admin-product-image="" placeholder="HTTPS://ASSETS.SNEAKERINDEX.COM/..." type="url"/>
 </div>
 <div class="grid grid-cols-4 gap-4 pt-4">
 <div class="aspect-square bg-surface-container overflow-hidden">
-<img alt="Product preview" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGUIun7W_90Wud0EL7afJMe8OaS0c7dgG-8NxQXO2QwZIyw1XfJB7WTe3Jvq9yjgDLcgBRZSIppDuuO0NFDUUb357b4FrFkixj21MBHHMppZyQPw5C6otIO_VAfy8y0XLtTSriBB8Bze6FwvYBCm9btax8YUYmNMCJr3YGJQFquIumiQJbRltwNijol7UaztrMqlHfhQbsHbs0KRRFcijWlfS2pEK_kxOyWaWhDi-aV9w-H7PaKVMWOBqHsvjWCDIh5zGvFWTcWIA"/>
+<img alt="Product preview" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-admin-product-preview-img="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAGUIun7W_90Wud0EL7afJMe8OaS0c7dgG-8NxQXO2QwZIyw1XfJB7WTe3Jvq9yjgDLcgBRZSIppDuuO0NFDUUb357b4FrFkixj21MBHHMppZyQPw5C6otIO_VAfy8y0XLtTSriBB8Bze6FwvYBCm9btax8YUYmNMCJr3YGJQFquIumiQJbRltwNijol7UaztrMqlHfhQbsHbs0KRRFcijWlfS2pEK_kxOyWaWhDi-aV9w-H7PaKVMWOBqHsvjWCDIh5zGvFWTcWIA"/>
 </div>
-<div class="aspect-square border border-outline-variant/30 bg-surface flex items-center justify-center text-outline-variant hover:text-primary hover:border-primary cursor-pointer transition-colors">
+<div class="aspect-square border border-outline-variant/30 bg-surface flex items-center justify-center text-outline-variant hover:text-primary hover:border-primary cursor-pointer transition-colors" data-admin-product-preview-add="">
 <span class="material-symbols-outlined">add</span>
 </div>
 </div>
@@ -275,11 +277,12 @@
 <label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-6 block">Defined Colorways</label>
 <div class="space-y-4" data-admin-product-colors="">
 <div class="flex items-center gap-6 p-4 bg-white border border-outline-variant/30" data-admin-product-color-row="">
-<div class="w-10 h-10 bg-[#00289c]"></div>
+<div class="w-10 h-10 bg-[#00289c]" data-admin-product-color-swatch=""></div>
 <div class="flex-1 grid grid-cols-2 gap-4">
 <input class="border-none bg-transparent p-0 text-sm font-label uppercase tracking-wider focus:ring-0" data-admin-product-color-name="" type="text" value="Royal Sovereign"/>
 <input class="border-none bg-transparent p-0 text-sm font-label text-outline uppercase tracking-wider focus:ring-0" data-admin-product-color-hex="" type="text" value="#00289C"/>
 </div>
+<input class="h-8 w-8 border border-outline-variant bg-transparent cursor-pointer" data-admin-product-color-picker="" type="color" value="#00289c"/>
 <button class="material-symbols-outlined text-outline hover:text-error transition-colors" data-admin-product-color-delete="" type="button">delete</button>
 </div>
 <button class="flex items-center gap-2 py-3 px-6 border border-outline-variant text-[0.65rem] tracking-[0.2em] font-label hover:bg-surface-container transition-colors uppercase" data-admin-product-color-add="" type="button">
@@ -289,6 +292,7 @@
 </div>
 <div>
 <label class="text-[0.6rem] font-label uppercase tracking-widest text-on-surface-variant mb-4 block">Stock Allocations</label>
+<p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant mb-4" data-admin-product-stock-summary="">3 size rows configured</p>
 <table class="w-full border-collapse">
 <thead>
 <tr class="text-left border-b border-on-surface/10">
@@ -301,17 +305,17 @@
 <tr>
 <td class="py-4 font-headline text-lg italic" data-admin-product-size-label="">8.0</td>
 <td class="py-4"><input class="bg-transparent border-none p-0 text-xs font-label tracking-widest focus:ring-0 w-full" data-admin-product-size-sku="" type="text" value="SI-AJ1-080-RS"/></td>
-<td class="py-4 text-right"><input class="bg-transparent border-none p-0 text-sm font-headline text-right focus:ring-0 w-20" data-admin-product-size-stock="" type="number" value="12"/></td>
+<td class="py-4 text-right"><input class="bg-slate-50 border border-outline-variant/30 p-1 text-sm font-headline font-bold text-right focus:ring-0 w-24" data-admin-product-size-stock="" type="number" value="12"/></td>
 </tr>
 <tr>
 <td class="py-4 font-headline text-lg italic" data-admin-product-size-label="">9.0</td>
 <td class="py-4"><input class="bg-transparent border-none p-0 text-xs font-label tracking-widest focus:ring-0 w-full" data-admin-product-size-sku="" type="text" value="SI-AJ1-090-RS"/></td>
-<td class="py-4 text-right"><input class="bg-transparent border-none p-0 text-sm font-headline text-right focus:ring-0 w-20" data-admin-product-size-stock="" type="number" value="24"/></td>
+<td class="py-4 text-right"><input class="bg-slate-50 border border-outline-variant/30 p-1 text-sm font-headline font-bold text-right focus:ring-0 w-24" data-admin-product-size-stock="" type="number" value="24"/></td>
 </tr>
 <tr>
 <td class="py-4 font-headline text-lg italic" data-admin-product-size-label="">10.5</td>
 <td class="py-4"><input class="bg-transparent border-none p-0 text-xs font-label tracking-widest focus:ring-0 w-full" data-admin-product-size-sku="" type="text" value="SI-AJ1-105-RS"/></td>
-<td class="py-4 text-right"><input class="bg-transparent border-none p-0 text-sm font-headline text-right focus:ring-0 w-20" data-admin-product-size-stock="" type="number" value="8"/></td>
+<td class="py-4 text-right"><input class="bg-slate-50 border border-outline-variant/30 p-1 text-sm font-headline font-bold text-right focus:ring-0 w-24" data-admin-product-size-stock="" type="number" value="8"/></td>
 </tr>
 </tbody>
 </table>

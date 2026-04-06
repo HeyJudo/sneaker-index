@@ -89,7 +89,7 @@
 </head>
 <body class="bg-surface font-body text-on-surface" data-auth-guard="admin">
 <!-- SIDEBAR -->
-<aside class="fixed left-0 top-0 h-full w-64 bg-blue-900 dark:bg-slate-950 flex flex-col py-8 px-4 z-50 shadow-xl border-r-0">
+<aside class="fixed left-0 top-0 h-full w-64 bg-slate-950 flex flex-col py-8 px-4 z-50 shadow-xl border-r-0">
 <div class="mb-12 px-4">
 <div class="flex items-center gap-3">
 <span class="font-bebas text-4xl text-white tracking-widest">S</span>
@@ -106,7 +106,7 @@
 </a>
 <a class="flex items-center gap-3 px-4 py-3 text-white/60 hover:text-white transition-colors hover:bg-white/5" href="admin-products.html">
 <span class="material-symbols-outlined">inventory_2</span>
-<span class="font-lato text-sm uppercase tracking-wider">Inventory</span>
+<span class="font-lato text-sm uppercase tracking-wider">Products</span>
 </a>
 <a class="flex items-center gap-3 px-4 py-3 bg-white/10 text-white font-semibold" href="admin-categories.html">
 <span class="material-symbols-outlined">category</span>
@@ -143,7 +143,7 @@
 <div class="flex items-center gap-6 w-1/2">
 <div class="relative w-full">
 <span class="material-symbols-outlined absolute left-0 top-1/2 -translate-y-1/2 text-on-surface-variant">search</span>
-<input class="w-full pl-8 py-2 bg-transparent border-none focus:ring-0 font-lato text-sm tracking-widest uppercase placeholder:text-on-surface-variant" placeholder="SEARCH ARCHIVE..." type="text"/>
+<input class="w-full pl-8 py-2 bg-transparent border-none focus:ring-0 font-lato text-sm tracking-widest uppercase placeholder:text-on-surface-variant" data-admin-categories-search="" placeholder="SEARCH CATEGORIES..." type="text"/>
 </div>
 </div>
 <div class="flex items-center gap-8">
@@ -163,7 +163,7 @@
 <main class="ml-64 pt-16 min-h-screen bg-surface">
 <div class="p-12 max-w-7xl mx-auto">
 <!-- TOASTS (Overlay) -->
-<div class="fixed top-20 right-8 z-[60] flex flex-col gap-4">
+<div class="fixed top-20 right-8 z-[60] flex flex-col gap-4 hidden" data-admin-categories-demo-toast="">
 <div class="bg-primary text-white p-4 shadow-2xl flex items-center gap-4 min-w-[300px]">
 <span class="material-symbols-outlined">check_circle</span>
 <span class="font-lato text-sm uppercase tracking-wider">Category saved</span>
@@ -183,17 +183,18 @@
 <div class="flex items-center gap-6">
 <span class="font-lato text-xs font-bold tracking-[0.3em] text-primary uppercase bg-primary-fixed px-3 py-1">TAXONOMY ENGINE V2.0</span>
 </div>
+<div class="hidden border px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-bold" data-admin-categories-feedback=""></div>
 <div class="flex gap-12">
 <div class="flex flex-col items-end">
-<span class="font-bebas text-3xl leading-none">12</span>
+<span class="font-bebas text-3xl leading-none" data-admin-categories-total="">0</span>
 <span class="font-lato text-[10px] font-bold uppercase text-on-surface-variant tracking-widest">Categories</span>
 </div>
 <div class="flex flex-col items-end">
-<span class="font-bebas text-3xl leading-none">10</span>
+<span class="font-bebas text-3xl leading-none" data-admin-categories-active="">0</span>
 <span class="font-lato text-[10px] font-bold uppercase text-secondary tracking-widest">Active</span>
 </div>
 <div class="flex flex-col items-end">
-<span class="font-bebas text-3xl leading-none">02</span>
+<span class="font-bebas text-3xl leading-none" data-admin-categories-hidden="">0</span>
 <span class="font-lato text-[10px] font-bold uppercase text-error tracking-widest">Hidden</span>
 </div>
 </div>
@@ -203,30 +204,32 @@
 <!-- FORM PANEL -->
 <section class="col-span-4">
 <div class="bg-surface-container-low p-8">
-<h2 class="font-bebas text-3xl mb-8 tracking-wide">ADD NEW CATEGORY</h2>
-<form class="space-y-6">
+<h2 class="font-bebas text-3xl mb-8 tracking-wide" data-admin-categories-form-title="">ADD NEW CATEGORY</h2>
+<form class="space-y-6" data-admin-categories-form="">
+<input data-admin-categories-id="" type="hidden"/>
 <div>
 <label class="block font-lato text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Category Name</label>
-<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent focus:ring-0 focus:border-primary px-0 font-lato py-3 placeholder:text-outline-variant/50" placeholder="e.g. PERFORMANCE BASKETBALL" type="text"/>
+<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent focus:ring-0 focus:border-primary px-0 font-lato py-3 placeholder:text-outline-variant/50" data-admin-categories-name="" placeholder="e.g. PERFORMANCE BASKETBALL" type="text"/>
 </div>
 <div>
 <label class="block font-lato text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Slug</label>
-<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent focus:ring-0 focus:border-primary px-0 font-lato py-3 placeholder:text-outline-variant/50" placeholder="performance-basketball" type="text"/>
+<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent focus:ring-0 focus:border-primary px-0 font-lato py-3 placeholder:text-outline-variant/50" data-admin-categories-slug="" placeholder="performance-basketball" type="text"/>
 </div>
 <div>
-<label class="block font-lato text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Display Order</label>
-<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent focus:ring-0 focus:border-primary px-0 font-lato py-3 placeholder:text-outline-variant/50" placeholder="00" type="number"/>
+<label class="block font-lato text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-2">Display Priority</label>
+<input class="w-full border-0 border-b-2 border-outline-variant bg-transparent focus:ring-0 focus:border-primary px-0 font-lato py-3 placeholder:text-outline-variant/50" data-admin-categories-order="" placeholder="0 = top priority" type="number"/>
 </div>
 <div>
 <label class="block font-lato text-[10px] font-bold uppercase tracking-widest text-on-surface-variant mb-4">Visibility State</label>
 <div class="flex bg-white shadow-sm overflow-hidden">
-<button class="flex-1 py-3 bg-primary text-white font-lato text-[10px] font-bold uppercase tracking-widest" type="button">ACTIVE</button>
-<button class="flex-1 py-3 bg-white text-on-surface-variant hover:bg-slate-50 font-lato text-[10px] font-bold uppercase tracking-widest" type="button">HIDDEN</button>
+<button class="flex-1 py-3 bg-primary text-white font-lato text-[10px] font-bold uppercase tracking-widest" data-admin-categories-visibility="active" type="button">ACTIVE</button>
+<button class="flex-1 py-3 bg-white text-on-surface-variant hover:bg-slate-50 font-lato text-[10px] font-bold uppercase tracking-widest" data-admin-categories-visibility="hidden" type="button">HIDDEN</button>
 </div>
 </div>
-<button class="w-full bg-primary text-white font-lato text-sm font-bold uppercase tracking-[0.2em] py-4 mt-8 hover:bg-secondary transition-all active:scale-[0.98]" type="submit">
-                                SAVE CATEGORY
-                            </button>
+<div class="flex gap-3">
+<button class="w-full bg-primary text-white font-lato text-sm font-bold uppercase tracking-[0.2em] py-4 mt-8 hover:bg-secondary transition-all active:scale-[0.98]" data-admin-categories-save="" type="submit">SAVE CATEGORY</button>
+<button class="w-full bg-white border border-outline-variant text-on-surface-variant font-lato text-sm font-bold uppercase tracking-[0.2em] py-4 mt-8 hover:bg-slate-50 transition-all" data-admin-categories-reset="" type="button">RESET</button>
+</div>
 </form>
 </div>
 </section>
@@ -240,11 +243,11 @@
 <th class="px-6 py-4 font-lato text-[10px] font-bold uppercase tracking-[0.2em]">Slug</th>
 <th class="px-6 py-4 font-lato text-[10px] font-bold uppercase tracking-[0.2em]">Status</th>
 <th class="px-6 py-4 font-lato text-[10px] font-bold uppercase tracking-[0.2em] text-center">Products</th>
-<th class="px-6 py-4 font-lato text-[10px] font-bold uppercase tracking-[0.2em] text-center">Order</th>
+<th class="px-6 py-4 font-lato text-[10px] font-bold uppercase tracking-[0.2em] text-center">Priority</th>
 <th class="px-6 py-4 font-lato text-[10px] font-bold uppercase tracking-[0.2em] text-right">Actions</th>
 </tr>
 </thead>
-<tbody class="font-lato text-sm divide-y divide-slate-100">
+<tbody class="font-lato text-sm divide-y divide-slate-100" data-admin-categories-tbody="">
 <tr class="hover:bg-surface-container-low transition-colors group">
 <td class="px-6 py-5 font-bebas text-xl tracking-wide">LIFESTYLE &amp; HERITAGE</td>
 <td class="px-6 py-5 text-on-surface-variant">lifestyle-heritage</td>
@@ -304,7 +307,7 @@
 </div>
 </main>
 <!-- DELETE MODAL (Overlay) -->
-<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[100] flex items-center justify-center p-6">
+<div class="fixed inset-0 bg-on-surface/40 backdrop-blur-sm z-[100] hidden items-center justify-center p-6">
 <div class="max-w-lg w-full bg-white shadow-2xl overflow-hidden">
 <header class="bg-error p-6 text-white">
 <div class="flex items-center gap-3">
@@ -330,4 +333,5 @@
 <script defer src="../js/auth-api.js"></script>
 <script defer src="../js/session-ui.js"></script>
 <script defer src="../js/admin-session.js"></script>
+<script defer src="../js/admin-categories.js"></script>
 </body></html>

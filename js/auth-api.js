@@ -123,5 +123,43 @@
         method: "DELETE",
       });
     },
+    adminListOrders(params) {
+      return request(`/admin/orders${toQueryString(params)}`, {
+        method: "GET",
+      });
+    },
+    adminGetOrder(orderId) {
+      return request(`/admin/orders/${orderId}`, {
+        method: "GET",
+      });
+    },
+    adminUpdateOrderStatus(orderId, status) {
+      return request(`/admin/orders/${orderId}/status`, {
+        method: "PATCH",
+        body: JSON.stringify({ status }),
+      });
+    },
+    adminListCategories() {
+      return request("/admin/categories", {
+        method: "GET",
+      });
+    },
+    adminCreateCategory(data) {
+      return request("/admin/categories", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+    },
+    adminUpdateCategory(categoryId, data) {
+      return request(`/admin/categories/${categoryId}`, {
+        method: "PUT",
+        body: JSON.stringify(data),
+      });
+    },
+    adminDeleteCategory(categoryId) {
+      return request(`/admin/categories/${categoryId}`, {
+        method: "DELETE",
+      });
+    },
   };
 })(window);

@@ -145,16 +145,14 @@
 <div class="flex items-center flex-1 max-w-xl">
 <div class="relative w-full">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-lg" data-icon="search">search</span>
-<input class="w-full bg-surface-container-low border-none focus:ring-0 text-sm font-inter py-2 pl-10 pr-4" data-admin-orders-search="" placeholder="Search order ID, SKU, or customer name..." type="text"/>
+<input class="w-full bg-surface-container-low border-none focus:ring-0 text-sm font-inter py-2 pl-10 pr-4" placeholder="Search order ID, SKU, or customer name..." type="text"/>
 </div>
 </div>
 <div class="flex items-center gap-8">
 <nav class="hidden md:flex gap-6">
-<button class="text-blue-700 font-inter text-sm uppercase tracking-widest font-bold border-b-2 border-blue-700" data-admin-orders-filter="all" type="button">All</button>
-<button class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-admin-orders-filter="processing" type="button">Processing</button>
-<button class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-admin-orders-filter="shipped" type="button">Shipped</button>
-<button class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-admin-orders-filter="delivered" type="button">Delivered</button>
-<button class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" data-admin-orders-filter="cancelled" type="button">Cancelled</button>
+<a class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" href="#">Recent</a>
+<a class="text-slate-500 font-inter text-sm uppercase tracking-widest hover:text-blue-600 transition-colors" href="#">Flagged</a>
+<a class="text-blue-700 font-inter text-sm uppercase tracking-widest font-bold border-b-2 border-blue-700" href="#">Fulfilled</a>
 </nav>
 <div class="flex items-center gap-4">
 <button class="text-slate-500 hover:text-blue-600 transition-colors opacity-100 hover:opacity-80">
@@ -171,7 +169,6 @@
 <div class="p-8 pb-0">
 <span class="label-md font-label text-[10px] tracking-[0.2em] text-primary uppercase mb-2 block">Curation Management</span>
 <h2 class="display-lg font-headline text-4xl mb-8">Active Shipments</h2>
-<p class="text-[11px] uppercase tracking-[0.2em] text-outline mb-6" data-admin-orders-count="">Loading orders...</p>
 </div>
 <table class="w-full text-left border-collapse">
 <thead class="sticky top-0 bg-white z-10">
@@ -208,7 +205,7 @@
 </th>
 </tr>
 </thead>
-<tbody class="divide-y divide-surface-container-low" data-admin-orders-tbody="">
+<tbody class="divide-y divide-surface-container-low">
 <tr class="bg-blue-50/50 group cursor-pointer border-l-4 border-primary">
 <td class="px-8 py-5 text-sm font-bold font-headline">#SI-20240405</td>
 <td class="px-4 py-5">
@@ -286,29 +283,22 @@
 </tr>
 </tbody>
 </table>
-<div class="px-8 py-6 border-t border-surface-container-high bg-white flex items-center justify-between">
-<button class="px-4 py-2 border border-surface-container-high text-[10px] uppercase tracking-widest font-bold text-outline hover:text-primary disabled:opacity-40" data-admin-orders-prev="" type="button">Previous</button>
-<span class="text-[10px] uppercase tracking-[0.2em] font-bold text-outline" data-admin-orders-page="">Page 1</span>
-<button class="px-4 py-2 border border-surface-container-high text-[10px] uppercase tracking-widest font-bold text-outline hover:text-primary disabled:opacity-40" data-admin-orders-next="" type="button">Next</button>
-</div>
 </section>
 <section class="w-5/12 overflow-auto bg-surface border-l border-surface-container-high p-10">
 <div class="max-w-xl mx-auto space-y-12">
-<div class="hidden border px-4 py-3 text-[10px] uppercase tracking-[0.2em] font-bold" data-admin-orders-feedback=""></div>
 <div class="flex justify-between items-start">
 <div>
 <span class="label-md font-label text-[10px] tracking-[0.2em] text-outline uppercase mb-1 block">Selected Order</span>
-<h3 class="display-lg font-headline text-3xl" data-admin-order-number="">Select an order</h3>
+<h3 class="display-lg font-headline text-3xl">#SI-20240405</h3>
 </div>
 <div class="flex flex-col items-end">
 <label class="text-[10px] uppercase font-bold tracking-widest text-outline mb-2">Update Status</label>
-<select class="bg-white border-2 border-primary text-primary text-xs font-bold px-4 py-2 rounded-none focus:ring-0" data-admin-order-status="">
-<option value="processing">PROCESSING</option>
-<option value="shipped">SHIPPED</option>
-<option value="delivered">DELIVERED</option>
-<option value="cancelled">CANCELLED</option>
+<select class="bg-white border-2 border-primary text-primary text-xs font-bold px-4 py-2 rounded-none focus:ring-0">
+<option>PROCESSING</option>
+<option>SHIPPED</option>
+<option>DELIVERED</option>
+<option>CANCELLED</option>
 </select>
-<button class="mt-2 bg-primary text-white px-4 py-2 text-[10px] uppercase tracking-[0.2em] font-bold disabled:opacity-40" data-admin-order-save="" type="button">Save</button>
 </div>
 </div>
 <div class="grid grid-cols-2 gap-8">
@@ -316,16 +306,21 @@
 <h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
 <span class="material-symbols-outlined !text-[14px]" data-icon="person">person</span>Customer Information
 </h4>
-<div class="space-y-1" data-admin-order-customer="">
-<p class="text-sm font-bold">No order selected</p>
+<div class="space-y-1">
+<p class="text-sm font-bold">Elena Rostova</p>
+<p class="text-xs text-outline">erostova@curator.io</p>
+<p class="text-xs text-outline">+44 7700 900077</p>
 </div>
 </div>
 <div>
 <h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
 <span class="material-symbols-outlined !text-[14px]" data-icon="location_on">location_on</span>Shipping Destination
 </h4>
-<div class="space-y-1" data-admin-order-address="">
-<p class="text-sm text-outline">No shipping data</p>
+<div class="space-y-1">
+<p class="text-sm">Apartment 4B, The Shard</p>
+<p class="text-sm">32 London Bridge St</p>
+<p class="text-sm">London SE1 9SG</p>
+<p class="text-xs font-bold text-outline uppercase mt-1">United Kingdom</p>
 </div>
 </div>
 </div>
@@ -333,7 +328,7 @@
 <h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-6 pb-2 border-b border-surface-container flex items-center gap-2">
 <span class="material-symbols-outlined !text-[14px]" data-icon="shopping_bag">shopping_bag</span>Ordered Items
 </h4>
-<div class="space-y-6" data-admin-order-items="">
+<div class="space-y-6">
 <div class="flex gap-4 items-center group">
 <div class="w-20 h-20 bg-surface-container-low cobalt-grade overflow-hidden">
 <img alt="Product Thumbnail" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrz4zdikBNsuwRFaDxHnKvZGRZFrZSLmIsG5NH29F2AgltOoWPh0aAOUYrR_eprlN-qZRvjLw8nLrCYmi3l-bXBgzXlMC9FYHiU4n8Vxdw0le_GJAb21MxWkX-WqDtSGRXMUDm94ZRY9aYST3wJza4Bn0VEcyNG95bjkxvHzJU8mNL2l2E7xqal3lSmjKWuIs_wiTSOfDtGwQcd3P9bxiiBFnN4WZUOWR2lVgkpLJ0Fv55-gQcgKSBYtUPF-GI5KThClTD4MjDGPk"/>
@@ -384,19 +379,19 @@
 </h4>
 <div class="flex justify-between text-xs">
 <span class="text-outline uppercase tracking-wider font-bold">Subtotal</span>
-<span class="font-headline font-bold" data-admin-order-subtotal="">$0.00</span>
+<span class="font-headline font-bold">$2,450.00</span>
 </div>
 <div class="flex justify-between text-xs">
-<span class="text-outline uppercase tracking-wider font-bold" data-admin-order-shipping-label="">Shipping</span>
-<span class="font-headline font-bold" data-admin-order-shipping="">$0.00</span>
+<span class="text-outline uppercase tracking-wider font-bold">Shipping (Priority)</span>
+<span class="font-headline font-bold">$0.00</span>
 </div>
 <div class="flex justify-between text-xs">
-<span class="text-outline uppercase tracking-wider font-bold">Tax</span>
-<span class="font-headline font-bold" data-admin-order-tax="">$0.00</span>
+<span class="text-outline uppercase tracking-wider font-bold">Insurance</span>
+<span class="font-headline font-bold">$120.00</span>
 </div>
 <div class="pt-3 mt-3 border-t border-white/40 flex justify-between items-end">
 <span class="text-primary font-bold uppercase tracking-widest text-[11px]">Total Balance</span>
-<span class="text-2xl font-headline font-bold text-primary" data-admin-order-total="">$0.00</span>
+<span class="text-2xl font-headline font-bold text-primary">$2,570.00</span>
 </div>
 </div>
 <div class="grid grid-cols-2 gap-8">
@@ -404,7 +399,7 @@
 <h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
 <span class="material-symbols-outlined !text-[14px]" data-icon="credit_card">credit_card</span>Payment Method
 </h4>
-<div class="flex items-center gap-3" data-admin-order-payment="">
+<div class="flex items-center gap-3">
 <div class="space-y-0.5">
 <p class="text-xs font-bold uppercase tracking-tighter">Visa Platinum</p>
 <p class="text-[10px] text-outline">Ending in •••• 9901</p>
@@ -415,7 +410,7 @@
 <h4 class="text-[11px] font-bold uppercase tracking-widest text-primary mb-4 pb-2 border-b border-surface-container flex items-center gap-2">
 <span class="material-symbols-outlined !text-[14px]" data-icon="schedule">schedule</span>Timeline
 </h4>
-<div class="relative space-y-4 pl-4 border-l border-surface-container-highest" data-admin-order-timeline="">
+<div class="relative space-y-4 pl-4 border-l border-surface-container-highest">
 <div class="relative">
 <div class="absolute -left-[1.35rem] top-1 w-2.5 h-2.5 bg-primary"></div>
 <p class="text-[10px] font-bold uppercase tracking-wider">Order Placed</p>
@@ -435,11 +430,11 @@
 </div>
 </div>
 <div class="pt-6 border-t border-surface-container-high flex gap-4">
-<button class="flex-1 bg-primary text-white py-3 text-[11px] font-bold tracking-widest uppercase hover:bg-secondary transition-all active:scale-95 duration-150 flex items-center justify-center gap-2" data-admin-order-refresh="" type="button">
-<span class="material-symbols-outlined !text-[16px]" data-icon="refresh">refresh</span>Refresh Order
+<button class="flex-1 bg-primary text-white py-3 text-[11px] font-bold tracking-widest uppercase hover:bg-secondary transition-all active:scale-95 duration-150 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined !text-[16px]" data-icon="description">description</span>Generate Commercial Invoice
 </button>
-<button class="px-6 border-2 border-outline/20 text-outline py-3 text-[11px] font-bold tracking-widest uppercase hover:bg-surface-container-low transition-colors flex items-center gap-2" data-admin-order-view-store="" type="button">
-<span class="material-symbols-outlined !text-[16px]" data-icon="storefront">storefront</span>View Store
+<button class="px-6 border-2 border-outline/20 text-outline py-3 text-[11px] font-bold tracking-widest uppercase hover:bg-surface-container-low transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined !text-[16px]" data-icon="archive">archive</span>Archive
 </button>
 </div>
 </div>
@@ -449,5 +444,4 @@
 <script defer src="../js/auth-api.js"></script>
 <script defer src="../js/session-ui.js"></script>
 <script defer src="../js/admin-session.js"></script>
-<script defer src="../js/admin-orders.js"></script>
 </body></html>

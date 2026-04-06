@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     featured: document.querySelector("[data-admin-products-featured]"),
     tbody: document.querySelector("[data-admin-products-tbody]"),
     count: document.querySelector("[data-admin-products-count]"),
+    registered: document.querySelector("[data-admin-products-registered]"),
     prev: document.querySelector("[data-admin-products-prev]"),
     next: document.querySelector("[data-admin-products-next]"),
     page: document.querySelector("[data-admin-products-page]"),
@@ -146,12 +147,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (state.total === 0) {
       elements.count.textContent = "No products found";
+      if (elements.registered) {
+        elements.registered.textContent = "0 PRODUCTS REGISTERED";
+      }
       return;
     }
 
     const start = (state.page - 1) * state.limit + 1;
     const end = Math.min(state.page * state.limit, state.total);
     elements.count.textContent = `Showing ${start} to ${end} of ${state.total} results`;
+
+    if (elements.registered) {
+      const totalLabel = Number(state.total).toLocaleString("en-US");
+      elements.registered.textContent = `${totalLabel} PRODUCTS REGISTERED`;
+    }
   }
 
   function updatePagination() {
@@ -204,6 +213,9 @@ document.addEventListener("DOMContentLoaded", () => {
       setEmptyRow(error.message || "Failed to load products.");
       if (elements.count) {
         elements.count.textContent = "Failed to load inventory";
+      }
+      if (elements.registered) {
+        elements.registered.textContent = "0 PRODUCTS REGISTERED";
       }
     } finally {
       state.isLoading = false;
