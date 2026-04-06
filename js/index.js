@@ -67,21 +67,44 @@
     return `catalog.html?brand=${encodeURIComponent(brandName)}`;
   }
 
+  const brandLogos = {
+    "nike": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_NIKE.svg",
+    "adidas": "https://upload.wikimedia.org/wikipedia/commons/2/20/Adidas_Logo.svg",
+    "jordan brand": "https://upload.wikimedia.org/wikipedia/en/thumb/3/37/Jumpman_logo.svg/1200px-Jumpman_logo.svg.png",
+    "converse": "https://upload.wikimedia.org/wikipedia/commons/3/30/Converse_logo.svg",
+    "new balance": "https://upload.wikimedia.org/wikipedia/commons/e/ea/New_Balance_logo.svg",
+    "asics": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Asics_Logo.svg",
+    "merrell": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/Merrell_Logo.svg/2560px-Merrell_Logo.svg.png"
+  };
+
   function renderBrands(brands) {
     if (!elements.brandStrip) {
       return;
     }
 
-    elements.brandStrip.innerHTML = brands
-      .slice(0, 6)
+    const brandItems = brands
       .map(
-        (brand) => `
-          <a class="font-bold text-2xl tracking-tighter hover:text-primary transition-colors" href="${brandLink(brand.name)}">
+        (brand) => {
+          const logoUrl = brandLogos[brand.name.toLowerCase()];
+          if (logoUrl) {
+             return `<a class="flex items-center justify-center opacity-30 hover:opacity-100 transition-opacity mx-16 grayscale hover:grayscale-0" href="${brandLink(brand.name)}">
+                       <img src="${logoUrl}" alt="${escapeHtml(brand.name)}" class="h-10 max-w-[120px] object-contain" />
+                     </a>`;
+          }
+          return `<a class="font-bold text-2xl tracking-tighter hover:text-primary transition-colors opacity-30 hover:opacity-100 mx-16 grayscale hover:grayscale-0" href="${brandLink(brand.name)}">
             ${escapeHtml(brand.name.toUpperCase())}
-          </a>
-        `
+          </a>`
+        }
       )
       .join("");
+
+    elements.brandStrip.innerHTML = `
+      <div class="flex items-center animate-marquee whitespace-nowrap min-w-full">
+         ${brandItems}
+         ${brandItems}
+         ${brandItems}
+      </div>
+    `;
   }
 
   function renderCategories(categories) {
