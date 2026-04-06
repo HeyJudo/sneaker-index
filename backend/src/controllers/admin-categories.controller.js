@@ -3,6 +3,7 @@ const { Category, Product } = require("../models");
 const { sendSuccess } = require("../utils/api-response");
 const { AppError } = require("../utils/app-error");
 const { createSlug } = require("../utils/slug");
+const { logActivity } = require("../utils/activity-log");
 
 function normalizePositiveInt(value, fallback) {
   const parsed = Number.parseInt(value, 10);
@@ -130,6 +131,17 @@ async function createAdminCategory(req, res) {
 
   const category = await Category.create(payload);
 
+  await logActivity({
+    type: "category_created",
+    title: "Category Created",
+    message: `${category.name} category was added.`,
+    actor: req.user,
+    meta: {
+      categoryId: String(category._id),
+      slug: category.slug,
+    },
+  });
+
   sendSuccess(res, {
     statusCode: 201,
     message: "Category created successfully.",
@@ -168,6 +180,19 @@ async function updateAdminCategory(req, res) {
   existing.sortOrder = payload.sortOrder;
   await existing.save();
 
+  await logActivity({
+    type: "category_updated",
+    title: "Category Updated",
+    message: `${existing.name} category was updated.`,
+    actor: req.user,
+    meta: {
+      categoryId: String(existing._id),
+      slug: existing.slug,
+      isActive: existing.isActive,
+      sortOrder: existing.sortOrder,
+    },
+  });
+
   const productCount = await Product.countDocuments({ categoryId: existing._id });
 
   sendSuccess(res, {
@@ -200,6 +225,17 @@ async function deleteAdminCategory(req, res) {
   }
 
   await Category.deleteOne({ _id: category._id });
+
+  await logActivity({
+    type: "category_deleted",
+    title: "Category Deleted",
+    message: `${category.name} category was deleted.`,
+    actor: req.user,
+    meta: {
+      categoryId: String(category._id),
+      slug: category.slug,
+    },
+  });
 
   sendSuccess(res, {
     message: "Category deleted successfully.",

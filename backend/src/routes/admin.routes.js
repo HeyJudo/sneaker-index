@@ -19,6 +19,7 @@ const {
   updateAdminCategory,
   deleteAdminCategory,
 } = require("../controllers/admin-categories.controller");
+const { listAdminActivity } = require("../controllers/admin-activity.controller");
 const { requireAuth, requireRole } = require("../middleware/auth.middleware");
 const { validateBody } = require("../middleware/validate.middleware");
 const { asyncHandler } = require("../utils/async-handler");
@@ -106,6 +107,12 @@ router.delete(
   requireAuth,
   requireRole("admin"),
   asyncHandler(deleteAdminCategory)
+);
+router.get(
+  "/activity",
+  requireAuth,
+  requireRole("admin"),
+  asyncHandler(listAdminActivity)
 );
 
 module.exports = router;

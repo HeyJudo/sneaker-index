@@ -3,6 +3,7 @@ const Category = require("../models/Category");
 const Product = require("../models/Product");
 const { sendSuccess } = require("../utils/api-response");
 const { AppError } = require("../utils/app-error");
+const { logActivity } = require("../utils/activity-log");
 
 function normalizePositiveInt(value, fallback) {
   const parsed = Number.parseInt(value, 10);
@@ -307,6 +308,17 @@ async function createAdminProduct(req, res) {
     .populate("categoryId", "name slug")
     .lean();
 
+  await logActivity({
+    type: "product_created",
+    title: "Product Created",
+    message: `${populatedProduct.name} added to the product archive.`,
+    actor: req.user,
+    meta: {
+      productId: String(populatedProduct._id),
+      slug: populatedProduct.slug,
+    },
+  });
+
   sendSuccess(res, {
     statusCode: 201,
     message: "Product created successfully.",
@@ -341,6 +353,17 @@ async function updateAdminProduct(req, res) {
     .populate("categoryId", "name slug")
     .lean();
 
+  await logActivity({
+    type: "product_updated",
+    title: "Product Updated",
+    message: `${populatedProduct.name} details were updated.`,
+    actor: req.user,
+    meta: {
+      productId: String(populatedProduct._id),
+      slug: populatedProduct.slug,
+    },
+  });
+
   sendSuccess(res, {
     message: "Product updated successfully.",
     data: {
@@ -362,6 +385,17 @@ async function archiveAdminProduct(req, res) {
 
   product.isArchived = normalizeBoolean(req.body?.isArchived, true);
   await product.save();
+
+  await logActivity({
+    type: product.isArchived ? "product_archived" : "product_restored",
+    title: product.isArchived ? "Product Archived" : "Product Restored",
+    message: `${product.name} was ${product.isArchived ? "archived" : "restored"}.`,
+    actor: req.user,
+    meta: {
+      productId: String(product._id),
+      isArchived: product.isArchived,
+    },
+  });
 
   sendSuccess(res, {
     message: product.isArchived
@@ -386,6 +420,17 @@ async function deleteAdminProduct(req, res) {
       code: "PRODUCT_NOT_FOUND",
     });
   }
+
+  await logActivity({
+    type: "product_deleted",
+    title: "Product Deleted",
+    message: `${deleted.name} was deleted from the archive.`,
+    actor: req.user,
+    meta: {
+      productId: req.params.productId,
+      slug: deleted.slug,
+    },
+  });
 
   sendSuccess(res, {
     message: "Product deleted successfully.",

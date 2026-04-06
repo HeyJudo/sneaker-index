@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const { Order, User } = require("../models");
 const { sendSuccess } = require("../utils/api-response");
 const { AppError } = require("../utils/app-error");
+const { logActivity } = require("../utils/activity-log");
 
 const ALLOWED_STATUSES = [
   "confirmed",
@@ -272,8 +273,22 @@ async function updateAdminOrderStatus(req, res) {
     });
   }
 
+  const previousStatus = order.status;
   order.status = status;
   await order.save();
+
+  await logActivity({
+    type: "order_status_updated",
+    title: "Order Status Updated",
+    message: `${order.orderNumber} moved from ${mapStatusForUi(previousStatus)} to ${mapStatusForUi(status)}.`,
+    actor: req.user,
+    meta: {
+      orderId: String(order._id),
+      orderNumber: order.orderNumber,
+      fromStatus: mapStatusForUi(previousStatus),
+      toStatus: mapStatusForUi(status),
+    },
+  });
 
   const userMap = await buildUserMapFromOrders([order.toObject()]);
 

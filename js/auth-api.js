@@ -161,5 +161,10 @@
         method: "DELETE",
       });
     },
+    adminListActivity(params) {
+      return request(`/admin/activity${toQueryString(params)}`, {
+        method: "GET",
+      });
+    },
   };
 })(window);

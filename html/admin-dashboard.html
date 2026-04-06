@@ -165,7 +165,7 @@
 <header class="bg-white/70 dark:bg-slate-950/70 backdrop-blur-md fixed top-0 right-0 w-[calc(100%-16rem)] z-40 flex justify-between items-center h-20 px-12 transition-all">
 <div>
 <h1 class="text-2xl font-serif italic text-slate-900 dark:text-white">DASHBOARD</h1>
-<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase">APRIL 5, 2026 | 11:55 PM</p>
+<p class="text-[10px] font-bold tracking-widest text-slate-400 uppercase" data-admin-dashboard-timestamp="">LIVE OVERVIEW</p>
 </div>
 <div class="flex items-center gap-8">
 <div class="flex gap-4">
@@ -176,7 +176,7 @@
 <span class="material-symbols-outlined" data-icon="schedule">schedule</span>
 </button>
 </div>
-<button class="bg-primary-container text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-secondary transition-colors">
+<button class="bg-primary-container text-on-primary px-6 py-2 text-xs font-bold uppercase tracking-widest hover:bg-secondary transition-colors" data-admin-dashboard-refresh="" type="button">
                     Refresh
                 </button>
 </div>
@@ -186,7 +186,7 @@
 <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
 <div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-l-4 border-primary">
 <span class="text-xs font-bold text-outline uppercase tracking-widest">Total Products</span>
-<span class="text-5xl kpi-val mt-4 text-primary">1,284</span>
+<span class="text-5xl kpi-val mt-4 text-primary" data-admin-kpi-products="">0</span>
 <div class="mt-4 flex items-center text-[10px] text-primary font-bold">
 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
 <span class="ml-1">+12.5% VS LAST MONTH</span>
@@ -194,7 +194,7 @@
 </div>
 <div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-l-4 border-primary">
 <span class="text-xs font-bold text-outline uppercase tracking-widest">Total Orders</span>
-<span class="text-5xl kpi-val mt-4 text-primary">8,421</span>
+<span class="text-5xl kpi-val mt-4 text-primary" data-admin-kpi-orders="">0</span>
 <div class="mt-4 flex items-center text-[10px] text-primary font-bold">
 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">trending_up</span>
 <span class="ml-1">+5.2% VS LAST MONTH</span>
@@ -202,7 +202,7 @@
 </div>
 <div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-2 border-error">
 <span class="text-xs font-bold text-error uppercase tracking-widest">Low Stock Alerts</span>
-<span class="text-5xl kpi-val mt-4 text-error">24</span>
+<span class="text-5xl kpi-val mt-4 text-error" data-admin-kpi-low-stock="">0</span>
 <div class="mt-4 flex items-center text-[10px] text-error font-bold">
 <span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">warning</span>
 <span class="ml-1">IMMEDIATE ACTION REQUIRED</span>
@@ -210,7 +210,7 @@
 </div>
 <div class="bg-surface-container-lowest p-8 flex flex-col justify-between border-l-4 border-primary">
 <span class="text-xs font-bold text-outline uppercase tracking-widest">Total Categories</span>
-<span class="text-5xl kpi-val mt-4 text-primary">18</span>
+<span class="text-5xl kpi-val mt-4 text-primary" data-admin-kpi-categories="">0</span>
 <div class="mt-4 flex items-center text-[10px] text-slate-400 font-bold">
 <span class="material-symbols-outlined text-sm">category</span>
 <span class="ml-1">STABLE ARCHIVE</span>
@@ -219,19 +219,19 @@
 </section>
 <!-- Quick Actions -->
 <div class="flex flex-wrap gap-4 mb-12">
-<button class="bg-primary text-white px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-primary-container transition-all">
+<button class="bg-primary text-white px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-primary-container transition-all" data-admin-dashboard-go-products="" type="button">
 <span class="material-symbols-outlined text-sm">add</span>
                     Add Product
                 </button>
-<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all" data-admin-dashboard-go-orders="" type="button">
 <span class="material-symbols-outlined text-sm">list_alt</span>
                     Manage Orders
                 </button>
-<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all" data-admin-dashboard-go-categories="" type="button">
 <span class="material-symbols-outlined text-sm">file_download</span>
-                    Export Data
+                    Manage Categories
                 </button>
-<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all">
+<button class="bg-white text-primary border border-primary/20 px-8 py-3 text-xs font-bold uppercase tracking-widest flex items-center gap-2 hover:bg-surface-container-low transition-all" data-admin-dashboard-sync="" type="button">
 <span class="material-symbols-outlined text-sm">sync</span>
                     Sync Inventory
                 </button>
@@ -242,7 +242,7 @@
 <div class="lg:col-span-2 bg-surface-container-lowest p-0 shadow-sm border border-surface-container-high overflow-hidden">
 <div class="p-8 flex justify-between items-center bg-white border-b border-surface-container-low">
 <h3 class="text-xl tracking-widest uppercase">Recent Orders</h3>
-<a class="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest" href="#">View All Archives</a>
+<a class="text-[10px] font-bold text-primary hover:underline uppercase tracking-widest" href="admin-orders.html">View All Archives</a>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left">
@@ -255,7 +255,7 @@
 <th class="px-8 py-4">Action</th>
 </tr>
 </thead>
-<tbody class="text-xs">
+<tbody class="text-xs" data-admin-dashboard-recent-orders="">
 <tr class="border-b border-surface-container-low hover:bg-surface-container-low transition-colors">
 <td class="px-8 py-5 font-mono">#ORD-9921</td>
 <td class="px-8 py-5 font-bold uppercase">Marcus Sterling</td>
@@ -307,7 +307,7 @@
 <!-- Activity Feed -->
 <div class="bg-slate-900 text-white p-8 border border-slate-800">
 <h3 class="text-xl tracking-widest uppercase mb-8">System Activity</h3>
-<div class="space-y-8">
+<div class="space-y-8" data-admin-dashboard-activity="">
 <div class="flex gap-4">
 <div class="w-8 h-8 bg-primary-container flex items-center justify-center shrink-0">
 <span class="material-symbols-outlined text-sm">inventory</span>
@@ -357,7 +357,7 @@
 <span class="material-symbols-outlined text-error">warning</span>
 <h3 class="text-xl tracking-widest uppercase">Critical Stock Alerts</h3>
 </div>
-<button class="bg-error text-white px-4 py-2 text-[10px] font-bold uppercase tracking-widest">Restock All</button>
+<button class="bg-error text-white px-4 py-2 text-[10px] font-bold uppercase tracking-widest" data-admin-dashboard-view-low-stock="" type="button">View Inventory</button>
 </div>
 <div class="overflow-x-auto">
 <table class="w-full text-left">
@@ -370,7 +370,7 @@
 <th class="px-8 py-4 text-right">Actions</th>
 </tr>
 </thead>
-<tbody class="text-xs">
+<tbody class="text-xs" data-admin-dashboard-low-stock="">
 <tr class="border-b border-surface-container-low hover:bg-surface-container-low/50 transition-colors">
 <td class="px-8 py-4 flex items-center gap-4">
 <div class="w-12 h-12 cobalt-grade bg-surface-container-low flex items-center justify-center overflow-hidden">
@@ -426,4 +426,5 @@
 <script defer src="../js/auth-api.js"></script>
 <script defer src="../js/session-ui.js"></script>
 <script defer src="../js/admin-session.js"></script>
+<script defer src="../js/admin-dashboard.js"></script>
 </body></html>

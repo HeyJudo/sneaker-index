@@ -3,6 +3,7 @@ const { Cart, Order, Product } = require("../models");
 const { sendSuccess } = require("../utils/api-response");
 const { AppError } = require("../utils/app-error");
 const { clearCartCookie, loadCartForRequest } = require("../utils/cart-session");
+const { logActivity } = require("../utils/activity-log");
 
 const SHIPPING_METHODS = {
   standard: {
@@ -251,6 +252,22 @@ async function createOrder(req, res) {
   if (owner?.isGuest && (!cart.items || cart.items.length === 0)) {
     clearCartCookie(res);
   }
+
+  await logActivity({
+    type: "order_placed",
+    title: "New Order Placed",
+    message: `${createdOrder.orderNumber} placed for ${createdOrder.email}.`,
+    actor: req.user,
+    meta: {
+      orderId: String(createdOrder._id),
+      orderNumber: createdOrder.orderNumber,
+      total: createdOrder.pricing?.total || 0,
+      itemCount: (createdOrder.items || []).reduce(
+        (sum, item) => sum + (Number(item.quantity) || 0),
+        0
+      ),
+    },
+  });
 
   sendSuccess(res, {
     statusCode: 201,
