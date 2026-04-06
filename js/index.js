@@ -297,13 +297,37 @@
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('si-fade-up');
+        
+        // Handling traditional simple fades
+        if (entry.target.classList.contains('observe-fade')) {
+           entry.target.classList.add('si-fade-up');
+        }
+
+        // Handling sequential staggered children
+        if (entry.target.classList.contains('stagger-container')) {
+           const children = entry.target.querySelectorAll('.stagger-item');
+           children.forEach((child, index) => {
+             // Calculate staggered delay dynamically (e.g. 100ms per item)
+             child.style.transitionDelay = `${index * 120}ms`;
+             // Slight timeout to allow layout thrashing to settle before firing transition
+             global.setTimeout(() => {
+               child.classList.add('is-visible');
+             }, 50);
+           });
+        }
+        
+        // Handling section block reveals
+        if (entry.target.classList.contains('stagger-section')) {
+           entry.target.classList.add('is-visible');
+        }
+
         observer.unobserve(entry.target);
       }
     });
   }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
 
-  document.querySelectorAll('.observe-fade').forEach(el => observer.observe(el));
+  // Attach observers to all interaction targets
+  document.querySelectorAll('.observe-fade, .stagger-container, .stagger-section').forEach(el => observer.observe(el));
 
   init();
 })(window);
