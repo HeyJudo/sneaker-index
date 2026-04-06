@@ -104,6 +104,14 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = safeRedirect || fallbackTarget;
       }, 1000);
     } catch (error) {
+      const inputs = form.querySelectorAll("input");
+      inputs.forEach(input => {
+        input.classList.add("border-error");
+        input.addEventListener("input", function clearError() {
+          input.classList.remove("border-error");
+          input.removeEventListener("input", clearError);
+        }, { once: true });
+      });
       setMessage("error", error.message || "Unable to sign in.");
     } finally {
       setPending(false);

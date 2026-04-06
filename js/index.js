@@ -182,7 +182,24 @@
       .join("");
   }
 
+  function renderSkeletons() {
+    if (!elements.collectionGrid) return;
+    elements.collectionGrid.innerHTML = Array(4).fill(`
+      <article class="bg-surface-container-lowest p-6 border border-black/5">
+        <div class="bg-slate-200 animate-pulse h-64 mb-6"></div>
+        <div class="flex justify-between items-start gap-4">
+          <div class="w-full">
+            <div class="h-3 bg-slate-200 animate-pulse w-1/3 mb-2"></div>
+            <div class="h-5 bg-slate-200 animate-pulse w-2/3"></div>
+          </div>
+          <div class="h-5 bg-slate-200 animate-pulse w-1/4"></div>
+        </div>
+      </article>
+    `).join("");
+  }
+
   async function init() {
+    renderSkeletons();
     try {
       const [categoriesResponse, facetsResponse, featuredResponse, mosaicResponse] = await Promise.all([
         api.getCategories(),

@@ -80,6 +80,11 @@ select:focus-visible {
     outline-offset: 2px;
 }
 
+button:active,
+.si-lift-card:active {
+    transform: scale(0.98);
+}
+
 /* --- Shared Shell Helpers --- */
 .si-wordmark {
     display: inline-flex;

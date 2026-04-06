@@ -136,12 +136,16 @@ document.addEventListener("DOMContentLoaded", () => {
         "error",
         "Password must be at least 8 characters and include uppercase, lowercase, number, and special character."
       );
+      passwordInput.classList.add("border-error");
+      passwordInput.addEventListener("input", () => passwordInput.classList.remove("border-error"), { once: true });
       return;
     }
 
     if (password !== confirmPassword) {
       setPending(false);
       setMessage("error", "Password confirmation does not match.");
+      confirmPasswordInput.classList.add("border-error");
+      confirmPasswordInput.addEventListener("input", () => confirmPasswordInput.classList.remove("border-error"), { once: true });
       return;
     }
 
