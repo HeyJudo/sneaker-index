@@ -222,9 +222,9 @@
             ? "disabled opacity-40 cursor-not-allowed"
             : "";
         const availabilityMessage = !item.isAvailable
-          ? `<p class="text-[10px] tracking-[0.2em] uppercase font-bold text-error mt-3">Unavailable in current archive run</p>`
+          ? `<p class="text-xs tracking-wide uppercase font-bold text-error mt-3">Unavailable in current archive run</p>`
           : item.availableQuantity <= 2
-            ? `<p class="text-[10px] tracking-[0.2em] uppercase font-bold text-primary mt-3">Only ${item.availableQuantity} left in size ${escapeHtml(item.sizeLabel)}</p>`
+            ? `<p class="text-xs tracking-wide uppercase font-bold text-primary mt-3">Only ${item.availableQuantity} left in size ${escapeHtml(item.sizeLabel)}</p>`
             : "";
 
         return `
@@ -235,8 +235,8 @@
             <div class="flex-1 space-y-6">
               <div class="flex justify-between items-start gap-6">
                 <div>
-                  <label class="inline-flex items-center gap-3 text-[10px] uppercase tracking-[0.2em] font-bold text-on-surface-variant mb-3 cursor-pointer">
-                    <input class="w-4 h-4 border border-outline-variant text-primary focus:ring-primary rounded-none" data-cart-select type="checkbox" ${item.selectedForCheckout ? "checked" : ""}>
+                  <label class="inline-flex items-center gap-3 text-xs uppercase tracking-wide font-bold text-on-surface-variant mb-3 cursor-pointer">
+                    <input aria-label="Select ${escapeHtml(item.product.name)} for checkout" class="w-4 h-4 border border-outline-variant text-primary focus:ring-primary rounded-none" data-cart-select type="checkbox" ${item.selectedForCheckout ? "checked" : ""}>
                     <span>${item.selectedForCheckout ? "Selected For Checkout" : "Saved In Cart"}</span>
                   </label>
                   <a class="font-headline text-3xl tracking-wide uppercase hover:text-primary transition-colors" href="product.html?slug=${encodeURIComponent(item.product.slug)}">${escapeHtml(item.product.name)}</a>
@@ -250,18 +250,18 @@
               <div class="flex items-center justify-between pt-4 gap-6">
                 <div class="flex items-center gap-8">
                   <div class="flex items-center border border-outline-variant bg-white">
-                    <button class="px-3 py-1 hover:bg-surface-container-high transition-colors ${decrementDisabled}" data-cart-decrement type="button">
+                    <button aria-label="Decrease quantity" class="px-3 py-1 hover:bg-surface-container-high transition-colors ${decrementDisabled}" data-cart-decrement type="button">
                       <span class="material-symbols-outlined text-xs">remove</span>
                     </button>
                     <span class="px-4 py-1 text-sm font-bold border-x border-outline-variant">${quantityLabel}</span>
-                    <button class="px-3 py-1 hover:bg-surface-container-high transition-colors ${incrementDisabled}" data-cart-increment type="button">
+                    <button aria-label="Increase quantity" class="px-3 py-1 hover:bg-surface-container-high transition-colors ${incrementDisabled}" data-cart-increment type="button">
                       <span class="material-symbols-outlined text-xs">add</span>
                     </button>
                   </div>
-                  <button class="text-[10px] tracking-[0.2em] uppercase font-bold text-on-surface-variant hover:text-error transition-colors" data-cart-remove type="button">REMOVE</button>
+                  <button class="text-xs tracking-wide uppercase font-bold text-on-surface-variant hover:text-error transition-colors" data-cart-remove type="button">REMOVE</button>
                 </div>
                 <div class="text-right">
-                  <span class="text-[10px] block uppercase tracking-widest text-on-surface-variant mb-1">Line Total</span>
+                  <span class="text-xs block uppercase tracking-wide text-on-surface-variant mb-1">Line Total</span>
                   <span class="font-headline text-3xl">${formatPrice(item.lineTotal)}</span>
                 </div>
               </div>

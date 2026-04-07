@@ -41,6 +41,9 @@
     state: document.querySelector("[data-checkout-state]"),
     postalCode: document.querySelector("[data-checkout-postal-code]"),
     country: document.querySelector("[data-checkout-country]"),
+    cardNumber: document.querySelector("[data-checkout-card-number]"),
+    cardExpiry: document.querySelector("[data-checkout-card-expiry]"),
+    cardCvv: document.querySelector("[data-checkout-card-cvv]"),
     shippingOptions: Array.from(document.querySelectorAll("[data-checkout-shipping-option]")),
     paymentButtons: Array.from(document.querySelectorAll("[data-checkout-payment-option]")),
     selectedItems: document.querySelector("[data-checkout-selected-items]"),
@@ -216,7 +219,7 @@
     if (!errorElement) {
       errorElement = document.createElement("p");
       errorElement.setAttribute("data-field-error", "");
-      errorElement.className = "hidden text-[10px] uppercase tracking-[0.2em] font-bold text-error";
+      errorElement.className = "hidden text-xs uppercase tracking-wide font-bold text-error";
       wrapper.appendChild(errorElement);
     }
 
@@ -586,6 +589,40 @@
         }
       });
     });
+
+    if (elements.state) {
+      elements.state.addEventListener("input", () => {
+        elements.state.value = elements.state.value.replaceAll(/[^a-z]/gi, "").toUpperCase().slice(0, 2);
+      });
+    }
+
+    if (elements.postalCode) {
+      elements.postalCode.addEventListener("input", () => {
+        const digits = elements.postalCode.value.replaceAll(/[^\d-]/g, "").slice(0, 10);
+        elements.postalCode.value = digits;
+      });
+    }
+
+    if (elements.cardNumber) {
+      elements.cardNumber.addEventListener("input", () => {
+        const digits = elements.cardNumber.value.replaceAll(/\D/g, "").slice(0, 16);
+        elements.cardNumber.value = digits.replace(/(\d{4})(?=\d)/g, "$1 ").trim();
+      });
+    }
+
+    if (elements.cardExpiry) {
+      elements.cardExpiry.addEventListener("input", () => {
+        const digits = elements.cardExpiry.value.replaceAll(/\D/g, "").slice(0, 4);
+        elements.cardExpiry.value =
+          digits.length <= 2 ? digits : `${digits.slice(0, 2)} / ${digits.slice(2)}`;
+      });
+    }
+
+    if (elements.cardCvv) {
+      elements.cardCvv.addEventListener("input", () => {
+        elements.cardCvv.value = elements.cardCvv.value.replaceAll(/\D/g, "").slice(0, 4);
+      });
+    }
   }
 
   async function init() {

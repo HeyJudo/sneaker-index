@@ -112,11 +112,11 @@
       </div>
     </div>
     <div class="flex items-center gap-6">
-      <a class="relative hover:scale-95 duration-200" href="cart.html">
+      <a aria-label="Open cart" class="relative hover:scale-95 duration-200" href="cart.html">
         <span class="material-symbols-outlined text-slate-900">shopping_bag</span>
         <span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center font-bold" data-cart-badge>0</span>
       </a>
-      <a class="hover:scale-95 duration-200" data-auth-account-link href="login.html">
+      <a aria-label="Open account" class="hover:scale-95 duration-200" data-auth-account-link href="login.html">
         <span class="material-symbols-outlined text-slate-900">person</span>
       </a>
     </div>
@@ -180,17 +180,18 @@
 
         <div class="space-y-3 pt-4 opacity-50">
           <div class="flex justify-between items-center">
-            <label class="text-[9px] font-bold uppercase tracking-[0.25em] text-on-surface-variant">COUPON REDEMPTION - COMING LATER</label>
+            <label class="text-xs font-bold uppercase tracking-[0.2em] text-on-surface-variant">Promo Code</label>
           </div>
           <div class="flex grayscale">
             <input class="flex-1 bg-surface-container-high border border-outline-variant px-4 py-3 text-xs tracking-widest cursor-not-allowed" disabled placeholder="ENTER CODE" type="text"/>
             <button class="bg-outline-variant text-white px-6 py-3 text-xs font-bold uppercase tracking-widest cursor-not-allowed" disabled>Apply</button>
           </div>
+          <p class="text-xs text-on-surface-variant">Promo support is temporarily unavailable during checkout refresh.</p>
         </div>
 
         <div class="space-y-4 pt-4">
-          <button class="w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] opacity-60 cursor-not-allowed" data-cart-checkout-button disabled>Checkout Soon</button>
-          <p class="text-[10px] uppercase tracking-[0.2em] text-on-surface-variant text-center" data-cart-checkout-hint>Select at least one cart item to continue.</p>
+          <button class="w-full bg-primary text-white py-5 font-headline text-2xl tracking-[0.1em] uppercase transition-all active:translate-y-0.5 shadow-[0_12px_24px_rgba(26,63,196,0.15)] opacity-60 cursor-not-allowed" data-cart-checkout-button disabled>Select Items</button>
+          <p class="text-xs uppercase tracking-wide text-on-surface-variant text-center" data-cart-checkout-hint>Select at least one cart item to continue.</p>
           <a class="block w-full text-center border-2 border-primary py-4 font-bold text-[11px] uppercase tracking-[0.3em] text-primary hover:bg-primary hover:text-white transition-all" href="catalog.html">CONTINUE TO VAULT</a>
         </div>
 

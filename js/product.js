@@ -20,6 +20,7 @@
     colorLabel: document.querySelector("[data-product-color-label]"),
     colorOptions: document.querySelector("[data-product-color-options]"),
     sizeOptions: document.querySelector("[data-product-size-options]"),
+    sizeStatus: document.querySelector("[data-product-size-status]"),
     sizeGuide: document.querySelector("[data-product-size-guide]"),
     addButton: document.querySelector("[data-product-add]"),
     wishlistButton: document.querySelector("[data-product-wishlist]"),
@@ -79,6 +80,10 @@
     return state.product?.sizes?.find((size) => size.label === state.selectedSizeLabel) || null;
   }
 
+  function getSelectedColor() {
+    return state.product?.colors?.[state.selectedColorIndex] || null;
+  }
+
   function getTotalStock() {
     return (state.product?.sizes || []).reduce((total, size) => total + size.stock, 0);
   }
@@ -135,6 +140,53 @@
     }
   }
 
+  function getPurchaseState(product) {
+    const selectedSize = getSelectedSize();
+    const stockSummary = getStockSummary(product);
+
+    if (stockSummary.disabled) {
+      return {
+        ...stockSummary,
+        statusText: stockSummary.message,
+        statusTone: stockSummary.tone,
+      };
+    }
+
+    if (!selectedSize) {
+      return {
+        ...stockSummary,
+        buttonLabel: "Select Size",
+        disabled: true,
+        statusText: "Select an in-stock size to continue.",
+        statusTone: "text-on-surface-variant",
+      };
+    }
+
+    if (selectedSize.stock <= 0) {
+      return {
+        ...stockSummary,
+        buttonLabel: "Size Unavailable",
+        disabled: true,
+        statusText: `US ${selectedSize.label} is sold out. Select another size.`,
+        statusTone: "text-error",
+      };
+    }
+
+    if (selectedSize.stock <= 2) {
+      return {
+        ...stockSummary,
+        statusText: `US ${selectedSize.label} is almost gone. Only ${selectedSize.stock} left.`,
+        statusTone: "text-error",
+      };
+    }
+
+    return {
+      ...stockSummary,
+      statusText: `US ${selectedSize.label} is in stock and ready to add.`,
+      statusTone: "text-primary",
+    };
+  }
+
   function setFeedback(message, tone) {
     if (!elements.feedback) {
       return;
@@ -145,7 +197,7 @@
         ? "bg-error-container text-on-error-container"
         : "bg-secondary-fixed text-on-secondary-fixed";
 
-    elements.feedback.className = `mt-4 px-4 py-3 text-[0.7rem] font-bold uppercase tracking-[0.2em] ${className}`;
+    elements.feedback.className = `mt-4 px-4 py-3 text-xs font-bold tracking-wide ${className}`;
     elements.feedback.textContent = message;
     elements.feedback.classList.remove("hidden");
   }
@@ -293,26 +345,35 @@
   }
 
   function renderStock(product) {
-    const stockSummary = getStockSummary(product);
+    const purchaseState = getPurchaseState(product);
 
     if (elements.stockBadge) {
       elements.stockBadge.innerHTML = `
         <span class="material-symbols-outlined text-sm">visibility</span>
-        <span>${escapeHtml(stockSummary.badge)}</span>
+        <span>${escapeHtml(purchaseState.badge)}</span>
       `;
     }
 
     if (elements.stockMessage) {
-      elements.stockMessage.textContent = stockSummary.message;
-      elements.stockMessage.className = `font-bold text-[0.75rem] uppercase ${stockSummary.tone}`;
+      elements.stockMessage.textContent = purchaseState.message;
+      elements.stockMessage.className = `font-bold text-xs uppercase ${purchaseState.tone}`;
     }
 
     if (elements.addButton) {
-      elements.addButton.textContent = stockSummary.buttonLabel;
-      elements.addButton.disabled = stockSummary.disabled;
-      elements.addButton.className = stockSummary.disabled
+      elements.addButton.textContent = purchaseState.buttonLabel;
+      elements.addButton.disabled = purchaseState.disabled;
+      elements.addButton.setAttribute("aria-disabled", String(purchaseState.disabled));
+      elements.addButton.title = purchaseState.disabled
+        ? purchaseState.statusText
+        : "Add selected size to your bag";
+      elements.addButton.className = purchaseState.disabled
         ? "flex-1 bg-primary-container text-white font-bold h-16 tracking-widest text-[0.8rem] uppercase opacity-70 cursor-not-allowed"
         : "flex-1 bg-primary-container text-white font-bold h-16 tracking-widest text-[0.8rem] uppercase hover:bg-primary transition-all active:scale-[0.98]";
+    }
+
+    if (elements.sizeStatus) {
+      elements.sizeStatus.textContent = purchaseState.statusText;
+      elements.sizeStatus.className = `mt-3 text-xs font-bold uppercase tracking-wide ${purchaseState.statusTone}`;
     }
   }
 
@@ -370,7 +431,7 @@
 
   function renderColors(product) {
     if (elements.colorLabel) {
-      const selectedColor = product.colors[state.selectedColorIndex];
+      const selectedColor = getSelectedColor();
       elements.colorLabel.textContent = `Selected Color: ${selectedColor?.name || "Unavailable"}`;
     }
 
@@ -406,18 +467,26 @@
         if (isSelected) {
           className += " bg-primary text-white";
         } else if (isUnavailable) {
-          className += " text-outline-variant cursor-not-allowed";
+          className += " text-outline-variant cursor-not-allowed bg-surface-container-low";
         } else {
           className += " hover:border-primary";
         }
 
         return `
-          <button class="${className}" data-size-label="${escapeHtml(size.label)}" type="button" ${isUnavailable ? "disabled" : ""}>
+          <button
+            aria-label="US ${escapeHtml(size.label)} size${isUnavailable ? " unavailable" : ""}"
+            title="${isUnavailable ? "Out of stock" : "Select size"}"
+            class="${className}"
+            data-size-label="${escapeHtml(size.label)}"
+            type="button"
+            ${isUnavailable ? "disabled" : ""}>
             ${escapeHtml(size.label)}
           </button>
         `;
       })
       .join("");
+
+    renderStock(product);
   }
 
   function renderAbout(product) {
@@ -525,7 +594,7 @@
     state.relatedProducts = relatedProducts;
     state.selectedImageIndex = 0;
     state.selectedColorIndex = 0;
-    state.selectedSizeLabel = product.sizes.find((size) => size.stock > 0)?.label || product.sizes[0]?.label || "";
+    state.selectedSizeLabel = product.sizes.find((size) => size.stock > 0)?.label || "";
 
     renderHeader(product);
     renderGallery(product);
@@ -626,6 +695,7 @@
 
         state.selectedColorIndex = index;
         renderColors(state.product);
+        renderStock(state.product);
       });
     }
 
@@ -657,8 +727,14 @@
           return;
         }
 
+        const purchaseState = getPurchaseState(state.product);
         const selectedSize = getSelectedSize();
-        const selectedColor = state.product.colors[state.selectedColorIndex];
+        const selectedColor = getSelectedColor();
+
+        if (purchaseState.disabled) {
+          setFeedback(purchaseState.statusText, "error");
+          return;
+        }
 
         if (!selectedSize || selectedSize.stock <= 0) {
           setFeedback("Select an available size before adding to bag.", "error");
@@ -672,7 +748,7 @@
 
         const originalLabel = elements.addButton.textContent;
         elements.addButton.disabled = true;
-        elements.addButton.textContent = "Adding";
+        elements.addButton.textContent = "Adding...";
         clearFeedback();
 
         try {

@@ -8,6 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const defaultButtonLabel = submitButton.textContent.trim();
+  const emailInput = form.querySelector("#email");
+  const passwordInput = form.querySelector("#password");
 
   function initializePasswordToggles() {
     const toggles = Array.from(document.querySelectorAll("[data-password-toggle]"));
@@ -65,16 +67,65 @@ document.addEventListener("DOMContentLoaded", () => {
     submitButton.classList.toggle("cursor-not-allowed", isPending);
   }
 
+  function clearInputError(input) {
+    if (!input) {
+      return;
+    }
+
+    input.classList.remove("border-error");
+    input.removeAttribute("aria-invalid");
+  }
+
+  function setInputError(input) {
+    if (!input) {
+      return;
+    }
+
+    input.classList.add("border-error");
+    input.setAttribute("aria-invalid", "true");
+  }
+
+  function clearAllInputErrors() {
+    clearInputError(emailInput);
+    clearInputError(passwordInput);
+  }
+
+  function validateForm(email, password) {
+    clearAllInputErrors();
+
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setInputError(emailInput);
+      setMessage("error", "Enter a valid email address to continue.");
+      emailInput?.focus();
+      return false;
+    }
+
+    if (!password) {
+      setInputError(passwordInput);
+      setMessage("error", "Enter your password to continue.");
+      passwordInput?.focus();
+      return false;
+    }
+
+    return true;
+  }
+
   initializePasswordToggles();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     clearMessage();
+    clearAllInputErrors();
     setPending(true);
 
     const formData = new FormData(form);
     const email = String(formData.get("email") || "").trim();
     const password = String(formData.get("password") || "");
+
+    if (!validateForm(email, password)) {
+      setPending(false);
+      return;
+    }
 
     try {
       const response = await window.SneakerIndexAuthApi.login({
@@ -104,17 +155,21 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.href = safeRedirect || fallbackTarget;
       }, 1000);
     } catch (error) {
-      const inputs = form.querySelectorAll("input");
-      inputs.forEach(input => {
-        input.classList.add("border-error");
-        input.addEventListener("input", function clearError() {
-          input.classList.remove("border-error");
-          input.removeEventListener("input", clearError);
-        }, { once: true });
-      });
-      setMessage("error", error.message || "Unable to sign in.");
+      setInputError(emailInput);
+      setInputError(passwordInput);
+      setMessage("error", error.message || "Unable to sign in. Verify your credentials and try again.");
     } finally {
       setPending(false);
     }
+  });
+
+  [emailInput, passwordInput].forEach((input) => {
+    if (!input) {
+      return;
+    }
+
+    input.addEventListener("input", () => {
+      clearInputError(input);
+    });
   });
 });

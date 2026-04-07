@@ -92,11 +92,11 @@
 <a class="text-xs font-bold uppercase tracking-widest text-on-surface-variant hover:text-primary transition-colors" href="login.html">Account</a>
 </div>
 <div class="flex items-center gap-6">
-<a href="cart.html" class="relative inline-flex material-symbols-outlined text-on-surface hover:text-primary transition-colors">
+<a href="cart.html" aria-label="Open cart" class="relative inline-flex material-symbols-outlined text-on-surface hover:text-primary transition-colors">
 <span>shopping_bag</span>
 <span class="hidden absolute -top-1.5 -right-2 min-w-[1rem] h-4 px-1 bg-primary text-white text-[9px] leading-none flex items-center justify-center font-bold" data-cart-badge>0</span>
 </a>
-<a href="login.html" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors" data-auth-account-link>person</a>
+<a href="login.html" aria-label="Open account" class="material-symbols-outlined text-on-surface hover:text-primary transition-colors" data-auth-account-link>person</a>
 </div>
 </div>
 </nav>
@@ -160,19 +160,20 @@
 <!-- Sizes -->
 <div class="mb-12">
 <div class="flex justify-between items-center mb-4">
-<span class="text-[0.7rem] uppercase tracking-widest font-bold">Select Size (US Men)</span>
-<button class="text-[0.7rem] uppercase tracking-widest font-bold text-primary underline underline-offset-4" data-product-size-guide>Size Guide</button>
+<span class="text-xs uppercase tracking-widest font-bold">Select Size (US Men)</span>
+<button class="text-xs uppercase tracking-widest font-bold text-primary underline underline-offset-4" data-product-size-guide>Size Guide</button>
 </div>
 <div class="grid grid-cols-5 gap-0" data-product-size-options>
 <button class="h-14 border border-outline-variant flex items-center justify-center font-bold text-sm hover:border-primary transition-colors" type="button">8</button>
 </div>
+<p aria-live="polite" class="mt-3 text-xs font-bold uppercase tracking-wide text-on-surface-variant" data-product-size-status>Select an in-stock size to continue.</p>
 </div>
 <!-- CTA Row -->
 <div class="flex gap-4">
 <button class="flex-1 bg-primary-container text-white font-bold h-16 tracking-widest text-[0.8rem] uppercase opacity-70 cursor-not-allowed" data-product-add disabled type="button">
                         ADD TO BAG
                     </button>
-<button class="w-16 h-16 border-2 border-primary text-primary flex items-center justify-center hover:bg-primary/5 transition-all" data-product-wishlist type="button">
+<button aria-label="Add to wishlist" class="w-16 h-16 border-2 border-primary text-primary flex items-center justify-center hover:bg-primary/5 transition-all" data-product-wishlist type="button">
 <span class="material-symbols-outlined">favorite</span>
 </button>
 </div>
